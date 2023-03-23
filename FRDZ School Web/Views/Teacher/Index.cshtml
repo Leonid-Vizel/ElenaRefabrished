@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Teacher>
+@{
+    ViewData["Title"] = "Учителя";
+}
+
+<div align="center">
+    <div class="container p-4">
+        <div class="col-7">
+            <h1 class="text-primary text-center display-5 tracking-in-expand">Наши учителя</h1>
+        </div>
+        <div class="col-7">
+            <div class="accordion" id="accordionTeachers">
+                @foreach (var obj in Model)
+                {
+                    <div class="pt-3 element-animation">
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading-@obj.Id">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@obj.Id" aria-expanded="false" aria-controls="collapse-@obj.Id">
+                                    @obj.FIO
+                                </button>
+                            </h2>
+                            <div id="collapse-@obj.Id" class="accordion-collapse collapse" aria-labelledby="heading-@obj.Id" data-bs-parent="#accordionTeachers" style="">
+                                <div class="accordion-body text-center" @*tracking-in-expand-fwd-top*@>
+                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Post)</b> @obj.Post</p>
+                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Qualification)</b> @obj.Qualification</p>
+                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Experience)</b> @obj.Experience</p>
+                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Birthday)</b> @obj.Birthday.ToString("dd MMMM yyyyг.")</p>
+                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Tel_Num)</b> @obj.Tel_Num</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row pt-4 col-7">
+            <a asp-controller="Teacher" asp-action="Add" class="btn btn-primary">
+                @*<i class="bi bi-plus-square"></i>*@ Добавить учителя
+            </a>
+        </div>
+    </div>
+</div>

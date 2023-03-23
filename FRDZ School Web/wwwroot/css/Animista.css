@@ -1,0 +1,175 @@
+﻿.tracking-in-expand {
+    -webkit-animation: tracking-in-expand 0.9s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+    animation: tracking-in-expand 0.9s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}
+
+@-webkit-keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/*---------------------------------------------------------------------------------------------------------------*/
+
+.tracking-in-expand-fwd-top {
+    -webkit-animation: tracking-in-expand-fwd-top 0.8s cubic-bezier(0.190, 1.000, 0.220, 1.000) both;
+    animation: tracking-in-expand-fwd-top 0.8s cubic-bezier(0.190, 1.000, 0.220, 1.000) both;
+}
+
+@-webkit-keyframes tracking-in-expand-fwd-top {
+    0% {
+        letter-spacing: -0.5em;
+        -webkit-transform: translateZ(-700px) translateY(-500px);
+        transform: translateZ(-700px) translateY(-500px);
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0) translateY(0);
+        transform: translateZ(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes tracking-in-expand-fwd-top {
+    0% {
+        letter-spacing: -0.5em;
+        -webkit-transform: translateZ(-700px) translateY(-500px);
+        transform: translateZ(-700px) translateY(-500px);
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0) translateY(0);
+        transform: translateZ(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+/*---------------------------------------------------------------------------------------------------------------*/
+
+.tracking-out-contract-bck-top {
+    -webkit-animation: tracking-out-contract-bck-top 0.8s cubic-bezier(0.190, 1.000, 0.220, 1.000) both;
+    animation: tracking-out-contract-bck-top 0.8s cubic-bezier(0.190, 1.000, 0.220, 1.000) both;
+}
+
+@-webkit-keyframes tracking-out-contract-bck-top {
+    0% {
+        -webkit-transform: translateZ(0) translateY(0);
+        transform: translateZ(0) translateY(0);
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        letter-spacing: -0.5em;
+        -webkit-transform: translateZ(-500px) translateY(-300px);
+        transform: translateZ(-500px) translateY(-300px);
+        opacity: 0;
+    }
+}
+
+@keyframes tracking-out-contract-bck-top {
+    0% {
+        -webkit-transform: translateZ(0) translateY(0);
+        transform: translateZ(0) translateY(0);
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        letter-spacing: -0.5em;
+        -webkit-transform: translateZ(-500px) translateY(-300px);
+        transform: translateZ(-500px) translateY(-300px);
+        opacity: 0;
+    }
+}
+
+/*---------------------------------------------------------------------------------------------------------------*/
+
+.slide-in-fwd-center {
+    -webkit-animation: slide-in-fwd-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: slide-in-fwd-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes slide-in-fwd-center {
+    0% {
+        -webkit-transform: translateZ(-1400px);
+        transform: translateZ(-1400px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-fwd-center {
+    0% {
+        -webkit-transform: translateZ(-1400px);
+        transform: translateZ(-1400px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        opacity: 1;
+    }
+}
+
+/*---------------------------------------------------------------------------------------------------------------*/
+
+.element-big {
+    width: 100%;
+    height: 1200px;
+}
+
+.element-animation {
+    opacity: 0;
+}
+
+    .element-animation.element-show {
+        opacity: 1;
+        transition: opacity 1s;
+    }
