@@ -9,12 +9,12 @@ namespace FRDZ_School_Web.Models
         [Column("Lesson_Num")]
         [DisplayName("Номер урока")]
         [Required]
-        public decimal Lesson_Id { get; set; }
+        public int Lesson_Id { get; set; }
 
         [Column("Student_Num")]
         [DisplayName("Номер ученика")]
         [Required]
-        public decimal Student_Id { get; set; }
+        public int Student_Id { get; set; }
 
         [DisplayName("Оценка")]
         public decimal? Mark { get; set; }

@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace FRDZ_School_Web.Migrations
 {
     /// <inheritdoc />
-    public partial class fistTimeDataMigration : Migration
+    public partial class firsttimeMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,7 +15,7 @@ namespace FRDZ_School_Web.Migrations
                 name: "Grade",
                 columns: table => new
                 {
-                    Grade_Num = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Grade_Num = table.Column<int>(type: "int", nullable: false),
                     Grade_Index = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     Academic_Year = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Specialization = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -28,11 +29,12 @@ namespace FRDZ_School_Web.Migrations
                 name: "Lesson",
                 columns: table => new
                 {
-                    Lesson_Num = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Lesson_Num = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Lesson_Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Code_Obj = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Code_Obj = table.Column<int>(type: "int", nullable: false),
                     Date_And_Time = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Teacher_Num = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Teacher_Num = table.Column<int>(type: "int", nullable: false),
                     Home_Task = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -44,8 +46,8 @@ namespace FRDZ_School_Web.Migrations
                 name: "Lesson_Student",
                 columns: table => new
                 {
-                    Lesson_Num = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Student_Num = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Lesson_Num = table.Column<int>(type: "int", nullable: false),
+                    Student_Num = table.Column<int>(type: "int", nullable: false),
                     Mark = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Visiting = table.Column<string>(type: "nvarchar(1)", nullable: true)
                 },
@@ -58,7 +60,8 @@ namespace FRDZ_School_Web.Migrations
                 name: "School_Object",
                 columns: table => new
                 {
-                    Code = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Code = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name_Obj = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -70,7 +73,8 @@ namespace FRDZ_School_Web.Migrations
                 name: "Student",
                 columns: table => new
                 {
-                    Student_Num = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Student_Num = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FIO = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sex = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -84,8 +88,8 @@ namespace FRDZ_School_Web.Migrations
                 name: "Student_Grade",
                 columns: table => new
                 {
-                    Student_Num = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Grade_Num = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Student_Num = table.Column<int>(type: "int", nullable: false),
+                    Grade_Num = table.Column<int>(type: "int", nullable: false),
                     Grade_Index = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     Academic_Year = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -98,7 +102,8 @@ namespace FRDZ_School_Web.Migrations
                 name: "Teacher",
                 columns: table => new
                 {
-                    Teacher_Num = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Teacher_Num = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FIO = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Post = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),

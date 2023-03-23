@@ -5,10 +5,10 @@
 
 <div align="center">
     <div class="container p-4">
-        <div class="col-7">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-12">
             <h1 class="text-primary text-center display-5 tracking-in-expand">Наши учителя</h1>
         </div>
-        <div class="col-7">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-12">
             <div class="accordion" id="accordionTeachers">
                 @foreach (var obj in Model)
                 {
@@ -22,11 +22,11 @@
                             </h2>
                             <div id="collapse-@obj.Id" class="accordion-collapse collapse" aria-labelledby="heading-@obj.Id" data-bs-parent="#accordionTeachers" style="">
                                 <div class="accordion-body text-center" @*tracking-in-expand-fwd-top*@>
-                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Post)</b> @obj.Post</p>
-                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Qualification)</b> @obj.Qualification</p>
-                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Experience)</b> @obj.Experience</p>
-                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Birthday)</b> @obj.Birthday.ToString("dd MMMM yyyyг.")</p>
-                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Tel_Num)</b> @obj.Tel_Num</p>
+                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Post):</b> @obj.Post</p>
+                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Qualification):</b> @obj.Qualification</p>
+                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Experience):</b> @obj.Experience</p>
+                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Birthday):</b> @obj.Birthday.ToString("dd MMMM yyyyг.")</p>
+                                    <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Tel_Num):</b> @obj.Tel_Num</p>
                                 </div>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                 }
             </div>
         </div>
-        <div class="row pt-4 col-7">
+        <div class="row pt-4 col-lg-6 col-md-8 col-sm-10 col-12">
             <a asp-controller="Teacher" asp-action="Add" class="btn btn-primary">
                 @*<i class="bi bi-plus-square"></i>*@ Добавить учителя
             </a>

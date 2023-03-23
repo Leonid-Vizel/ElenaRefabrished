@@ -9,31 +9,31 @@ namespace FRDZ_School_Web.Models
         [Key]
         [Column("Teacher_Num")]
         [DisplayName("Номер")]
-        public decimal Id { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("ФИО")]
-        [Required(ErrorMessage="Обязательно введите ФИО учителя!")]
+        [Required(ErrorMessage="Введите ФИО!")]
         public string FIO { get; set; }
 
         [DisplayName("Должность")]
-        [Required(ErrorMessage = "Обязательно введите должность, занимаемую учителем!")]
+        [Required(ErrorMessage = "Введите должность!")]
         public string Post { get; set; }
 
         [DisplayName("Дата рождения")]
-        [Required(ErrorMessage = "Обязательно введите дату рождения учителя!")]
+        [Required(ErrorMessage = "Введите дату рождения!")]
         public DateTime Birthday { get; set; }
 
         [DisplayName("Квалификация")]
-        [Required(ErrorMessage = "Обязательно введите квалификацию учителя!")]
+        [Required(ErrorMessage = "Введите квалификацию!")]
         public string? Qualification { get; set; }
 
         [DisplayName("Стаж")]
-        [Required(ErrorMessage = "Обязательно введите стаж учителя!")]
+        [Required(ErrorMessage = "Введите стаж!")]
         [Range(0, 60, ErrorMessage = "Стаж не может превышать {2} лет")]
         public decimal? Experience { get; set; }
 
         [DisplayName("Номер телефона")]
-        [Required(ErrorMessage = "Обязательно введите номер телефона учителя!")]
+        [Required(ErrorMessage = "Введите номер телефона!")]
         [Phone(ErrorMessage = "Вы указали не номер телефона!")]
         public string? Tel_Num { get; set; }
     }

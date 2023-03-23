@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FRDZ_School_Web.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230321202036_fistTimeDataMigration")]
-    partial class fistTimeDataMigration
+    [Migration("20230323202731_firsttimeMigration")]
+    partial class firsttimeMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,8 +27,8 @@ namespace FRDZ_School_Web.Migrations
 
             modelBuilder.Entity("FRDZ_School_Web.Models.Grade", b =>
                 {
-                    b.Property<decimal>("Id")
-                        .HasColumnType("decimal(18,2)")
+                    b.Property<int>("Id")
+                        .HasColumnType("int")
                         .HasColumnName("Grade_Num");
 
                     b.Property<string>("Litera")
@@ -49,12 +49,15 @@ namespace FRDZ_School_Web.Migrations
 
             modelBuilder.Entity("FRDZ_School_Web.Models.Lesson", b =>
                 {
-                    b.Property<decimal>("Id")
-                        .HasColumnType("decimal(18,2)")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("Lesson_Num");
 
-                    b.Property<decimal>("Code_Obj")
-                        .HasColumnType("decimal(18,2)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Code_Obj")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Date_And_Time")
                         .HasColumnType("datetime2");
@@ -65,8 +68,8 @@ namespace FRDZ_School_Web.Migrations
                     b.Property<string>("Lesson_Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Teacher_Num")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("Teacher_Num")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -75,12 +78,12 @@ namespace FRDZ_School_Web.Migrations
 
             modelBuilder.Entity("FRDZ_School_Web.Models.Lesson_Student", b =>
                 {
-                    b.Property<decimal>("Lesson_Id")
-                        .HasColumnType("decimal(18,2)")
+                    b.Property<int>("Lesson_Id")
+                        .HasColumnType("int")
                         .HasColumnName("Lesson_Num");
 
-                    b.Property<decimal>("Student_Id")
-                        .HasColumnType("decimal(18,2)")
+                    b.Property<int>("Student_Id")
+                        .HasColumnType("int")
                         .HasColumnName("Student_Num");
 
                     b.Property<decimal?>("Mark")
@@ -96,9 +99,12 @@ namespace FRDZ_School_Web.Migrations
 
             modelBuilder.Entity("FRDZ_School_Web.Models.School_Object", b =>
                 {
-                    b.Property<decimal>("Id")
-                        .HasColumnType("decimal(18,2)")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("Code");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name_Obj")
                         .IsRequired()
@@ -111,9 +117,12 @@ namespace FRDZ_School_Web.Migrations
 
             modelBuilder.Entity("FRDZ_School_Web.Models.Student", b =>
                 {
-                    b.Property<decimal>("Id")
-                        .HasColumnType("decimal(18,2)")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("Student_Num");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
@@ -133,8 +142,8 @@ namespace FRDZ_School_Web.Migrations
 
             modelBuilder.Entity("FRDZ_School_Web.Models.Student_Grade", b =>
                 {
-                    b.Property<decimal>("Grade_Id")
-                        .HasColumnType("decimal(18,2)")
+                    b.Property<int>("Grade_Id")
+                        .HasColumnType("int")
                         .HasColumnName("Grade_Num");
 
                     b.Property<string>("Litera")
@@ -145,8 +154,8 @@ namespace FRDZ_School_Web.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("Academic_Year");
 
-                    b.Property<decimal>("Student_Id")
-                        .HasColumnType("decimal(18,2)")
+                    b.Property<int>("Student_Id")
+                        .HasColumnType("int")
                         .HasColumnName("Student_Num");
 
                     b.HasKey("Grade_Id", "Litera", "AYear", "Student_Id");
@@ -156,9 +165,12 @@ namespace FRDZ_School_Web.Migrations
 
             modelBuilder.Entity("FRDZ_School_Web.Models.Teacher", b =>
                 {
-                    b.Property<decimal>("Id")
-                        .HasColumnType("decimal(18,2)")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
                         .HasColumnName("Teacher_Num");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");

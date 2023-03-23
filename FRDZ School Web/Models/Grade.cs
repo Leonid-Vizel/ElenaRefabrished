@@ -10,7 +10,7 @@ namespace FRDZ_School_Web.Models
         [DisplayName("Номер")]
         [Required(ErrorMessage = "У класса обязательно должен быть номер!")]
         [Range(1, 11, ErrorMessage = "В школе могут быть только {1}-{2} классы!")]
-        public decimal Id { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "У класса обязательно должен быть буквенный индекс!")]
         [Column("Grade_Index")]

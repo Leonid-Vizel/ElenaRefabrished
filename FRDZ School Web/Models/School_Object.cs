@@ -10,7 +10,7 @@ namespace FRDZ_School_Web.Models
         [Column("Code")]
         [DisplayName("Номер")]
         [Required]
-        public decimal Id { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("Название предмета")]
         [Required]

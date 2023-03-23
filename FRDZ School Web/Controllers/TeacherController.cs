@@ -19,5 +19,18 @@ namespace FRDZ_School_Web.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add(Teacher obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Teacher.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
     }
 }

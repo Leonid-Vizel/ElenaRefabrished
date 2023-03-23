@@ -10,18 +10,18 @@ namespace FRDZ_School_Web.Models
         [Column("Student_Num")]
         [DisplayName("Номер")]
         [Required]
-        public decimal Id { get; set; }
+        public int Id { get; set; }
 
         [DisplayName("ФИО")]
-        [Required(ErrorMessage = "Обязательно введите ФИО ученика!")]
+        [Required(ErrorMessage = "Введите ФИО!")]
         public string FIO { get; set; }
 
         [DisplayName("Пол")]
-        [Required(ErrorMessage = "Обязательно введите пол ученика! (Ж или М)")]
+        [Required(ErrorMessage = "Укажите пол! (Ж или М)")]
         public char Sex { get; set; }
 
         [DisplayName("Дата рождения")]
-        [Required(ErrorMessage = "Обязательно введите дату рождения ученика!")]
+        [Required(ErrorMessage = "Введите дату рождения!")]
         public DateTime Birthday { get; set; }
     }
 }
