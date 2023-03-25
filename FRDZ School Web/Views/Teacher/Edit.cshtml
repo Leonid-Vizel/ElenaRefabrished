@@ -1,0 +1,61 @@
+﻿@model Teacher
+@{
+    ViewData["Title"] = "Изменение";
+}
+
+<div align="center">
+    <div class="container p-4">
+        <form method="post" asp-action="Edit">
+            <div class="row pb-3">
+                <h1 class="text-primary text-center display-5 tracking-in-expand">Редактирование данных учителя</h1>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12 element-animation">
+                <div class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" placeholder="FIO" asp-for="FIO">
+                        <span class="text-danger " asp-validation-for="FIO"></span>
+                        <label for="floatingInput" asp-for="FIO"></label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" placeholder="Post" asp-for="Post">
+                        <span class="text-danger" asp-validation-for="Post"></span>
+                        <label for="floatingPassword" asp-for="Post"></label>
+                    </div>
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Qualification" asp-for="Qualification">
+                            <span class="text-danger" asp-validation-for="Qualification"></span>
+                            <label for="floatingInput" asp-for="Qualification"></label>
+                        </div>
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Experience" asp-for="Experience">
+                            <span class="text-danger" asp-validation-for="Experience"></span>
+                            <label for="floatingPassword" asp-for="Experience"></label>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Tel_Num" asp-for="Tel_Num">
+                            <span class="text-danger" asp-validation-for="Tel_Num"></span>
+                            <label for="floatingInput" asp-for="Tel_Num"></label>
+                        </div>
+                        <div class="form-floating col">
+                            <input type="date" class="form-control" placeholder="Birthday" asp-for="Birthday">
+                            <span class="text-danger" asp-validation-for="Birthday"></span>
+                            <label for="floatingPassword" asp-for="Birthday"></label>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col">
+                            <a asp-asp-controller="Teacher" asp-action="Index" class="btn btn-primary w-100">Вернуться к списку</a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-success w-100">Изменить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

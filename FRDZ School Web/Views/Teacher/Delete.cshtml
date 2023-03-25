@@ -1,0 +1,64 @@
+﻿@model Teacher
+@{
+    ViewData["Title"] = "Удаление";
+}
+
+<div align="center">
+    <div class="container p-4">
+        <form method="post" asp-action="Delete">
+            <input asp-for="Id" hidden />
+            <div class="row pb-3">
+                <h1 class="text-danger text-center display-7 tracking-in-expand">Вы действительно хотите удалить учителя из списка?</h1>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12 element-animation">
+                <div class="mb-3">
+                    <div class="form-floating mb-3">
+                        <input class="form-control" placeholder="FIO" asp-for="FIO" disabled="">
+                        <span class="text-danger " asp-validation-for="FIO"></span>
+                        <label for="floatingInput" asp-for="FIO"></label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" placeholder="Post" asp-for="Post" disabled="">
+                        <span class="text-danger" asp-validation-for="Post"></span>
+                        <label for="floatingPassword" asp-for="Post"></label>
+                    </div>
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Qualification" asp-for="Qualification" disabled="">
+                            <span class="text-danger" asp-validation-for="Qualification"></span>
+                            <label for="floatingInput" asp-for="Qualification"></label>
+                        </div>
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Experience" asp-for="Experience" disabled="">
+                            <span class="text-danger" asp-validation-for="Experience"></span>
+                            <label for="floatingPassword" asp-for="Experience"></label>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Tel_Num" asp-for="Tel_Num" disabled="">
+                            <span class="text-danger" asp-validation-for="Tel_Num"></span>
+                            <label for="floatingInput" asp-for="Tel_Num"></label>
+                        </div>
+                        <div class="form-floating col">
+                            <input type="date" class="form-control" placeholder="Birthday" asp-for="Birthday" disabled="">
+                            <span class="text-danger" asp-validation-for="Birthday"></span>
+                            <label for="floatingPassword" asp-for="Birthday"></label>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col">
+                            <a asp-asp-controller="Teacher" asp-action="Index" class="btn btn-primary w-100">Нет, вернуться к списку</a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-danger w-100">Да, удалить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

@@ -28,9 +28,74 @@ namespace FRDZ_School_Web.Controllers
             {
                 _db.Teacher.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Учитель добавлен!";
                 return RedirectToAction("Index");
             }
             return View(obj);
+        }
+
+        public IActionResult Edit(int? Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+
+            var teacherFromDb = _db.Teacher.Find(Id);
+
+            if (teacherFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(teacherFromDb);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Teacher obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Teacher.Update(obj);
+                _db.SaveChanges();
+                TempData["success"] = "Данные изменены успешно!";
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+        }
+
+        public IActionResult Delete(int? Id)
+        {
+            if (Id == null || Id == 0)
+            {
+                return NotFound();
+            }
+
+            var teacherFromDb = _db.Teacher.Find(Id);
+
+            if (teacherFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(teacherFromDb);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePOST(int? Id)
+        {
+            var teacherFromDb = _db.Teacher.Find(Id);
+
+            if (teacherFromDb == null)
+            {
+                return NotFound();
+            }
+            _db.Teacher.Remove(teacherFromDb);
+            _db.SaveChanges();
+            TempData["error"] = "Учитель удалён!";
+            return RedirectToAction("Index");
         }
     }
 }

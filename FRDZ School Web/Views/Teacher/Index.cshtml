@@ -27,6 +27,14 @@
                                     <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Experience):</b> @obj.Experience</p>
                                     <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Birthday):</b> @obj.Birthday.ToString("dd MMMM yyyyг.")</p>
                                     <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Tel_Num):</b> @obj.Tel_Num</p>
+                                    <div class="row g-3 button-wrapper">
+                                        <div class="col-3">
+                                            <a asp-controller="Teacher" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-outline-dark">Изменить</a>
+                                        </div>
+                                        <div class="col-3">
+                                            <a asp-controller="Teacher" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-outline-danger">Удалить</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +43,7 @@
             </div>
         </div>
         <div class="row pt-4 col-lg-6 col-md-8 col-sm-10 col-12 element-animation">
-            <a asp-controller="Teacher" asp-action="Add" class="btn btn-primary">
+            <a asp-controller="Teacher" asp-action="Add" class="btn btn-primary w-100">
                 @*<i class="bi bi-plus-square"></i>*@ Добавить учителя
             </a>
         </div>
