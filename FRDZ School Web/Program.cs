@@ -28,6 +28,14 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id:int?}");
+
+app.MapControllerRoute(
+    name: "parametrs",
+    pattern: "{controller}/{action}/{x:int}/{y:int}");
+
+app.MapControllerRoute(
+    name: "CatchAll",
+    pattern: "{controller=Values}/{action=Mult}/{*catchall}");
 
 app.Run();
