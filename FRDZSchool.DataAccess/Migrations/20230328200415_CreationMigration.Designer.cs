@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FRDZ_School_Web.Migrations
+namespace FRDZSchool.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230323202731_firsttimeMigration")]
-    partial class firsttimeMigration
+    [Migration("20230328200415_CreationMigration")]
+    partial class CreationMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace FRDZ_School_Web.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FRDZ_School_Web.Models.Grade", b =>
+            modelBuilder.Entity("FRDZSchool.Models.Grade", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int")
@@ -47,7 +47,7 @@ namespace FRDZ_School_Web.Migrations
                     b.ToTable("Grade");
                 });
 
-            modelBuilder.Entity("FRDZ_School_Web.Models.Lesson", b =>
+            modelBuilder.Entity("FRDZSchool.Models.Lesson", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,7 +76,7 @@ namespace FRDZ_School_Web.Migrations
                     b.ToTable("Lesson");
                 });
 
-            modelBuilder.Entity("FRDZ_School_Web.Models.Lesson_Student", b =>
+            modelBuilder.Entity("FRDZSchool.Models.Lesson_Student", b =>
                 {
                     b.Property<int>("Lesson_Id")
                         .HasColumnType("int")
@@ -97,7 +97,7 @@ namespace FRDZ_School_Web.Migrations
                     b.ToTable("Lesson_Student");
                 });
 
-            modelBuilder.Entity("FRDZ_School_Web.Models.School_Object", b =>
+            modelBuilder.Entity("FRDZSchool.Models.School_Object", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -115,7 +115,7 @@ namespace FRDZ_School_Web.Migrations
                     b.ToTable("School_Object");
                 });
 
-            modelBuilder.Entity("FRDZ_School_Web.Models.Student", b =>
+            modelBuilder.Entity("FRDZSchool.Models.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -140,7 +140,7 @@ namespace FRDZ_School_Web.Migrations
                     b.ToTable("Student");
                 });
 
-            modelBuilder.Entity("FRDZ_School_Web.Models.Student_Grade", b =>
+            modelBuilder.Entity("FRDZSchool.Models.Student_Grade", b =>
                 {
                     b.Property<int>("Grade_Id")
                         .HasColumnType("int")
@@ -163,7 +163,7 @@ namespace FRDZ_School_Web.Migrations
                     b.ToTable("Student_Grade");
                 });
 
-            modelBuilder.Entity("FRDZ_School_Web.Models.Teacher", b =>
+            modelBuilder.Entity("FRDZSchool.Models.Teacher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -175,9 +175,9 @@ namespace FRDZ_School_Web.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal?>("Experience")
+                    b.Property<int?>("Experience")
                         .IsRequired()
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("int");
 
                     b.Property<string>("FIO")
                         .IsRequired()

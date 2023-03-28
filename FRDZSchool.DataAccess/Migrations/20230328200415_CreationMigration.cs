@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace FRDZ_School_Web.Migrations
+namespace FRDZSchool.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class firsttimeMigration : Migration
+    public partial class CreationMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -108,7 +108,7 @@ namespace FRDZ_School_Web.Migrations
                     Post = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Qualification = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Experience = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Experience = table.Column<int>(type: "int", nullable: false),
                     Tel_Num = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
