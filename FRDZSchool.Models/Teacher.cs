@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace FRDZ_School_Web.Models
+namespace FRDZSchool.Models
 {
     public class Teacher
     {
@@ -12,7 +12,7 @@ namespace FRDZ_School_Web.Models
         public int Id { get; set; }
 
         [DisplayName("ФИО")]
-        [Required(ErrorMessage="Введите ФИО!")]
+        [Required(ErrorMessage = "Введите ФИО!")]
         public string FIO { get; set; }
 
         [DisplayName("Должность")]

@@ -1,5 +1,6 @@
-﻿using FRDZ_School_Web.Data;
-using FRDZ_School_Web.Models;
+﻿using FRDZSchool.DataAccess;
+using FRDZSchool.DataAccess.Data;
+using FRDZSchool.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FRDZ_School_Web.Controllers

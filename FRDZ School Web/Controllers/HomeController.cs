@@ -1,4 +1,4 @@
-﻿using FRDZ_School_Web.Models;
+﻿using FRDZSchool.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

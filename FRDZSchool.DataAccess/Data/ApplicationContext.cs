@@ -1,7 +1,7 @@
-﻿using FRDZ_School_Web.Models;
+﻿using FRDZSchool.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FRDZ_School_Web.Data
+namespace FRDZSchool.DataAccess.Data
 {
     public class ApplicationContext : DbContext, IDisposable
     {

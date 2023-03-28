@@ -1,4 +1,4 @@
-using FRDZ_School_Web.Data;
+using FRDZSchool.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
