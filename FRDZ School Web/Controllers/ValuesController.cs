@@ -8,15 +8,7 @@ namespace FRDZ_School_Web.Controllers
     {
         public ViewResult Index()
         {
-            string userName = User.Identity.Name;
-            var headers = Request.Headers.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.First());
-            if (userName == null)
-                userName = "";
-
-            foreach (var k in headers.Keys)
-                userName += "\n" + k + " - " + headers[k];
-
-            return userName;
+            return View();
         }
 
         public ViewResult Test()
