@@ -1,12 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace FRDZ_School_Web.Controllers
 {
     public class ValuesController : Controller
     {
-        public IActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            string userName = User.Identity.Name;
+            var headers = Request.Headers.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.First());
+            if (userName == null)
+                userName = "";
+
+            foreach (var k in headers.Keys)
+                userName += "\n" + k + " - " + headers[k];
+
+            return userName;
+        }
+
+        public ViewResult Test()
+        {
+            return new ViewResult()
+            {
+                ViewName = "Test",
+                ViewData = new ViewDataDictionary(
+                           new EmptyModelMetadataProvider(),
+                           new ModelStateDictionary())
+                           {
+                               Model = "Вы находитесь в Test методе!"
+                           }
+            };
         }
 
         public IActionResult List()
