@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
-    <header>
+    <header class="hero-nav hero-nav__inner">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FRDZ School Web</a>
@@ -43,24 +43,25 @@
                         </div>
                         </li>*@
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-sm-2" type="search" placeholder="Поиск">
-                        <button class="btn btn-success my-2 my-sm-0" type="submit">Поиск</button>
-                    </form>
+                    @*                    <form class="d-flex">
+                    <input class="form-control me-sm-2" type="search" placeholder="Поиск">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit">Поиск</button>
+                    </form>*@
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="content">
             <partial name="_Notification" />
             @RenderBody()
         </main>
     </div>
-
-    <footer class="footer text-muted bg-primary">
-        <div class="container">
-            &copy; 2023 - FRDZ School Web
+    <footer class="fixed_footer bg-primary">
+        <div class="content p-4 ">
+            <p> &copy; 2023 - FRDZ School Web.</p>
+            <p> &copy; 2023 - FRDZ School Web.</p>
+            <p> &copy; 2023 - FRDZ School Web.</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
