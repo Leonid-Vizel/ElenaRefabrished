@@ -4776,7 +4776,7 @@ textarea.form-control-lg {
 }
 
 .accordion-button {
-    position: relative;
+    position: static;
     display: flex;
     align-items: center;
     width: 100%;
