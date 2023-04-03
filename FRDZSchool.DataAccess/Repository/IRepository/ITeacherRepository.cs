@@ -5,6 +5,5 @@ namespace FRDZSchool.DataAccess.Repository.IRepository
     public interface ITeacherRepository : IRepository<Teacher>
     {
         void Update(Teacher obj);
-        void Save();
     }
 }

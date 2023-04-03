@@ -1,5 +1,4 @@
-﻿using FRDZSchool.DataAccess.Data;
-using FRDZSchool.DataAccess.Repository.IRepository;
+﻿using FRDZSchool.DataAccess.Repository.IRepository;
 using FRDZSchool.Models;
 using Microsoft.AspNetCore.Mvc;
 
