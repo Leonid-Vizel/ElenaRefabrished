@@ -1,5 +1,5 @@
-﻿using FRDZSchool.DataAccess;
-using FRDZSchool.DataAccess.Data;
+﻿using FRDZSchool.DataAccess.Data;
+using FRDZSchool.DataAccess.Repository.IRepository;
 using FRDZSchool.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,12 +7,12 @@ namespace FRDZ_School_Web.Controllers
 {
     public class TeacherController : Controller
     {
-        private readonly ApplicationContext _db;
-        public TeacherController(ApplicationContext db) => _db = db;
+        private readonly ITeacherRepository _teacherRepo;
+        public TeacherController(ITeacherRepository db) => _teacherRepo = db;
 
         public IActionResult Index()
         {
-            IEnumerable<Teacher> objTeacherList = _db.Teacher.ToList();
+            IEnumerable<Teacher> objTeacherList = _teacherRepo.GetAll().ToList();
             return View(objTeacherList);
         }
 
@@ -27,8 +27,8 @@ namespace FRDZ_School_Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Teacher.Add(obj);
-                _db.SaveChanges();
+                _teacherRepo.Add(obj);
+                _teacherRepo.Save();
                 TempData["success"] = "Учитель добавлен!";
                 return RedirectToAction("Index");
             }
@@ -42,7 +42,7 @@ namespace FRDZ_School_Web.Controllers
                 return NotFound();
             }
 
-            var teacherFromDb = _db.Teacher.Find(Id);
+            var teacherFromDb = _teacherRepo.Get(u => u.Id == Id);
 
             if (teacherFromDb == null)
             {
@@ -58,8 +58,8 @@ namespace FRDZ_School_Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Teacher.Update(obj);
-                _db.SaveChanges();
+                _teacherRepo.Update(obj);
+                _teacherRepo.Save();
                 TempData["success"] = "Данные изменены успешно!";
                 return RedirectToAction("Index");
             }
@@ -73,7 +73,7 @@ namespace FRDZ_School_Web.Controllers
                 return NotFound();
             }
 
-            var teacherFromDb = _db.Teacher.Find(Id);
+            var teacherFromDb = _teacherRepo.Get(u => u.Id == Id);
 
             if (teacherFromDb == null)
             {
@@ -87,14 +87,14 @@ namespace FRDZ_School_Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? Id)
         {
-            var teacherFromDb = _db.Teacher.Find(Id);
+            var teacherFromDb = _teacherRepo.Get(u => u.Id == Id);
 
             if (teacherFromDb == null)
             {
                 return NotFound();
             }
-            _db.Teacher.Remove(teacherFromDb);
-            _db.SaveChanges();
+            _teacherRepo.Remove(teacherFromDb);
+            _teacherRepo.Save();
             TempData["error"] = "Учитель удалён!";
             return RedirectToAction("Index");
         }
