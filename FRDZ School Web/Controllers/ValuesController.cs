@@ -19,9 +19,9 @@ namespace FRDZ_School_Web.Controllers
                 ViewData = new ViewDataDictionary(
                            new EmptyModelMetadataProvider(),
                            new ModelStateDictionary())
-                           {
-                               Model = "Вы находитесь в Test методе!"
-                           }
+                {
+                    Model = "Вы находитесь в Test методе!"
+                }
             };
         }
 

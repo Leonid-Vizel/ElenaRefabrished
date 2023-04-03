@@ -9,7 +9,7 @@ namespace FRDZSchool.DataAccess.Repository
     {
         private readonly ApplicationContext _db;
 
-        internal DbSet<T> dbSet; 
+        internal DbSet<T> dbSet;
 
         public Repository(ApplicationContext db)
         {
@@ -17,30 +17,30 @@ namespace FRDZSchool.DataAccess.Repository
             this.dbSet = _db.Set<T>();
         }
 
-        void IRepository<T>.Add(T entity)
+        public void Add(T entity)
         {
             dbSet.Add(entity);
         }
 
-        IEnumerable<T> IRepository<T>.GetAll()
+        public IEnumerable<T> GetAll()
         {
             IQueryable<T> query = dbSet;
             return query.ToList();
         }
 
-        T IRepository<T>.Get(Expression<Func<T, bool>> filter)
+        public T Get(Expression<Func<T, bool>> filter)
         {
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
             return query.FirstOrDefault();
         }
 
-        void IRepository<T>.Remove(T entity)
+        public void Remove(T entity)
         {
             dbSet.Remove(entity);
         }
 
-        void IRepository<T>.RemoveRange(IEnumerable<T> entity)
+        public void RemoveRange(IEnumerable<T> entity)
         {
             dbSet.RemoveRange(entity);
         }
