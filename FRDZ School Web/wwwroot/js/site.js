@@ -23,25 +23,7 @@ var heroShinker = function () {
         if (scrollOffset < heroHeight) {
             $(hero).css('height', (heroHeight - scrollOffset));
         }
-        if (scrollOffset > (heroHeight - 300)) {
-            hero.addClass('fixme');
-        } else {
-            hero.removeClass('fixme');
-        };
-    });
-}
-heroShinker();
-
-var heroShinker = function () {
-    var hero = $('.hero-navE'),
-        heroHeight = $('.hero-navE').outerHeight(true);
-    $(hero).parent().css('padding-top', heroHeight);
-    $(window).scroll(function () {
-        var scrollOffset = $(window).scrollTop();
-        if (scrollOffset < heroHeight) {
-            $(hero).css('height', (heroHeight - scrollOffset));
-        }
-        if (scrollOffset > (heroHeight - 115)) {
+        if (scrollOffset > (heroHeight - 700)) {
             hero.addClass('fixme');
         } else {
             hero.removeClass('fixme');

@@ -33,14 +33,14 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Visitor}/{controller=Home}/{action=Index}/{id?}");
 
-app.MapControllerRoute(
-    name: "parametrs",
-    pattern: "{controller}/{action}/{x:int}/{y:int}");
+//app.MapControllerRoute(
+//    name: "parametrs",
+//    pattern: "{controller}/{action}/{x:int}/{y:int}");
 
-app.MapControllerRoute(
-    name: "CatchAll",
-    pattern: "{controller=Values}/{action=Mult}/{*catchall}");
+//app.MapControllerRoute(
+//    name: "CatchAll",
+//    pattern: "{controller=Values}/{action=Mult}/{*catchall}");
 
 app.Run();

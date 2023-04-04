@@ -1,6 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
+    background: white;
 }
 
 .container {
@@ -9,9 +10,24 @@ body, html {
 }
 
 header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(26, 26, 26, 1);
+    height: 92px;
+}
+
+.header_sticky {
     position: sticky;
     top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 999;
+}
+
+.header_static {
+    position: static;
 }
 
 /*========================================================================================*/
@@ -21,10 +37,6 @@ header {
     font: 300 1em/1.5, serif;
     padding: 0;
     margin: 0;
-}
-
-html, body {
-    background: white;
 }
 
 .content {
@@ -81,7 +93,7 @@ html, body {
     justify-content: center;
     align-items: center;
     height: 100%;
-    min-height: 100px;
+    min-height: 0px;
     background-image: url(https://architizer-prod.imgix.net/media/1392406619295871_PHG_EXT_DM02_DSC_9701.jpg);
     background-size: cover;
     background-position: center;
@@ -107,41 +119,9 @@ html, body {
         background: rgba(26, 26, 26, 1);
     }
 
-.hero-navE {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content:;
-    align-items:;
-    height: 100px;
-    min-height: 75px;
-    background-color: rgba(26, 26, 26, 1);
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-}
-
-    .hero-navE .hero-nav__inner {
-        z-index: 1;
-    }
-
-    .hero-navE:before {
-        content: "";
-        background: rgba(26, 26, 26, 1);
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        transition: background 500ms;
-    }
-
 /*================================================================================================================*/
 
-[data-target="#mainMenu"] {
+/*[data-target="#mainMenu"] {
     position: relative;
     z-index: 999;
 }
@@ -328,4 +308,20 @@ html, body {
     .main-header .navbar-toggler:focus .icon-bar {
         background-color: #fff;
     }
+}*/
+
+/*===============================================================================================*/
+
+.megamenu {
+    position: static;
+}
+
+    .megamenu .dropdown-menu {
+        background: none;
+        border: none;
+    }
+
+code {
+    padding: 0.1rem 0.2rem;
+    border-radius: 0.2rem;
 }

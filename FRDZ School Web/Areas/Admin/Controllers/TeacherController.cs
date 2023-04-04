@@ -2,8 +2,9 @@
 using FRDZSchool.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FRDZ_School_Web.Controllers
+namespace FRDZ_School_Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class TeacherController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

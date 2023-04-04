@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace FRDZ_School_Web.Controllers
+namespace FRDZ_School_Web.Areas.Visitor.Controllers
 {
+    [Area("Visitor")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
