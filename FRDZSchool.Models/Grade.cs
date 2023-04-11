@@ -24,5 +24,7 @@ namespace FRDZSchool.Models
 
         [DisplayName("Специализация")]
         public string? Specialization { get; set; }
+
+        public List<Student_Grade> Student_Grades { get; set; }
     }
 }

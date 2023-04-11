@@ -29,7 +29,7 @@ namespace FRDZSchool.Models
 
         [DisplayName("Стаж")]
         [Required(ErrorMessage = "Введите стаж!")]
-        [Range(0, 60, ErrorMessage = "Стаж не может превышать {2} лет")]
+        [Range(0, 60, ErrorMessage = "Стаж не может превышать {2} лет!")]
         public int? Experience { get; set; }
 
         [DisplayName("Номер телефона")]

@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using FRDZSchool.Models;
+using System.Diagnostics;
 
-namespace FRDZ_School_Web.Controllers
+namespace FRDZ_School_Web.Areas.Values.Controllers
 {
+    [Area("Values")]
     public class ValuesController : Controller
     {
         private readonly IWebHostEnvironment environment;
@@ -54,7 +57,7 @@ namespace FRDZ_School_Web.Controllers
 
         public IActionResult Calc(int x, int y)
         {
-            int z = (x * y) + (x / y) - y;
+            int z = x * y + x / y - y;
             return View(z);
         }
 
@@ -68,6 +71,29 @@ namespace FRDZ_School_Web.Controllers
                     mult *= k;
             }
             return View(mult);
+        }
+
+        public IActionResult Registration()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Registration(RegistrationBindingModel model)
+        {
+            Debug.WriteLine("Name: " + model.Name);
+            Debug.WriteLine("LastName: " + model.LastName);
+            Debug.WriteLine("Email: " + model.Email);
+            Debug.WriteLine("Phone: " + model.Phone);
+            Debug.WriteLine("Birthday: " + model.Birthday);
+            Debug.WriteLine("Password: " + model.Password);
+            if (ModelState.IsValid)
+            {
+                TempData["success"] = "Регистрация прошла успешно!";
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

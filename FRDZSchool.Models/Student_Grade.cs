@@ -6,10 +6,13 @@ namespace FRDZSchool.Models
 {
     public class Student_Grade
     {
+
         [Column("Student_Num")]
         [DisplayName("Номер ученика")]
         [Required]
         public int Student_Id { get; set; }
+        [ForeignKey("Student_Id")]
+        public Student Student { get; set; }
 
         [Column("Grade_Num")]
         [DisplayName("Номер класса")]
@@ -25,5 +28,7 @@ namespace FRDZSchool.Models
         [DisplayName("Учебный год")]
         [Required]
         public DateTime AYear { get; set; }
+
+        public Grade Grades { get; set; }
     }
 }

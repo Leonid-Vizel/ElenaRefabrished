@@ -10,11 +10,16 @@ namespace FRDZSchool.Models
         [DisplayName("Номер урока")]
         [Required]
         public int Lesson_Id { get; set; }
+        [ForeignKey("Lesson_Id")]
+        public Lesson Lesson { get; set; }
 
         [Column("Student_Num")]
         [DisplayName("Номер ученика")]
         [Required]
         public int Student_Id { get; set; }
+        [ForeignKey("Student_Id")]
+        public Student Student { get; set; }
+
 
         [DisplayName("Оценка")]
         public decimal? Mark { get; set; }

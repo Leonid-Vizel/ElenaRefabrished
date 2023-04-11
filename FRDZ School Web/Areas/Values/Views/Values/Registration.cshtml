@@ -1,0 +1,70 @@
+﻿@model RegistrationBindingModel
+@{
+    ViewData["Title"] = "Registration";
+}
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+<div align="center">
+    <div class="container p-4">
+        <form method="post">
+            <div class="row pb-3">
+                <h1 class="text-primary text-center display-5 tracking-in-expand">Регистрация</h1>
+            </div>
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12 element-animation">
+                <div class="mb-3">
+                    <div class="row g-3">
+                        <div class="form-floating col mb-3">
+                            <input class="form-control" placeholder="Name" asp-for="Name">
+                            <span class="text-danger " asp-validation-for="Name"></span>
+                            <label for="floatingInput" asp-for="Name"></label>
+                        </div>
+                        <div class="form-floating col mb-3">
+                            <input class="form-control" placeholder="LastName" asp-for="LastName">
+                            <span class="text-danger" asp-validation-for="LastName"></span>
+                            <label for="floatingInput" asp-for="LastName"></label>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="form-floating col mb-3">
+                            <input class="form-control" placeholder="Phone" asp-for="Phone">
+                            <span class="text-danger" asp-validation-for="Phone"></span>
+                            <label for="floatingInput" asp-for="Phone"></label>
+                        </div>
+                        <div class="form-floating col mb-3">
+                            <input type="date" class="form-control" placeholder="Birthday" asp-for="Birthday">
+                            <span class="text-danger" asp-validation-for="Birthday"></span>
+                            <label for="floatingInput" asp-for="Birthday"></label>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" placeholder="Email" asp-for="Email">
+                        <span class="text-danger" asp-validation-for="Email"></span>
+                        <label for="floatingInput" asp-for="Email"></label>
+                    </div>
+                    <div class="row g-3">
+                        <div class="form-floating col mb-3">
+                            <input class="form-control" placeholder="Password" asp-for="Password">
+                            <span class="text-danger" asp-validation-for="Password"></span>
+                            <label for="floatingInput" asp-for="Password"></label>
+                        </div>
+                        <div class="form-floating col mb-3">
+                            <input class="form-control" placeholder="Password1" asp-for="Password1">
+                            <span class="text-danger" asp-validation-for="Password1"></span>
+                            <label for="floatingInput" asp-for="Password1"></label>
+                        </div>
+                    </div>
+                    <div class="g-3">
+                        <div>
+                            <button type="submit" class="btn btn-success w-100">Зарегистрироваться</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

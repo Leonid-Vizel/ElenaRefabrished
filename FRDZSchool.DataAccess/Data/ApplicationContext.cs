@@ -22,6 +22,10 @@ namespace FRDZSchool.DataAccess.Data
             modelBuilder.Entity<Grade>().HasKey(u => new { u.Id, u.Litera, u.AYear });
             modelBuilder.Entity<Lesson_Student>().HasKey(u => new { u.Lesson_Id, u.Student_Id });
             modelBuilder.Entity<Student_Grade>().HasKey(u => new { u.Grade_Id, u.Litera, u.AYear, u.Student_Id });
+
+            modelBuilder.Entity<Student_Grade>().HasOne(u => u.Grades).WithMany(y => y.Student_Grades).HasForeignKey(u => u.Grade_Id);
+            modelBuilder.Entity<Student_Grade>().HasOne(u => u.Grades).WithMany(y => y.Student_Grades).HasForeignKey(u => u.Litera);
+            modelBuilder.Entity<Student_Grade>().HasOne(u => u.Grades).WithMany(y => y.Student_Grades).HasForeignKey(u => u.AYear);
         }
     }
 }

@@ -17,6 +17,8 @@ namespace FRDZSchool.Models
         [DisplayName("Предмет")]
         [Required]
         public int Code_Obj { get; set; }
+        [ForeignKey("Code_Obj")]
+        public School_Object SchoolObject { get; set; }
 
         [DisplayName("Дата проведения")]
         [Required]
@@ -25,6 +27,8 @@ namespace FRDZSchool.Models
         [DisplayName("Учитель")]
         [Required]
         public int Teacher_Num { get; set; }
+        [ForeignKey("Teacher_Num")]
+        public Teacher Teacher { get; set; }
 
         [DisplayName("Домашнее задание")]
         public string? Home_Task { get; set; }
