@@ -7,30 +7,30 @@ namespace FRDZSchool.Models
     public class Lesson
     {
         [Key]
-        [Column("Lesson_Num")]
-        [DisplayName("Номер")]
         public int Id { get; set; }
 
-        [DisplayName("Описание")]
-        public string? Lesson_Description { get; set; }
-
+        [ForeignKey("School_Object")]
         [DisplayName("Предмет")]
-        [Required]
-        public int Code_Obj { get; set; }
-        [ForeignKey("Code_Obj")]
+        [Required(ErrorMessage = "Укажите предмет!")]
+        public int SchoolObjectId { get; set; }
         public School_Object SchoolObject { get; set; }
 
-        [DisplayName("Дата проведения")]
-        [Required]
-        public DateTime Date_And_Time { get; set; }
-
+        [ForeignKey("Teacher")]
         [DisplayName("Учитель")]
-        [Required]
-        public int Teacher_Num { get; set; }
-        [ForeignKey("Teacher_Num")]
+        [Required(ErrorMessage = "Укажите учителя!")]
+        public int TeacherId { get; set; }
         public Teacher Teacher { get; set; }
 
+        [DisplayName("Дата проведения")]
+        [Required(ErrorMessage = "Укажите дату!")]
+        public DateTime DateAndTime { get; set; }
+
+        [DisplayName("Описание")]
+        public string? LessonDescription { get; set; }
+
         [DisplayName("Домашнее задание")]
-        public string? Home_Task { get; set; }
+        public string? HomeTask { get; set; }
+
+        public List<Lesson_Student> Lesson_Student { get; set; }
     }
 }

@@ -1,19 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
 
 namespace FRDZSchool.Models
 {
     public class Teacher
     {
         [Key]
-        [Column("Teacher_Num")]
-        [DisplayName("Номер")]
         public int Id { get; set; }
 
-        [DisplayName("ФИО")]
-        [Required(ErrorMessage = "Введите ФИО!")]
-        public string FIO { get; set; }
+        [DisplayName("Имя")]
+        [Required(ErrorMessage = "Введите имя!")]
+        public string Name { get; set; }
+
+        [DisplayName("Фамилия")]
+        [Required(ErrorMessage = "Введите фамилию!")]
+        public string Lastname { get; set; }
+
+        [DisplayName("Отчество")]
+        [Required(ErrorMessage = "Введите отчество!")]
+        public string Fathername { get; set; }
 
         [DisplayName("Должность")]
         [Required(ErrorMessage = "Введите должность!")]
@@ -35,6 +40,9 @@ namespace FRDZSchool.Models
         [DisplayName("Номер телефона")]
         [Required(ErrorMessage = "Введите номер телефона!")]
         [Phone(ErrorMessage = "Вы указали не номер телефона!")]
-        public string? Tel_Num { get; set; }
+        public string? PhoneNumber { get; set; }
+
+        [DisplayName("Путь к фото")]
+        public string PhotoUrl { get; set; }
     }
 }

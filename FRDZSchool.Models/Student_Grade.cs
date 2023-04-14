@@ -1,34 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace FRDZSchool.Models
 {
+    [PrimaryKey(nameof(StudentId), nameof(GradeId))]
     public class Student_Grade
     {
+        public int StudentId { get; set; }
 
-        [Column("Student_Num")]
-        [DisplayName("Номер ученика")]
-        [Required]
-        public int Student_Id { get; set; }
-        [ForeignKey("Student_Id")]
+        public int GradeId { get; set; }
+
         public Student Student { get; set; }
-
-        [Column("Grade_Num")]
-        [DisplayName("Номер класса")]
-        [Required]
-        public int Grade_Id { get; set; }
-
-        [Column("Grade_Index")]
-        [DisplayName("Литера")]
-        [Required]
-        public char Litera { get; set; }
-
-        [Column("Academic_Year")]
-        [DisplayName("Учебный год")]
-        [Required]
-        public DateTime AYear { get; set; }
-
-        public Grade Grades { get; set; }
+        public Grade Grade { get; set; }
     }
 }

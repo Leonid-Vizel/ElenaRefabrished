@@ -1,26 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
 
 namespace FRDZSchool.Models
 {
     public class Grade
     {
-        [Column("Grade_Num")]
+        [Key]
+        public int Id { get; set; }
+
         [DisplayName("Номер")]
         [Required(ErrorMessage = "У класса обязательно должен быть номер!")]
         [Range(1, 11, ErrorMessage = "В школе могут быть только {1}-{2} классы!")]
-        public int Id { get; set; }
+        public int Number { get; set; }
 
-        [Required(ErrorMessage = "У класса обязательно должен быть буквенный индекс!")]
-        [Column("Grade_Index")]
         [DisplayName("Литера")]
+        [Required(ErrorMessage = "У класса обязательно должен быть буквенный индекс!")]
         public char Litera { get; set; }
 
-        [Required(ErrorMessage = "Укажите учебный год!")]
-        [Column("Academic_Year")]
         [DisplayName("Учебный год")]
-        public DateTime AYear { get; set; }
+        [Required(ErrorMessage = "У класса обязательно должен быть указан учебный год!")]
+        public char AcademYear { get; set; }
 
         [DisplayName("Специализация")]
         public string? Specialization { get; set; }

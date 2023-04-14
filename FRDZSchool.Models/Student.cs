@@ -7,14 +7,19 @@ namespace FRDZSchool.Models
     public class Student
     {
         [Key]
-        [Column("Student_Num")]
-        [DisplayName("Номер")]
-        [Required]
         public int Id { get; set; }
 
-        [DisplayName("ФИО")]
-        [Required(ErrorMessage = "Введите ФИО!")]
-        public string FIO { get; set; }
+        [DisplayName("Имя")]
+        [Required(ErrorMessage = "Введите имя!")]
+        public string Name { get; set; }
+
+        [DisplayName("Фамилия")]
+        [Required(ErrorMessage = "Введите фамилию!")]
+        public string Lastname { get; set; }
+
+        [DisplayName("Отчество")]
+        [Required(ErrorMessage = "Введите отчество!")]
+        public string Fathername { get; set; }
 
         [DisplayName("Пол")]
         [Required(ErrorMessage = "Укажите пол! (Ж или М)")]
@@ -23,5 +28,8 @@ namespace FRDZSchool.Models
         [DisplayName("Дата рождения")]
         [Required(ErrorMessage = "Введите дату рождения!")]
         public DateTime Birthday { get; set; }
+
+        public List<Student_Grade> Student_Grade { get; set; }
+        public List<Lesson_Student> Lesson_Student { get; set; }
     }
 }

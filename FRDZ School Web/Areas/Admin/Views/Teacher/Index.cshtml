@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Teacher>
+﻿@*@model IEnumerable<Teacher>
 @{
     ViewData["Title"] = "Учителя";
 }
@@ -20,7 +20,7 @@
                                 </button>
                             </h2>
                             <div id="collapse-@obj.Id" class="accordion-collapse collapse" aria-labelledby="heading-@obj.Id" data-bs-parent="#accordionTeachers" style="">
-                                <div class="accordion-body text-center" @*tracking-in-expand-fwd-top*@>
+                                <div class="accordion-body text-center">
                                     <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Post):</b> @obj.Post</p>
                                     <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Qualification):</b> @obj.Qualification</p>
                                     <p><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Experience):</b> @obj.Experience</p>
@@ -43,8 +43,8 @@
         </div>
         <div class="row pt-4 col-lg-6 col-md-8 col-sm-10 col-12 element-animation">
             <a asp-controller="Teacher" asp-action="Add" class="btn btn-primary w-100">
-                @*<i class="bi bi-plus-square"></i>*@ Добавить учителя
+                 Добавить учителя
             </a>
         </div>
     </div>
-</div>
+</div>*@
