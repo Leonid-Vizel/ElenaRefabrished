@@ -1,4 +1,4 @@
-﻿@*@model Teacher
+﻿@model Teacher
 @{
     ViewData["Title"] = "Добавление";
 }
@@ -15,40 +15,66 @@
             <div class="row pb-3">
                 <h1 class="text-primary text-center display-5 tracking-in-expand">Добавление учителя</h1>
             </div>
-            <div class="col-lg-6 col-md-8 col-sm-10 col-12 element-animation">
+            <div class="col-lg-7 col-md-9 col-sm-11 col-12 element-animation">
                 <div class="mb-3">
-                    <div class="form-floating mb-3">
-                        <input class="form-control" placeholder="FIO" asp-for="FIO">
-                        <span class="text-danger " asp-validation-for="FIO"></span>
-                        <label for="floatingInput" asp-for="FIO"></label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" placeholder="Post" asp-for="Post">
-                        <span class="text-danger" asp-validation-for="Post"></span>
-                        <label for="floatingInput" asp-for="Post"></label>
-                    </div>
                     <div class="row g-3">
                         <div class="form-floating mb-3 col">
-                            <input class="form-control" placeholder="Qualification" asp-for="Qualification">
-                            <span class="text-danger" asp-validation-for="Qualification"></span>
-                            <label for="floatingInput" asp-for="Qualification"></label>
+                            <input class="form-control" placeholder="Lastname" asp-for="Lastname">
+                            <span class="text-danger " asp-validation-for="Lastname"></span>
+                            <label for="floatingInput" asp-for="Lastname"></label>
                         </div>
                         <div class="form-floating mb-3 col">
-                            <input type="number" class="form-control" placeholder="Experience" asp-for="Experience">
+                            <input class="form-control" placeholder="Name" asp-for="Name">
+                            <span class="text-danger " asp-validation-for="Name"></span>
+                            <label for="floatingInput" asp-for="Name"></label>
+                        </div>
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Fathername" asp-for="Fathername">
+                            <span class="text-danger " asp-validation-for="Fathername"></span>
+                            <label for="floatingInput" asp-for="Fathername"></label>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col-5">
+                            <input class="form-control" placeholder="Post" asp-for="Post">
+                            <span class="text-danger" asp-validation-for="Post"></span>
+                            <label for="floatingInput" asp-for="Post"></label>
+                        </div>
+                        @*                        <div class="form-floating mb-3 col-4">
+                        <input class="form-control" placeholder="Qualification" asp-for="Qualification">
+                        <span class="text-danger" asp-validation-for="Qualification"></span>
+                        <label for="floatingInput" asp-for="Qualification"></label>
+                        </div>*@
+                        <div class="form-floating mb-3 col-5">
+                            <select class="form-select" style="padding: 0.75rem 4.5rem 0.75rem 1.5rem !important" id="Qualification" asp-for="Qualification">
+                                <option selected disabled>Квалификация</option>
+                                <option disabled>━━━━━━━━━━━━━━━━━━</option>
+                                <option value="Высшая категория">Высшая категория</option>
+                                <option value="Первая категория">Первая категория</option>
+                                <option value="Вторая категория">Вторая категория</option>
+                            </select>
+                        </div>
+                        <div class="form-floating mb-3 col-2">
+                            <input type="number" min="0" max="60" class="form-control" placeholder="Experience" asp-for="Experience">
                             <span class="text-danger" asp-validation-for="Experience"></span>
                             <label for="floatingInput" asp-for="Experience"></label>
                         </div>
                     </div>
                     <div class="row g-3">
-                        <div class="form-floating mb-3 col">
-                            <input class="form-control" placeholder="Tel_Num" asp-for="Tel_Num">
-                            <span class="text-danger" asp-validation-for="Tel_Num"></span>
-                            <label for="floatingInput" asp-for="Tel_Num"></label>
+                        <div class="form-floating mb-3 col-4">
+                            <input class="form-control" placeholder="PhoneNumber" asp-for="PhoneNumber">
+                            <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                            <label for="floatingInput" asp-for="PhoneNumber"></label>
                         </div>
-                        <div class="form-floating col">
+                        <div class="form-floating col-4">
                             <input type="date" class="form-control" placeholder="Birthday" asp-for="Birthday">
                             <span class="text-danger" asp-validation-for="Birthday"></span>
                             <label for="floatingInput" asp-for="Birthday"></label>
+                        </div>
+                        <div class="form-floating mb-3 col-4">
+                            <input class="form-control" placeholder="PhotoUrl" asp-for="PhotoUrl">
+                            <span class="text-danger" asp-validation-for="PhotoUrl"></span>
+                            <label for="floatingInput" asp-for="PhotoUrl"></label>
                         </div>
                     </div>
                     <div class="row g-3">
@@ -64,4 +90,3 @@
         </form>
     </div>
 </div>
-*@

@@ -1,4 +1,4 @@
-﻿@*@model Teacher
+﻿@model Teacher
 @{
     ViewData["Title"] = "Удаление";
 }
@@ -12,36 +12,48 @@
             </div>
             <div class="col-lg-6 col-md-8 col-sm-10 col-12 element-animation">
                 <div class="mb-3">
-                    <div class="form-floating mb-3">
-                        <input class="form-control" placeholder="FIO" asp-for="FIO" disabled="">
-                        <span class="text-danger " asp-validation-for="FIO"></span>
-                        <label for="floatingInput" asp-for="FIO"></label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" placeholder="Post" asp-for="Post" disabled="">
-                        <span class="text-danger" asp-validation-for="Post"></span>
-                        <label for="floatingInput" asp-for="Post"></label>
-                    </div>
                     <div class="row g-3">
                         <div class="form-floating mb-3 col">
-                            <input class="form-control" placeholder="Qualification" asp-for="Qualification" disabled="">
+                            <input class="form-control" placeholder="Lastname" asp-for="Lastname" readonly>
+                            <span class="text-danger " asp-validation-for="Lastname"></span>
+                            <label for="floatingInput" asp-for="Lastname"></label>
+                        </div>
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Name" asp-for="Name" readonly>
+                            <span class="text-danger " asp-validation-for="Name"></span>
+                            <label for="floatingInput" asp-for="Name"></label>
+                        </div>
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Fathername" asp-for="Fathername" readonly>
+                            <span class="text-danger " asp-validation-for="Fathername"></span>
+                            <label for="floatingInput" asp-for="Fathername"></label>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col-5">
+                            <input class="form-control" placeholder="Post" asp-for="Post" readonly>
+                            <span class="text-danger" asp-validation-for="Post"></span>
+                            <label for="floatingInput" asp-for="Post"></label>
+                        </div>
+                        <div class="form-floating mb-3 col-5">
+                            <input class="form-control" placeholder="Qualification" asp-for="Qualification" readonly>
                             <span class="text-danger" asp-validation-for="Qualification"></span>
                             <label for="floatingInput" asp-for="Qualification"></label>
                         </div>
-                        <div class="form-floating mb-3 col">
-                            <input class="form-control" placeholder="Experience" asp-for="Experience" disabled="">
+                        <div class="form-floating mb-3 col-2">
+                            <input type="number" min="0" max="60" class="form-control" placeholder="Experience" asp-for="Experience" readonly>
                             <span class="text-danger" asp-validation-for="Experience"></span>
                             <label for="floatingInput" asp-for="Experience"></label>
                         </div>
                     </div>
                     <div class="row g-3">
                         <div class="form-floating mb-3 col">
-                            <input class="form-control" placeholder="Tel_Num" asp-for="Tel_Num" disabled="">
-                            <span class="text-danger" asp-validation-for="Tel_Num"></span>
-                            <label for="floatingInput" asp-for="Tel_Num"></label>
+                            <input class="form-control" placeholder="PhoneNumber" asp-for="PhoneNumber" readonly>
+                            <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                            <label for="floatingInput" asp-for="PhoneNumber"></label>
                         </div>
                         <div class="form-floating col">
-                            <input type="date" class="form-control" placeholder="Birthday" asp-for="Birthday" disabled="">
+                            <input type="date" class="form-control" placeholder="Birthday" asp-for="Birthday" readonly>
                             <span class="text-danger" asp-validation-for="Birthday"></span>
                             <label for="floatingInput" asp-for="Birthday"></label>
                         </div>
@@ -58,4 +70,4 @@
             </div>
         </form>
     </div>
-</div>*@
+</div>

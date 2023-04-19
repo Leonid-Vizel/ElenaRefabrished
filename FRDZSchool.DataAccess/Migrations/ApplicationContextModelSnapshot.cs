@@ -46,7 +46,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Grade");
+                    b.ToTable("Grade", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Lesson", b =>
@@ -78,7 +78,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Lesson");
+                    b.ToTable("Lesson", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Lesson_Student", b =>
@@ -99,7 +99,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Lesson_Student");
+                    b.ToTable("Lesson_Student", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.School_Object", b =>
@@ -116,7 +116,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("School_Object");
+                    b.ToTable("School_Object", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Student", b =>
@@ -148,7 +148,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Student");
+                    b.ToTable("Student", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Student_Grade", b =>
@@ -163,7 +163,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasIndex("GradeId");
 
-                    b.ToTable("Student_Grade");
+                    b.ToTable("Student_Grade", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Teacher", b =>
@@ -211,7 +211,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teacher");
+                    b.ToTable("Teacher", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Lesson", b =>

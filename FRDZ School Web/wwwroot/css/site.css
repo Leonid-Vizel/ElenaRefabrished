@@ -325,3 +325,161 @@ code {
     padding: 0.1rem 0.2rem;
     border-radius: 0.2rem;
 }
+
+/*===============================================================================================*/
+
+.center {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.card {
+    width: 575px;
+    height: 250px;
+    background-color: #fff;
+    background: linear-gradient(#f8f8f8, #fff);
+    overflow: hidden;
+    position: relative;
+    margin: 1.5rem;
+}
+
+    .card h1 {
+        text-align: center;
+    }
+
+    .card .additional {
+        position: relative;
+        width: 150px;
+        height: 100%;
+        background: linear-gradient(#1a1a1a, #343a40);
+        transition: width 0.4s;
+        overflow: hidden;
+        z-index: 2;
+    }
+
+    .card:hover .additional {
+        width: 100%;
+    }
+
+    .card .additional .user-card {
+        width: 150px;
+        height: 100%;
+        position: relative;
+        float: left;
+    }
+
+        .card .additional .user-card::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 10%;
+            right: -2px;
+            height: 80%;
+            border-left: 2px solid rgba(0,0,0,0.025);
+        }
+
+    .card .additional .more-info {
+        width: 425px;
+        float: left;
+        position: absolute;
+        left: 150px;
+        height: 100%;
+    }
+
+        .card .additional .more-info h1 {
+            color: #fff;
+            margin-bottom: 0;
+        }
+
+    .card .additional .coords {
+        margin: 0 1rem;
+        color: #fff;
+    }
+
+    .card .additional .coords span + span {
+        float: right;
+    }
+
+    .card .additional .stats {
+        display: flex;
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        top: auto;
+        color: #fff;
+    }
+
+    .card .additional .stats > div {
+        flex: 1;
+        text-align: center;
+    }
+
+    .card .additional .stats i {
+        display: block;
+    }
+
+    .card .additional .stats div.title {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .card .additional .stats div.value {
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .card .general {
+        width: 425px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+        box-sizing: border-box;
+        padding: 1rem;
+        padding-top: 0;
+    }
+
+        .card .general .more {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.9em;
+        }
+
+/*===============================================================================================*/
+
+.cell-centered {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.sticky-col {
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+.right-col {
+    right: 0px;
+}
+
+/*.table-wrapper {
+    overflow-y: scroll;
+    overflow-x: scroll;
+    max-height: 64.2vh;
+}
+
+    table thead {
+        position: sticky;
+        top: 0px;
+    }
+*/
+/*.fixtable-fixed {
+    position: fixed;
+    top: 0;
+    background-color: #FCF8E4;
+    border-bottom: 1px solid #ddd;
+}*/

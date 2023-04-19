@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FRDZSchool.DataAccess\FRDZSchool.DataAccess.csproj" />
     <ProjectReference Include="..\FRDZSchool.Models\FRDZSchool.Models.csproj" />
+    <ProjectReference Include="..\FRDZSchool.Utility\FRDZSchool.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>
