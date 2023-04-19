@@ -1,0 +1,67 @@
+﻿@model Student
+@{
+    ViewData["Title"] = "Добавление";
+}
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+<div align="center">
+    <div class="container p-4">
+        <form method="post">
+            <div class="row pb-3">
+                <h1 class="text-primary text-center display-5 tracking-in-expand">Добавление ученика</h1>
+            </div>
+            <div class="col-lg-7 col-md-9 col-sm-11 col-12 element-animation">
+                <div class="mb-3">
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Lastname" asp-for="Lastname">
+                            <span class="text-danger " asp-validation-for="Lastname"></span>
+                            <label for="floatingInput" asp-for="Lastname"></label>
+                        </div>
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Name" asp-for="Name">
+                            <span class="text-danger " asp-validation-for="Name"></span>
+                            <label for="floatingInput" asp-for="Name"></label>
+                        </div>
+                        <div class="form-floating mb-3 col">
+                            <input class="form-control" placeholder="Fathername" asp-for="Fathername">
+                            <span class="text-danger " asp-validation-for="Fathername"></span>
+                            <label for="floatingInput" asp-for="Fathername"></label>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="form-floating col-4">
+                            <input type="date" class="form-control" placeholder="Birthday" asp-for="Birthday">
+                            <span class="text-danger" asp-validation-for="Birthday"></span>
+                            <label for="floatingInput" asp-for="Birthday"></label>
+                        </div>
+                        <div class="form-floating mb-3 col-3">
+                            <select class="form-select" style="padding: 0.75rem 4.5rem 0.75rem 1.5rem !important" id="Sex" asp-for="Sex">
+                                <option selected disabled>Пол</option>
+                                <option disabled>━━━━━━━━━</option>
+                                <option value="М">Мужской</option>
+                                <option value="Ж">Женский</option>
+                            </select>
+                        </div>
+                        <div class="form-floating mb-3 col">
+                            место для класса
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col">
+                            <a asp-controller="Student" asp-action="Index" class="btn btn-primary w-100">Вернуться к списку</a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-success w-100">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

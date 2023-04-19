@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace FRDZSchool.Models
@@ -19,11 +20,12 @@ namespace FRDZSchool.Models
 
         [DisplayName("Учебный год")]
         [Required(ErrorMessage = "У класса обязательно должен быть указан учебный год!")]
-        public char AcademYear { get; set; }
+        public DateTime AcademYear { get; set; }
 
         [DisplayName("Специализация")]
         public string? Specialization { get; set; }
 
+        [ValidateNever]
         public List<Student_Grade> Student_Grades { get; set; }
     }
 }

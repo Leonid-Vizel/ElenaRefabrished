@@ -31,21 +31,16 @@
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6 mb-4">
-                                                <h6 class="font-weight-bold text-white">Heading two</h6>
+                                                <h6 class="font-weight-bold text-white">Классы</h6>
                                                 <ul class="list-unstyled">
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Home</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">About</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Help</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Account</a></li>
+                                                    <li class="nav-item"><a class="nav-link text-small pb-0" asp-area="Admin" asp-controller="Grade" asp-action="Index">Админ</a></li>
+
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6 mb-4">
-                                                <h6 class="font-weight-bold text-white">Heading three</h6>
+                                                <h6 class="font-weight-bold text-white">Ученики</h6>
                                                 <ul class="list-unstyled">
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Home</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">About</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Help</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Account</a></li>
+                                                    <li class="nav-item"><a class="nav-link text-small pb-0" asp-area="Admin" asp-controller="Student" asp-action="Index">Админ</a></li>
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6 mb-4">
@@ -74,7 +69,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="Admin" asp-controller="Teacher" asp-action="Index">Учителя</a>
+                            <a class="nav-link" asp-area="Visitor" asp-controller="Home" asp-action="Index">
+                                Главная
+                                <span class="visually-hidden"></span>
+                            </a>
                         </li>
                     </ul>
                     @*                    <form class="d-flex">

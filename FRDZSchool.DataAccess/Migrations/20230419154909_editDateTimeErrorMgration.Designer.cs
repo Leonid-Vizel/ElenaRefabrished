@@ -4,6 +4,7 @@ using FRDZSchool.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FRDZSchool.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20230419154909_editDateTimeErrorMgration")]
+    partial class editDateTimeErrorMgration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +48,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Grade", (string)null);
+                    b.ToTable("Grade");
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Lesson", b =>
@@ -77,7 +80,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Lesson", (string)null);
+                    b.ToTable("Lesson");
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Lesson_Student", b =>
@@ -98,7 +101,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Lesson_Student", (string)null);
+                    b.ToTable("Lesson_Student");
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.School_Object", b =>
@@ -115,7 +118,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("School_Object", (string)null);
+                    b.ToTable("School_Object");
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Student", b =>
@@ -147,7 +150,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Student", (string)null);
+                    b.ToTable("Student");
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Student_Grade", b =>
@@ -162,7 +165,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasIndex("GradeId");
 
-                    b.ToTable("Student_Grade", (string)null);
+                    b.ToTable("Student_Grade");
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Teacher", b =>
@@ -209,7 +212,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teacher", (string)null);
+                    b.ToTable("Teacher");
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.Lesson", b =>

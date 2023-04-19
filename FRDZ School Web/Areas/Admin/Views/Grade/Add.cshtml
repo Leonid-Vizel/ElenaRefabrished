@@ -1,0 +1,65 @@
+﻿@model Grade
+@{
+    ViewData["Title"] = "Добавление";
+}
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+<div align="center">
+    <div class="container p-4">
+        <form method="post">
+            <div class="row pb-3">
+                <h1 class="text-primary text-center display-5 tracking-in-expand">Добавление класса</h1>
+            </div>
+            <div class="col-lg-7 col-md-9 col-sm-11 col-12 element-animation">
+                <div class="mb-3">
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col-2">
+                            <input type="number" min="1" max="11" class="form-control" placeholder="Number" asp-for="Number">
+                            <span class="text-danger " asp-validation-for="Number"></span>
+                            <label for="floatingInput" asp-for="Number"></label>
+                        </div>
+                        <div class="form-floating mb-3 col-2">
+                            <select class="form-select" style="padding: 0.75rem 4.5rem 0.75rem 1.5rem !important" id="Litera" asp-for="Litera">
+                                <option value="А">А</option>
+                                <option value="Б">Б</option>
+                                <option value="В">В</option>
+                            </select>
+                        </div>
+                        <div class="form-floating mb-3 col-3">
+                            <input type="date" class="form-control" placeholder="AcademYear" asp-for="AcademYear">
+                            <span class="text-danger" asp-validation-for="AcademYear"></span>
+                            <label for="floatingInput" asp-for="AcademYear"></label>
+                        </div>
+                        <div class="form-floating mb-3 col-5">
+                            <select class="form-select" style="padding: 0.75rem 4.5rem 0.75rem 1.5rem !important" id="Specialization" asp-for="Specialization">
+                                <option selected disabled>Специализация</option>
+                                <option disabled>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</option>
+                                <option value="Физико-математический">Физико-математический</option>
+                                <option value="Социально-экономический">Социально-экономический</option>
+                                <option value="Химико-биологический">Химико-биологический</option>
+                                <option value="Информационно-технологический">Информационно-технологический</option>
+                                <option value="Гуманитарный">Гуманитарный</option>
+                                <option value="Лингвистический">Лингвистический</option>
+                                <option value="Художественно-эстетический">Художественно-эстетический</option>
+                                <option value="Общеобразовательный">Общеобразовательный</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col">
+                            <a asp-controller="Grade" asp-action="Index" class="btn btn-primary w-100">Вернуться к списку</a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-success w-100">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

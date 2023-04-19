@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace FRDZSchool.Models
 {
@@ -29,7 +29,10 @@ namespace FRDZSchool.Models
         [Required(ErrorMessage = "Введите дату рождения!")]
         public DateTime Birthday { get; set; }
 
+        [ValidateNever]
         public List<Student_Grade> Student_Grade { get; set; }
+
+        [ValidateNever]
         public List<Lesson_Student> Lesson_Student { get; set; }
     }
 }

@@ -1,0 +1,49 @@
+﻿@model Grade
+@{
+    ViewData["Title"] = "Удаление";
+}
+
+<div align="center">
+    <div class="container p-4">
+        <form method="post" asp-action="Delete">
+            <input asp-for="Id" hidden />
+            <div class="row pb-3">
+                <h1 class="text-danger text-center display-7 tracking-in-expand">Вы действительно хотите удалить класс из списка?</h1>
+            </div>
+            <div class="col-lg-7 col-md-9 col-sm-11 col-12 element-animation">
+                <div class="mb-3">
+                    <div class="row g-3">
+                        <div class="form-floating mb-3 col-2">
+                            <input type="number" min="1" max="11" class="form-control" placeholder="Number" asp-for="Number" readonly>
+                            <span class="text-danger " asp-validation-for="Number"></span>
+                            <label for="floatingInput" asp-for="Number"></label>
+                        </div>
+                        <div class="form-floating mb-3 col-2">
+                            <input class="form-control" placeholder="Litera" asp-for="Litera" readonly>
+                            <span class="text-danger " asp-validation-for="Litera"></span>
+                            <label for="floatingInput" asp-for="Litera"></label>
+                        </div>
+                        <div class="form-floating mb-3 col-3">
+                            <input type="date" class="form-control" placeholder="AcademYear" asp-for="AcademYear" readonly>
+                            <span class="text-danger" asp-validation-for="AcademYear"></span>
+                            <label for="floatingInput" asp-for="AcademYear"></label>
+                        </div>
+                        <div class="form-floating mb-3 col-5">
+                            <input class="form-control" placeholder="Specialization" asp-for="Specialization" readonly>
+                            <span class="text-danger" asp-validation-for="Specialization"></span>
+                            <label for="floatingInput" asp-for="Specialization"></label>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col">
+                            <a asp-asp-controller="Grade" asp-action="Index" class="btn btn-primary w-100">Нет, вернуться к списку</a>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-danger w-100">Да, удалить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
