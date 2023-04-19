@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FRDZSchool.DataAccess.Repository.IRepository
+﻿namespace FRDZSchool.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {
         ITeacherRepository Teacher { get; }
+        IStudentRepository Student { get; }
+        IGradeRepository Grade { get; }
 
         void Save();
     }
