@@ -2,8 +2,8 @@
 
 namespace FRDZSchool.DataAccess.Repository.IRepository
 {
-    public interface IStudentRepository : IRepository<Student>
+    public interface ITeacherRepository : IRepository<Teacher>
     {
-        void Update(Student obj);
+        void Update(Teacher obj);
     }
 }

@@ -1,4 +1,4 @@
-body, html {
+п»їbody, html {
     margin: 0;
     padding: 0;
     background: white;
@@ -62,14 +62,14 @@ header {
 
 /*=====================================================================================*/
 
-/* полоса прокрутки (скроллбар) */
+/* РїРѕР»РѕСЃР° РїСЂРѕРєСЂСѓС‚РєРё (СЃРєСЂРѕР»Р»Р±Р°СЂ) */
 ::-webkit-scrollbar {
-    width: 10px; /* ширина для вертикального скролла */
-    height: 10px; /* высота для горизонтального скролла */
+    width: 10px; /* С€РёСЂРёРЅР° РґР»СЏ РІРµСЂС‚РёРєР°Р»СЊРЅРѕРіРѕ СЃРєСЂРѕР»Р»Р° */
+    height: 10px; /* РІС‹СЃРѕС‚Р° РґР»СЏ РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅРѕРіРѕ СЃРєСЂРѕР»Р»Р° */
     background-color: #1a1a1a;
 }
 
-/* ползунок скроллбара */
+/* РїРѕР»Р·СѓРЅРѕРє СЃРєСЂРѕР»Р»Р±Р°СЂР° */
 ::-webkit-scrollbar-thumb {
     background-color: #ffffff;
     border-radius: 0em;
@@ -452,6 +452,19 @@ code {
 
 /*===============================================================================================*/
 
+* {
+    cursor: url(~\images\cursor.png) 2 2, default;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .cell-centered {
     text-align: center;
     vertical-align: middle;
@@ -483,3 +496,27 @@ code {
     background-color: #FCF8E4;
     border-bottom: 1px solid #ddd;
 }*/
+
+/*===============================================================================================*/
+
+.table_sort th {
+    cursor: pointer;
+}
+
+th.sorted[data-order="1"],
+th.sorted[data-order="-1"] {
+    position: relative;
+}
+
+    th.sorted[data-order="1"]::after,
+    th.sorted[data-order="-1"]::after {
+        position: absolute;
+    }
+
+    th.sorted[data-order="-1"]::after {
+        content: "в–І"
+    }
+
+    th.sorted[data-order="1"]::after {
+        content: "в–ј"
+    }

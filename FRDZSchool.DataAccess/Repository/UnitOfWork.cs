@@ -9,12 +9,14 @@ namespace FRDZSchool.DataAccess.Repository
         public ITeacherRepository Teacher { get; private set; }
         public IStudentRepository Student { get; private set; }
         public IGradeRepository Grade { get; private set; }
+        public IStudentGradeRepository StudentGrade { get; private set; }
         public UnitOfWork(ApplicationContext db)
         {
             _db = db;
             Teacher = new TeacherRepository(_db);
             Student = new StudentRepository(_db);
             Grade = new GradeRepository(_db);
+            StudentGrade = new StudentGradeRepository(_db);
         }
 
         public void Save()

@@ -5,6 +5,7 @@
         ITeacherRepository Teacher { get; }
         IStudentRepository Student { get; }
         IGradeRepository Grade { get; }
+        IStudentGradeRepository StudentGrade { get; }
 
         void Save();
     }

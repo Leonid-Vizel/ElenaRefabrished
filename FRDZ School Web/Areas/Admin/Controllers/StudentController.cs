@@ -12,6 +12,7 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            //var StudentGrade = _unitOfWork.StudentGrade.GetAll().Include(s => s.Student).Include(g => g.Grade);
             IEnumerable<Student> objStudentList = _unitOfWork.Student.GetAll().ToList();
             return View(objStudentList);
         }
