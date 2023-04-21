@@ -1,4 +1,4 @@
-﻿using FRDZSchool.Models;
+﻿using FRDZSchool.Models.DatabaseModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace FRDZSchool.DataAccess.Data

@@ -1,4 +1,5 @@
-﻿@model Student
+﻿@using FRDZSchool.Models.ViewModels;
+@model StudentCreateModel
 @{
     ViewData["Title"] = "Добавление";
 }
@@ -41,7 +42,7 @@
                             <label for="floatingInput" asp-for="Birthday"></label>
                         </div>
                         <div class="form-floating mb-3 col-3">
-                            <select class="form-select" style="padding: 0.75rem 4.5rem 0.75rem 1.5rem !important" id="Sex" asp-for="Sex">
+                            <select class="form-select" style="padding: 0.75rem 4.5rem 0.75rem 1.5rem !important" asp-for="Sex">
                                 <option selected disabled>Пол</option>
                                 <option disabled>━━━━━━━━━</option>
                                 <option value="М">Мужской</option>
@@ -49,7 +50,14 @@
                             </select>
                         </div>
                         <div class="form-floating mb-3 col">
-                            место для класса
+                            <select class="form-select" style="padding: 0.75rem 4.5rem 0.75rem 1.5rem !important" asp-for="GradeId">
+                                <option selected disabled>Класс</option>
+                                <option disabled>━━━━━━━━━</option>
+                                @foreach (var obj in Model.Grades)
+                                {
+                                    <option value="@obj.Id">@obj.Number "@obj.Litera"</option>
+                                }
+                            </select>
                         </div>
                     </div>
                     <div class="row g-3">

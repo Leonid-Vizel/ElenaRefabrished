@@ -1,39 +1,53 @@
-﻿using FRDZSchool.DataAccess.Repository.IRepository;
-using FRDZSchool.Models;
+﻿using FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork;
+using FRDZSchool.DataAccess.Repository.IRepository;
+using FRDZSchool.Models.DatabaseModels;
+using FRDZSchool.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FRDZ_School_Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class StudentController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public StudentController(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
+        private readonly IStudentUnitOfWork _unitOfWork;
+        public StudentController(IStudentUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            //var StudentGrade = _unitOfWork.StudentGrade.GetAll().Include(s => s.Student).Include(g => g.Grade);
-            IEnumerable<Student> objStudentList = _unitOfWork.Student.GetAll().ToList();
+            var StudentGrade = _unitOfWork.StudentGrade.Include(s => s.Student).Include(g => g.Grade).ToList();
+            IEnumerable<Student> objStudentList = await _unitOfWork.Student.GetAllAsync();
             return View(objStudentList);
         }
 
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            return View();
+            StudentCreateModel model = new StudentCreateModel();
+            await _unitOfWork.LoadCreateModel(model);
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Add(Student obj)
+        public async Task<IActionResult> Add(StudentCreateModel model)
         {
+            if (!await _unitOfWork.Grade.AnyAsync(a => a.Id == model.GradeId))
+            {
+                return NotFound();
+            }
             if (ModelState.IsValid)
             {
-                _unitOfWork.Student.Add(obj);
-                _unitOfWork.Save();
+                Student student = model.ToStudent();
+                await _unitOfWork.Student.AddAsync(student);
+                await _unitOfWork.SaveAsync();
+                Student_Grade studentGrade = new Student_Grade() { StudentId = student.Id, GradeId = model.GradeId };
+                await _unitOfWork.StudentGrade.AddAsync(studentGrade);
+                await _unitOfWork.SaveAsync();
                 TempData["success"] = "Ученик добавлен!";
                 return RedirectToAction("Index");
             }
-            return View(obj);
+            await _unitOfWork.LoadCreateModel(model);
+            return View(model);
         }
 
         public IActionResult Edit(int? Id)

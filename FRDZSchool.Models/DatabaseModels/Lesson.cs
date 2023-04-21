@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace FRDZSchool.Models
+namespace FRDZSchool.Models.DatabaseModels
 {
     public class Lesson
     {

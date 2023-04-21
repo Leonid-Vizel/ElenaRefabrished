@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 
-namespace FRDZSchool.Models
+namespace FRDZSchool.Models.DatabaseModels
 {
     [PrimaryKey(nameof(LessonId), nameof(StudentId))]
     public class Lesson_Student

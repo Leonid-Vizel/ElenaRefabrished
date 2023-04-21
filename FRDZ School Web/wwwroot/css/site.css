@@ -345,10 +345,6 @@ code {
     margin: 1.5rem;
 }
 
-    .card h1 {
-        text-align: center;
-    }
-
     .card .additional {
         position: relative;
         width: 150px;
@@ -520,3 +516,5 @@ th.sorted[data-order="-1"] {
     th.sorted[data-order="1"]::after {
         content: "▼"
     }
+
+/*===============================================================================================*/

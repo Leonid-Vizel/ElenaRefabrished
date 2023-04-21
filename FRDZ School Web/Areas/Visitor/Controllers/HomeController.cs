@@ -1,5 +1,5 @@
 ﻿using FRDZSchool.DataAccess.Repository.IRepository;
-using FRDZSchool.Models;
+using FRDZSchool.Models.DatabaseModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

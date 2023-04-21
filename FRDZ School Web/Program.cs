@@ -1,6 +1,6 @@
 using FRDZSchool.DataAccess.Data;
-using FRDZSchool.DataAccess.Repository;
-using FRDZSchool.DataAccess.Repository.IRepository;
+using FRDZSchool.DataAccess.Data.UnitOfWork;
+using FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +12,7 @@ builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServe
 //builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(
 //    "DefaultConnection", b => b.MigrationsAssembly("FRDZ School Web")));
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IStudentUnitOfWork, StudentUnitOfWork>();
 
 var app = builder.Build();
 

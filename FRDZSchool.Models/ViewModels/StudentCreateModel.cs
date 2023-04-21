@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using FRDZSchool.Models.DatabaseModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace FRDZSchool.Models
+namespace FRDZSchool.Models.ViewModels
 {
-    public class Student
+    public class StudentCreateModel
     {
-        [Key]
-        public int Id { get; set; }
-
         [DisplayName("Имя")]
         [Required(ErrorMessage = "Введите имя!")]
         public string Name { get; set; }
@@ -29,10 +27,23 @@ namespace FRDZSchool.Models
         [Required(ErrorMessage = "Введите дату рождения!")]
         public DateTime Birthday { get; set; }
 
-        [ValidateNever]
-        public List<Student_Grade> Student_Grade { get; set; }
+        [DisplayName("Класс")]
+        [Required(ErrorMessage = "Укажите класс!")]
+        public int GradeId { get; set; }
 
         [ValidateNever]
-        public List<Lesson_Student> Lesson_Student { get; set; }
+        public List<Grade> Grades { get; set; }
+
+        public Student ToStudent()
+        {
+            return new Student
+            {
+                Name = Name,
+                Lastname = Lastname,
+                Fathername = Fathername,
+                Sex = Sex,
+                Birthday = Birthday,
+            };
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using Microsoft.EntityFrameworkCore;
 
-namespace FRDZSchool.Models
+namespace FRDZSchool.Models.DatabaseModels
 {
     [PrimaryKey(nameof(StudentId), nameof(GradeId))]
     public class Student_Grade

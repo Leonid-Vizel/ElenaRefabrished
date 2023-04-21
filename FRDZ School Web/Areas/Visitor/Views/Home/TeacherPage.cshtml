@@ -1,74 +1,66 @@
-﻿@using FRDZSchool.Utility;
+﻿@    using FRDZSchool.Utility;
+    using FRDZSchool.Models.DatabaseModels;
 @model IEnumerable<Teacher>
 @{
     ViewData["Title"] = "Учителя";
 }
 
 <div class="container pt-5 pb-5">
-    <h1 class="text-primary text-center display-5 tracking-in-expand">Наши учителя</h1>
+    <h1 class="text-primary text-center display-5 tracking-in-expand noselect">Наши учителя</h1>
     <div class="row g-0">
         @foreach (var obj in Model)
         {
             <div class="col element-animation">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="center">
-                            <div class="card">
-                                <div class="additional">
-                                    <div class="user-card">
-                                        @*<div class="row pt-3 g-1 button-wrapper" align="center">
-                                    <div class="col">
-                                    <a asp-controller="Teacher" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-outline-dark">И</a>
-                                    </div>
-                                    <div class="col">
-                                    <a asp-controller="Teacher" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-outline-danger">У </a>
-                                    </div>
-                                    </div>*@
-                                    </div>
-                                    <div class="more-info card-text">
-                                        <h3 class="p-3 text-white">@obj.Lastname @obj.Name @obj.Fathername</h3>
-                                        <div class="coords">
-                                            <span><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Post):</b></span>
-                                            <span>@obj.Post</span>
-                                        </div>
-                                        <div class="coords">
-                                            <span><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Qualification):</b></span>
-                                            <span>@obj.Qualification</span>
-                                        </div>
-                                        <div class="coords">
-                                            <span><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Birthday):</b></span>
-                                            <span>@obj.Birthday.ToString("d MMMM yyyyг.")</span>
-                                        </div>
-                                        <div class="stats">
-                                            <div>
-                                                <div class="title">@Html.DisplayNameForInnerType((Teacher t)=>t.PhoneNumber)</div>
-                                                <i class="fa fa-trophy"></i>
-                                                <div class="value">@obj.PhoneNumber</div>
-                                            </div>
-                                            <div>
-                                                <div class="title">@Html.DisplayNameForInnerType((Teacher t)=>t.Experience)</div>
-                                                <i class="fa fa-trophy"></i>
-                                                <div class="value">
-                                                    @obj.Experience @WordHelp.Inflect(obj.Experience, "лет", "год", "года")
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
+                <div class="center">
+                    <div class="card">
+                        <div class="additional">
+                            <div class="user-card">
+                                <img src="@obj.PhotoUrl" title="@obj.Lastname @obj.Name @obj.Fathername" loading="lazy" style="object-fit:cover" width="150" height="250" />
+                            </div>
+                            <div class="more-info card-text">
+                                <h3 class="p-3 text-white">@obj.Lastname @obj.Name @obj.Fathername</h3>
+                                <div class="coords">
+                                    <span><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Post):</b></span>
+                                    <span>@obj.Post</span>
                                 </div>
-                                <div class="general">
-                                    <h3 class="pt-3 text-primary">
-                                        @obj.Lastname
-                                        @obj.Name
-                                        @obj.Fathername
-                                    </h3>
-                                    <p></p>
-                                    <span class="more">Наведите курсор</span>
+                                <div class="coords">
+                                    <span><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Qualification):</b></span>
+                                    <span>@obj.Qualification</span>
+                                </div>
+                                <div class="coords">
+                                    <span><b>@Html.DisplayNameForInnerType((Teacher t)=>t.Birthday):</b></span>
+                                    <span>@obj.Birthday.ToString("d MMMM yyyyг.")</span>
+                                </div>
+                                <div class="stats">
+                                    <div>
+                                        <div class="title">@Html.DisplayNameForInnerType((Teacher t)=>t.PhoneNumber)</div>
+                                        <i class="fa fa-trophy"></i>
+                                        <div class="value">@obj.PhoneNumber</div>
+                                    </div>
+                                    <div>
+                                        <div class="title">@Html.DisplayNameForInnerType((Teacher t)=>t.Experience)</div>
+                                        <i class="fa fa-trophy"></i>
+                                        <div class="value">
+                                            @obj.Experience @WordHelp.Inflect(obj.Experience, "лет", "год", "года")
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="general">
+                            <h3 class="pt-3 text-primary">
+                                @obj.Lastname
+                                @obj.Name
+                                @obj.Fathername
+                            </h3>
+                            <p></p>
+                            <span class="more">Наведите курсор</span>
                         </div>
                     </div>
                 </div>
             </div>
+
         }
         @*        <div class="col pt-3 m-4 element-animation">
         <div class="m-2">

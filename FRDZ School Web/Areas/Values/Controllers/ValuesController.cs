@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using FRDZSchool.Models;
 using System.Diagnostics;
+using FRDZSchool.Models.ViewModels;
 
 namespace FRDZ_School_Web.Areas.Values.Controllers
 {

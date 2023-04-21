@@ -1,4 +1,4 @@
-namespace FRDZSchool.Models
+namespace FRDZSchool.Models.ViewModels
 {
     public class ErrorViewModel
     {
