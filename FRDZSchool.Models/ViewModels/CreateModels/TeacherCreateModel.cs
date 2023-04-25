@@ -1,14 +1,11 @@
-﻿using FRDZSchool.Models.ViewModels.EditModels;
+﻿using FRDZSchool.Models.DatabaseModels;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace FRDZSchool.Models.DatabaseModels
+namespace FRDZSchool.Models.ViewModels.CreateModels
 {
-    public class Teacher
+    public class TeacherCreateModel
     {
-        [Key]
-        public int Id { get; set; }
-
         [DisplayName("Имя")]
         [Required(ErrorMessage = "Введите имя!")]
         public string Name { get; set; }
@@ -47,17 +44,20 @@ namespace FRDZSchool.Models.DatabaseModels
         [Required(ErrorMessage = "Введите путь к фото!!")]
         public string PhotoUrl { get; set; }
 
-        public void Update(TeacherEditModel teacherEditModel)
+        public Teacher ToTeacher()
         {
-            Name = teacherEditModel.Name;
-            Lastname = teacherEditModel.Lastname;
-            Fathername = teacherEditModel.Fathername;
-            Post = teacherEditModel.Post;
-            Birthday = teacherEditModel.Birthday;
-            Qualification = teacherEditModel.Qualification;
-            Experience = teacherEditModel.Experience;
-            PhoneNumber = teacherEditModel.PhoneNumber;
-            PhotoUrl = teacherEditModel.PhotoUrl;
+            return new Teacher
+            {
+                Name = Name,
+                Lastname = Lastname,
+                Fathername = Fathername,
+                Post = Post,
+                Birthday = Birthday,
+                Qualification = Qualification,
+                Experience = Experience,
+                PhoneNumber = PhoneNumber,
+                PhotoUrl = PhotoUrl
+            };
         }
     }
 }

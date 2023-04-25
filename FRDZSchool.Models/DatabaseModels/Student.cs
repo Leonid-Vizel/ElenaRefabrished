@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using FRDZSchool.Models.ViewModels.EditModels;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,15 +12,15 @@ namespace FRDZSchool.Models.DatabaseModels
 
         [DisplayName("Имя")]
         [Required(ErrorMessage = "Введите имя!")]
-        public string Name { get; set; }
+        public string Name { get; set; } 
 
         [DisplayName("Фамилия")]
         [Required(ErrorMessage = "Введите фамилию!")]
-        public string Lastname { get; set; }
+        public string Lastname { get; set; } 
 
         [DisplayName("Отчество")]
         [Required(ErrorMessage = "Введите отчество!")]
-        public string Fathername { get; set; }
+        public string Fathername { get; set; } 
 
         [DisplayName("Пол")]
         [Required(ErrorMessage = "Укажите пол! (Ж или М)")]
@@ -30,9 +31,19 @@ namespace FRDZSchool.Models.DatabaseModels
         public DateTime Birthday { get; set; }
 
         [ValidateNever]
-        public List<Student_Grade> Student_Grade { get; set; }
+        public List<Student_Grade> Student_Grade { get; set; } 
 
         [ValidateNever]
-        public List<Lesson_Student> Lesson_Student { get; set; }
+        public List<Lesson_Student> Lesson_Student { get; set; } 
+
+        public void Update(StudentEditModel studentEditModel)
+        {
+            Id = studentEditModel.Id;
+            Name = studentEditModel.Name;
+            Lastname = studentEditModel.Lastname;
+            Fathername = studentEditModel.Fathername;
+            Sex = studentEditModel.Sex;
+            Birthday = studentEditModel.Birthday;
+        }
     }
 }

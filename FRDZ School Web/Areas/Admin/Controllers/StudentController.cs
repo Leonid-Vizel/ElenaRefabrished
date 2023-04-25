@@ -1,7 +1,7 @@
 ﻿using FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork;
-using FRDZSchool.DataAccess.Repository.IRepository;
 using FRDZSchool.Models.DatabaseModels;
-using FRDZSchool.Models.ViewModels;
+using FRDZSchool.Models.ViewModels.CreateModels;
+using FRDZSchool.Models.ViewModels.EditModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -50,47 +50,73 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        public IActionResult Edit(int? Id)
+        public async Task<IActionResult> Edit(int Id)
         {
-            if (Id == null || Id == 0)
-            {
-                return NotFound();
-            }
-
-            var studentFromDb = _unitOfWork.Student.Get(u => u.Id == Id);
+            var studentFromDb = await _unitOfWork.Student.GetAsync(u => u.Id == Id);
+            var studentGradeFromDb = await _unitOfWork.StudentGrade.GetAsync(u => u.StudentId == Id);
 
             if (studentFromDb == null)
             {
                 return NotFound();
             }
+            if (studentGradeFromDb == null)
+            {
+                return NotFound();
+            }
 
-            return View(studentFromDb);
+            StudentEditModel model = new StudentEditModel(studentFromDb) { GradeId = studentGradeFromDb.GradeId };
+            await _unitOfWork.LoadCreateModel(model);
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Student obj)
+        public async Task<IActionResult> Edit(StudentEditModel model)
         {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Student.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Данные изменены успешно!";
-                return RedirectToAction("Index");
-            }
-            return View(obj);
-        }
-
-        public IActionResult Delete(int? Id)
-        {
-            if (Id == null || Id == 0)
+            if (!await _unitOfWork.Grade.AnyAsync(a => a.Id == model.GradeId))
             {
                 return NotFound();
             }
 
-            var studentFromDb = _unitOfWork.Student.Get(u => u.Id == Id);
+            var studentFromDb = await _unitOfWork.Student.GetAsync(u => u.Id == model.Id);
+            var studentGradeFromDb = await _unitOfWork.StudentGrade.GetAsync(u => u.StudentId == model.Id);
 
             if (studentFromDb == null)
+            {
+                return NotFound();
+            }
+            if (studentGradeFromDb == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                studentFromDb.Update(model);
+                if (model.GradeId != studentGradeFromDb.GradeId)
+                {
+                    studentGradeFromDb.GradeId = model.GradeId;
+                    _unitOfWork.StudentGrade.Update(studentGradeFromDb);
+                }
+                _unitOfWork.Student.Update(studentFromDb);
+                await _unitOfWork.SaveAsync();
+                TempData["success"] = "Данные изменены успешно!";
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> Delete(int Id)
+        {
+            var studentFromDb = await _unitOfWork.Student.GetAsync(u => u.Id == Id);
+            var studentGradeFromDb = await _unitOfWork.StudentGrade.GetAsync(u => u.StudentId == Id);
+
+            if (studentFromDb == null)
+            {
+                return NotFound();
+            }
+            if (studentGradeFromDb == null)
             {
                 return NotFound();
             }
@@ -100,16 +126,22 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? Id)
+        public async Task<IActionResult> DeletePOST(int Id)
         {
-            var studentFromDb = _unitOfWork.Student.Get(u => u.Id == Id);
+            var studentFromDb = await _unitOfWork.Student.GetAsync(u => u.Id == Id);
+            //var studentGradeFromDb = await _unitOfWork.StudentGrade.GetAsync(u => u.StudentId == Id);
 
             if (studentFromDb == null)
             {
                 return NotFound();
             }
+            //if (studentGradeFromDb == null)
+            //{
+            //    return NotFound();
+            //}
             _unitOfWork.Student.Remove(studentFromDb);
-            _unitOfWork.Save();
+            //_unitOfWork.StudentGrade.Remove(studentGradeFromDb);
+            await _unitOfWork.SaveAsync();
             TempData["error"] = "Ученик удалён!";
             return RedirectToAction("Index");
         }

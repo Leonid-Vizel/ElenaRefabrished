@@ -1,10 +1,8 @@
-﻿using FRDZSchool.DataAccess.Data;
-using FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace FRDZSchool.DataAccess.Data.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork.IUnitOfWork
     {
         public ApplicationContext Context { get; set; }
 

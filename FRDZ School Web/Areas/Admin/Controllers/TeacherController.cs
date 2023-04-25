@@ -1,5 +1,7 @@
-﻿using FRDZSchool.DataAccess.Repository.IRepository;
+﻿using FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork;
 using FRDZSchool.Models.DatabaseModels;
+using FRDZSchool.Models.ViewModels.CreateModels;
+using FRDZSchool.Models.ViewModels.EditModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FRDZ_School_Web.Areas.Admin.Controllers
@@ -7,73 +9,75 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class TeacherController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public TeacherController(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
+        private readonly ITeacherUnitOfWork _unitOfWork;
+        public TeacherController(ITeacherUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            IEnumerable<Teacher> objTeacherList = _unitOfWork.Teacher.GetAll().ToList();
+            IEnumerable<Teacher> objTeacherList = await _unitOfWork.Teacher.GetAllAsync();
             return View(objTeacherList);
         }
 
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            return View();
+            TeacherCreateModel model = new TeacherCreateModel();
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Add(Teacher obj)
+        public async Task<IActionResult> Add(TeacherCreateModel model)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Teacher.Add(obj);
-                _unitOfWork.Save();
+                Teacher teacher = model.ToTeacher();
+                await _unitOfWork.Teacher.AddAsync(teacher);
+                await _unitOfWork.SaveAsync();
                 TempData["success"] = "Учитель добавлен!";
                 return RedirectToAction("Index");
             }
-            return View(obj);
+            return View(model);
         }
 
-        public IActionResult Edit(int? Id)
+        public async Task<IActionResult> Edit(int Id)
         {
-            if (Id == null || Id == 0)
-            {
-                return NotFound();
-            }
-
-            var teacherFromDb = _unitOfWork.Teacher.Get(u => u.Id == Id);
+            var teacherFromDb = await _unitOfWork.Teacher.GetAsync(u => u.Id == Id);
 
             if (teacherFromDb == null)
             {
                 return NotFound();
             }
 
-            return View(teacherFromDb);
+            TeacherEditModel model = new TeacherEditModel(teacherFromDb);
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Teacher obj)
+        public async Task<IActionResult> Edit(TeacherEditModel model)
         {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Teacher.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Данные изменены успешно!";
-                return RedirectToAction("Index");
-            }
-            return View(obj);
-        }
+            var teacherFromDb = await _unitOfWork.Teacher.GetAsync(u => u.Id == model.Id);
 
-        public IActionResult Delete(int? Id)
-        {
-            if (Id == null || Id == 0)
+            if (teacherFromDb == null)
             {
                 return NotFound();
             }
 
-            var teacherFromDb = _unitOfWork.Teacher.Get(u => u.Id == Id);
+            if (ModelState.IsValid)
+            {
+                teacherFromDb.Update(model);
+                _unitOfWork.Teacher.Update(teacherFromDb);
+                await _unitOfWork.SaveAsync();
+                TempData["success"] = "Данные изменены успешно!";
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        public async Task<IActionResult> Delete(int Id)
+        {
+            var teacherFromDb = await _unitOfWork.Teacher.GetAsync(u => u.Id == Id);
 
             if (teacherFromDb == null)
             {
@@ -85,16 +89,16 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? Id)
+        public async Task<IActionResult> DeletePOST(int Id)
         {
-            var teacherFromDb = _unitOfWork.Teacher.Get(u => u.Id == Id);
+            var teacherFromDb = await _unitOfWork.Teacher.GetAsync(u => u.Id == Id);
 
             if (teacherFromDb == null)
             {
                 return NotFound();
             }
             _unitOfWork.Teacher.Remove(teacherFromDb);
-            _unitOfWork.Save();
+            await _unitOfWork.SaveAsync();
             TempData["error"] = "Учитель удалён!";
             return RedirectToAction("Index");
         }

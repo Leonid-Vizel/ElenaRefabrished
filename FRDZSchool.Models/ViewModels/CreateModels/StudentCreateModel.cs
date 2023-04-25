@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace FRDZSchool.Models.ViewModels
+namespace FRDZSchool.Models.ViewModels.CreateModels
 {
     public class StudentCreateModel
     {

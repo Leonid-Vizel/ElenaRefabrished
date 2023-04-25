@@ -1,6 +1,6 @@
 ﻿using FRDZSchool.DataAccess.Data.Repository.IRepository;
 using FRDZSchool.Models.DatabaseModels;
-using FRDZSchool.Models.ViewModels;
+using FRDZSchool.Models.ViewModels.CreateModels;
 
 namespace FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork
 {
