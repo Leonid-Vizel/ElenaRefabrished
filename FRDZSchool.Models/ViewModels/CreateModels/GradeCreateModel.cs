@@ -1,15 +1,12 @@
-﻿using FRDZSchool.Models.ViewModels.EditModels;
+﻿using FRDZSchool.Models.DatabaseModels;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace FRDZSchool.Models.DatabaseModels
+namespace FRDZSchool.Models.ViewModels.CreateModels
 {
-    public class Grade
+    public class GradeCreateModel
     {
-        [Key]
-        public int Id { get; set; }
-
         [DisplayName("Номер")]
         [Required(ErrorMessage = "У класса обязательно должен быть номер!")]
         [Range(1, 11, ErrorMessage = "В школе могут быть только {1}-{2} классы!")]
@@ -26,15 +23,22 @@ namespace FRDZSchool.Models.DatabaseModels
         [DisplayName("Специализация")]
         public string? Specialization { get; set; }
 
-        [ValidateNever]
-        public List<Student_Grade> Student_Grades { get; set; }
+        [DisplayName("Ученики")]
+        [Required(ErrorMessage = "Укажите учеников!")]
+        public int StudentId { get; set; }
 
-        public void Update(GradeEditModel gradeEditModel)
+        [ValidateNever]
+        public List<Student> Students { get; set; }
+
+        public Grade ToGrade()
         {
-            Id = gradeEditModel.Id;
-            Number = gradeEditModel.Number;
-            Litera = gradeEditModel.Litera;
-            AcademYear = gradeEditModel.AcademYear;
+            return new Grade
+            {
+                Number = Number,
+                Litera = Litera,
+                AcademYear = AcademYear,
+                Specialization = Specialization
+            };
         }
     }
 }
