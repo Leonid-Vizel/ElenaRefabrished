@@ -1,6 +1,13 @@
-﻿@model Grade
+﻿@using FRDZSchool.Models.ViewModels;
+@using FRDZSchool.Models.ViewModels.EditModels;
+@model GradeEditModel
 @{
     ViewData["Title"] = "Изменение";
+}
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }
 
 <div align="center">

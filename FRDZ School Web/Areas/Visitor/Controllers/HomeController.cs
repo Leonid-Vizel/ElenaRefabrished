@@ -1,5 +1,6 @@
-﻿using FRDZSchool.DataAccess.Repository.IRepository;
+﻿using FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork;
 using FRDZSchool.Models.DatabaseModels;
+using FRDZSchool.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,17 +9,17 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
     [Area("Visitor")]
     public class HomeController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public HomeController(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
+        private readonly ITeacherUnitOfWork _unitOfWork;
+        public HomeController(ITeacherUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult TeacherPage()
+        public async Task<IActionResult> TeacherPage()
         {
-            IEnumerable<Teacher> objTeacherList = _unitOfWork.Teacher.GetAll().ToList();
+            IEnumerable<Teacher> objTeacherList = await _unitOfWork.Teacher.GetAllAsync();
             return View(objTeacherList);
         }
 

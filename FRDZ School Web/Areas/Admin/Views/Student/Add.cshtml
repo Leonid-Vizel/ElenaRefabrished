@@ -1,10 +1,9 @@
-﻿@    using FRDZSchool.Models.ViewModels;
-    using FRDZSchool.Models.ViewModels.CreateModels;
+﻿@using FRDZSchool.Models.ViewModels;
+@using FRDZSchool.Models.ViewModels.CreateModels;
 @model StudentCreateModel
 @{
     ViewData["Title"] = "Добавление";
 }
-
 @section Scripts{
     @{
         <partial name="_ValidationScriptsPartial" />
@@ -56,7 +55,7 @@
                                 <option disabled>━━━━━━━━━</option>
                                 @foreach (var obj in Model.Grades)
                                 {
-                                    <option value="@obj.Id">@obj.Number "@obj.Litera"</option>
+                                    <option value="@obj.Id">@obj.Number "@obj.Litera" - @obj.Specialization</option>
                                 }
                             </select>
                         </div>

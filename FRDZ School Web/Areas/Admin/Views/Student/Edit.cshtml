@@ -1,6 +1,13 @@
-﻿@model Student
+﻿@using FRDZSchool.Models.ViewModels;
+@using FRDZSchool.Models.ViewModels.EditModels;
+@model StudentEditModel
 @{
     ViewData["Title"] = "Изменение";
+}
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }
 
 <div align="center">
@@ -43,7 +50,14 @@
                             </select>
                         </div>
                         <div class="form-floating mb-3 col">
-                            место для класса
+                            <select class="form-select" style="padding: 0.75rem 4.5rem 0.75rem 1.5rem !important" asp-for="GradeId">
+                                <option selected disabled>Класс</option>
+                                <option disabled>━━━━━━━━━</option>
+                                @foreach (var obj in Model.Grades)
+                                {
+                                    <option value="@obj.Id">@obj.Number "@obj.Litera" - @obj.Specialization</option>
+                                }
+                            </select>
                         </div>
                     </div>
                     <div class="row g-3">

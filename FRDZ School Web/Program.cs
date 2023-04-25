@@ -13,6 +13,8 @@ builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServe
 //    "DefaultConnection", b => b.MigrationsAssembly("FRDZ School Web")));
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<IStudentUnitOfWork, StudentUnitOfWork>();
+builder.Services.AddScoped<ITeacherUnitOfWork, TeacherUnitOfWork>();
+builder.Services.AddScoped<IGradeUnitOfWork, GradeUnitOfWork>();
 
 var app = builder.Build();
 
