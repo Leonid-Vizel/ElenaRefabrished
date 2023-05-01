@@ -12,7 +12,7 @@
 
 <div align="center">
     <div class="container p-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="row pb-3">
                 <h1 class="text-primary text-center display-5 tracking-in-expand">Добавление учителя</h1>
             </div>
@@ -41,11 +41,6 @@
                             <span class="text-danger" asp-validation-for="Post"></span>
                             <label for="floatingInput" asp-for="Post"></label>
                         </div>
-                        @*                        <div class="form-floating mb-3 col-4">
-                        <input class="form-control" placeholder="Qualification" asp-for="Qualification">
-                        <span class="text-danger" asp-validation-for="Qualification"></span>
-                        <label for="floatingInput" asp-for="Qualification"></label>
-                        </div>*@
                         <div class="form-floating mb-3 col-5">
                             <select class="form-select" style="padding: 0.75rem 4.5rem 0.75rem 1.5rem !important" id="Qualification" asp-for="Qualification">
                                 <option selected disabled>Квалификация</option>
@@ -62,21 +57,20 @@
                         </div>
                     </div>
                     <div class="row g-3">
-                        <div class="form-floating mb-3 col-4">
+                        <div class="form-floating mb-3 col-6">
                             <input class="form-control" placeholder="PhoneNumber" asp-for="PhoneNumber">
                             <span class="text-danger" asp-validation-for="PhoneNumber"></span>
                             <label for="floatingInput" asp-for="PhoneNumber"></label>
                         </div>
-                        <div class="form-floating col-4">
+                        <div class="form-floating col-6">
                             <input type="date" class="form-control" placeholder="Birthday" asp-for="Birthday">
                             <span class="text-danger" asp-validation-for="Birthday"></span>
                             <label for="floatingInput" asp-for="Birthday"></label>
                         </div>
-                        <div class="form-floating mb-3 col-4">
-                            <input class="form-control" placeholder="PhotoUrl" asp-for="PhotoUrl">
-                            <span class="text-danger" asp-validation-for="PhotoUrl"></span>
-                            <label for="floatingInput" asp-for="PhotoUrl"></label>
-                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" placeholder="Photo" asp-for="Photo">
+                        <label for="floatingInput" asp-for="Photo"></label>
                     </div>
                     <div class="row g-3">
                         <div class="col">

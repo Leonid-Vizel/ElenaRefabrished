@@ -31,7 +31,9 @@ namespace FRDZSchool.Models.DatabaseModels
         public DateTime Birthday { get; set; }
 
         [ValidateNever]
-        public List<Student_Grade> Student_Grade { get; set; } 
+        public Grade Grade { get; set; } 
+
+        public int GradeId { get; set; }
 
         [ValidateNever]
         public List<Lesson_Student> Lesson_Student { get; set; } 
@@ -44,6 +46,7 @@ namespace FRDZSchool.Models.DatabaseModels
             Fathername = studentEditModel.Fathername;
             Sex = studentEditModel.Sex;
             Birthday = studentEditModel.Birthday;
+            GradeId = studentEditModel.GradeId;
         }
     }
 }

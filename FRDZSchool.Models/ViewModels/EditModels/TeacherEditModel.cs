@@ -17,7 +17,6 @@ namespace FRDZSchool.Models.ViewModels.EditModels
             Qualification = teacher.Qualification;
             Experience = teacher.Experience;
             PhoneNumber = teacher.PhoneNumber;
-            PhotoUrl = teacher.PhotoUrl;
         }
 
         public int Id { get; set; }

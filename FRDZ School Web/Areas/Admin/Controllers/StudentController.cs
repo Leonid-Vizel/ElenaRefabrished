@@ -1,7 +1,9 @@
 ﻿using FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork;
 using FRDZSchool.Models.DatabaseModels;
 using FRDZSchool.Models.ViewModels.CreateModels;
+using FRDZSchool.Models.ViewModels.DeleteModels;
 using FRDZSchool.Models.ViewModels.EditModels;
+using FRDZSchool.Models.ViewModels.IndexAdminModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +17,6 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var StudentGrade = _unitOfWork.StudentGrade.Include(s => s.Student).Include(g => g.Grade).ToList();
             IEnumerable<Student> objStudentList = await _unitOfWork.Student.GetAllAsync();
             return View(objStudentList);
         }
@@ -40,9 +41,6 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
                 Student student = model.ToStudent();
                 await _unitOfWork.Student.AddAsync(student);
                 await _unitOfWork.SaveAsync();
-                Student_Grade studentGrade = new Student_Grade() { StudentId = student.Id, GradeId = model.GradeId };
-                await _unitOfWork.StudentGrade.AddAsync(studentGrade);
-                await _unitOfWork.SaveAsync();
                 TempData["success"] = "Ученик добавлен!";
                 return RedirectToAction("Index");
             }
@@ -53,18 +51,13 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(int Id)
         {
             var studentFromDb = await _unitOfWork.Student.GetAsync(u => u.Id == Id);
-            var studentGradeFromDb = await _unitOfWork.StudentGrade.GetAsync(u => u.StudentId == Id);
 
             if (studentFromDb == null)
             {
                 return NotFound();
             }
-            if (studentGradeFromDb == null)
-            {
-                return NotFound();
-            }
 
-            StudentEditModel model = new StudentEditModel(studentFromDb) { GradeId = studentGradeFromDb.GradeId };
+            StudentEditModel model = new StudentEditModel(studentFromDb);
             await _unitOfWork.LoadCreateModel(model);
 
             return View(model);
@@ -80,13 +73,8 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
             }
 
             var studentFromDb = await _unitOfWork.Student.GetAsync(u => u.Id == model.Id);
-            var studentGradeFromDb = await _unitOfWork.StudentGrade.GetAsync(u => u.StudentId == model.Id);
 
             if (studentFromDb == null)
-            {
-                return NotFound();
-            }
-            if (studentGradeFromDb == null)
             {
                 return NotFound();
             }
@@ -94,11 +82,6 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 studentFromDb.Update(model);
-                if (model.GradeId != studentGradeFromDb.GradeId)
-                {
-                    studentGradeFromDb.GradeId = model.GradeId;
-                    _unitOfWork.StudentGrade.Update(studentGradeFromDb);
-                }
                 _unitOfWork.Student.Update(studentFromDb);
                 await _unitOfWork.SaveAsync();
                 TempData["success"] = "Данные изменены успешно!";
@@ -110,18 +93,25 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int Id)
         {
             var studentFromDb = await _unitOfWork.Student.GetAsync(u => u.Id == Id);
-            var studentGradeFromDb = await _unitOfWork.StudentGrade.GetAsync(u => u.StudentId == Id);
 
             if (studentFromDb == null)
             {
                 return NotFound();
             }
-            if (studentGradeFromDb == null)
+
+            var gradeFromDb = await _unitOfWork.Grade.GetAsync(u => u.Id == studentFromDb.GradeId);
+
+            if (gradeFromDb == null)
             {
                 return NotFound();
             }
 
-            return View(studentFromDb);
+            StudentDeleteModel model = new StudentDeleteModel(studentFromDb)
+            {
+                GradeName = gradeFromDb.ToString()
+            };
+
+            return View(model);
         }
 
         [HttpPost, ActionName("Delete")]

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FRDZSchool.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDbMigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +19,6 @@ namespace FRDZSchool.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Number = table.Column<int>(type: "int", nullable: false),
                     Litera = table.Column<string>(type: "nvarchar(1)", nullable: false),
-                    AcademYear = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     Specialization = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -38,23 +37,6 @@ namespace FRDZSchool.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_School_Object", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Student",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Fathername = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Sex = table.Column<string>(type: "nvarchar(1)", nullable: false),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Student", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,25 +61,25 @@ namespace FRDZSchool.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Student_Grade",
+                name: "Student",
                 columns: table => new
                 {
-                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Fathername = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sex = table.Column<string>(type: "nvarchar(1)", nullable: false),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     GradeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Student_Grade", x => new { x.StudentId, x.GradeId });
+                    table.PrimaryKey("PK_Student", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Student_Grade_Grade_GradeId",
+                        name: "FK_Student_Grade_GradeId",
                         column: x => x.GradeId,
                         principalTable: "Grade",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Student_Grade_Student_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Student",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -173,8 +155,8 @@ namespace FRDZSchool.DataAccess.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Student_Grade_GradeId",
-                table: "Student_Grade",
+                name: "IX_Student_GradeId",
+                table: "Student",
                 column: "GradeId");
         }
 
@@ -185,13 +167,7 @@ namespace FRDZSchool.DataAccess.Migrations
                 name: "Lesson_Student");
 
             migrationBuilder.DropTable(
-                name: "Student_Grade");
-
-            migrationBuilder.DropTable(
                 name: "Lesson");
-
-            migrationBuilder.DropTable(
-                name: "Grade");
 
             migrationBuilder.DropTable(
                 name: "Student");
@@ -201,6 +177,9 @@ namespace FRDZSchool.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Teacher");
+
+            migrationBuilder.DropTable(
+                name: "Grade");
         }
     }
 }

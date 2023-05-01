@@ -21,5 +21,7 @@ namespace FRDZSchool.DataAccess.Data.Repository.IRepository
         void UpdateRange(IEnumerable<T> value);
         IQueryable<TResult> Select<TResult>(Expression<Func<T, TResult>> selector);
         IQueryable<T> Where(Expression<Func<T, bool>> filter);
+        IOrderedQueryable<T> OrderBy<TKey>(Expression<Func<T, TKey>> sort);
+        IOrderedQueryable<T> OrderByDescending<TKey>(Expression<Func<T, TKey>> sort);
     }
 }

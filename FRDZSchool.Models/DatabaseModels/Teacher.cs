@@ -31,7 +31,7 @@ namespace FRDZSchool.Models.DatabaseModels
 
         [DisplayName("Квалификация")]
         [Required(ErrorMessage = "Введите квалификацию!")]
-        public string? Qualification { get; set; }
+        public string Qualification { get; set; }
 
         [DisplayName("Стаж")]
         [Required(ErrorMessage = "Введите стаж!")]
@@ -41,10 +41,10 @@ namespace FRDZSchool.Models.DatabaseModels
         [DisplayName("Номер телефона")]
         [Required(ErrorMessage = "Введите номер телефона!")]
         [Phone(ErrorMessage = "Вы указали не номер телефона!")]
-        public string? PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
-        [DisplayName("Путь к фото")]
-        [Required(ErrorMessage = "Введите путь к фото!!")]
+        [DisplayName("Фото")]
+        [Required(ErrorMessage = "Добавьте фото!")]
         public string PhotoUrl { get; set; }
 
         public void Update(TeacherEditModel teacherEditModel)
@@ -57,7 +57,6 @@ namespace FRDZSchool.Models.DatabaseModels
             Qualification = teacherEditModel.Qualification;
             Experience = teacherEditModel.Experience;
             PhoneNumber = teacherEditModel.PhoneNumber;
-            PhotoUrl = teacherEditModel.PhotoUrl;
         }
     }
 }

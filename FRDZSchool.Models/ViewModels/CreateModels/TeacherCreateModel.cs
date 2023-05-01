@@ -1,4 +1,6 @@
 ﻿using FRDZSchool.Models.DatabaseModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Formatters.Internal;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,7 +30,7 @@ namespace FRDZSchool.Models.ViewModels.CreateModels
 
         [DisplayName("Квалификация")]
         [Required(ErrorMessage = "Введите квалификацию!")]
-        public string? Qualification { get; set; }
+        public string Qualification { get; set; }
 
         [DisplayName("Стаж")]
         [Required(ErrorMessage = "Введите стаж!")]
@@ -38,11 +40,11 @@ namespace FRDZSchool.Models.ViewModels.CreateModels
         [DisplayName("Номер телефона")]
         [Required(ErrorMessage = "Введите номер телефона!")]
         [Phone(ErrorMessage = "Вы указали не номер телефона!")]
-        public string? PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
-        [DisplayName("Путь к фото")]
-        [Required(ErrorMessage = "Введите путь к фото!!")]
-        public string PhotoUrl { get; set; }
+        [DisplayName("Фото")]
+        [Required(ErrorMessage = "Загрузите фото!")]
+        public IFormFile Photo { get; set; }
 
         public Teacher ToTeacher()
         {
@@ -55,8 +57,7 @@ namespace FRDZSchool.Models.ViewModels.CreateModels
                 Birthday = Birthday,
                 Qualification = Qualification,
                 Experience = Experience,
-                PhoneNumber = PhoneNumber,
-                PhotoUrl = PhotoUrl
+                PhoneNumber = PhoneNumber
             };
         }
     }

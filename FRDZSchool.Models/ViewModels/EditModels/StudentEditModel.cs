@@ -15,6 +15,7 @@ namespace FRDZSchool.Models.ViewModels.EditModels
             Fathername = student.Fathername;
             Sex = student.Sex;
             Birthday = student.Birthday;
+            GradeId = student.GradeId;
         }
 
         public int Id { get; set; }

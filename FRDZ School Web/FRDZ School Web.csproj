@@ -32,7 +32,7 @@
   <ItemGroup>
     <Folder Include="Areas\Student\Controllers\" />
     <Folder Include="Areas\Teacher\Controllers\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\images\teachers\" />
   </ItemGroup>
 
 </Project>

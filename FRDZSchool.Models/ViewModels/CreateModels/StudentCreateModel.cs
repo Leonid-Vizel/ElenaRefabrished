@@ -43,6 +43,7 @@ namespace FRDZSchool.Models.ViewModels.CreateModels
                 Fathername = Fathername,
                 Sex = Sex,
                 Birthday = Birthday,
+                GradeId = GradeId
             };
         }
     }

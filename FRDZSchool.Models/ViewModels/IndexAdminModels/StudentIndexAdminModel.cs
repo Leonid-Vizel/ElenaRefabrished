@@ -23,13 +23,22 @@ namespace FRDZSchool.Models.ViewModels.IndexAdminModels
         [DisplayName("Дата рождения")]
         public DateTime Birthday { get; set; }
 
-        [ValidateNever]
-        public List<Student_Grade> Student_Grade { get; set; }
-
         [DisplayName("Класс")]
         public int GradeId { get; set; }
 
         [ValidateNever]
         public List<Grade> Grades { get; set; }
+
+        public StudentIndexAdminModel() { }
+
+        public StudentIndexAdminModel(Student student)
+        {
+            Id = student.Id;
+            Name = student.Name;
+            Lastname = student.Lastname;
+            Fathername = student.Fathername;
+            Sex = student.Sex;
+            Birthday = student.Birthday;
+        }
     }
 }

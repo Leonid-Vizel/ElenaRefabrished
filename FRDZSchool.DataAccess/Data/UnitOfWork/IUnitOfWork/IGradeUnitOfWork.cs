@@ -8,7 +8,5 @@ namespace FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork
     {
         IRepository<Student> Student { get; set; }
         IRepository<Grade> Grade { get; set; }
-        IRepository<Student_Grade> StudentGrade { get; set; }
-        Task LoadCreateModel(GradeCreateModel createModel);
     }
 }

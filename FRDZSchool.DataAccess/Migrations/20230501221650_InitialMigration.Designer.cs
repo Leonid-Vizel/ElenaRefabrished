@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FRDZSchool.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230414193309_CreateDbMigration")]
-    partial class CreateDbMigration
+    [Migration("20230501221650_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,17 +25,13 @@ namespace FRDZSchool.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FRDZSchool.Models.Grade", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Grade", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AcademYear")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("Litera")
                         .IsRequired()
@@ -52,7 +48,7 @@ namespace FRDZSchool.DataAccess.Migrations
                     b.ToTable("Grade");
                 });
 
-            modelBuilder.Entity("FRDZSchool.Models.Lesson", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Lesson", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,7 +80,7 @@ namespace FRDZSchool.DataAccess.Migrations
                     b.ToTable("Lesson");
                 });
 
-            modelBuilder.Entity("FRDZSchool.Models.Lesson_Student", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Lesson_Student", b =>
                 {
                     b.Property<int>("LessonId")
                         .HasColumnType("int");
@@ -105,7 +101,7 @@ namespace FRDZSchool.DataAccess.Migrations
                     b.ToTable("Lesson_Student");
                 });
 
-            modelBuilder.Entity("FRDZSchool.Models.School_Object", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.School_Object", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,7 +118,7 @@ namespace FRDZSchool.DataAccess.Migrations
                     b.ToTable("School_Object");
                 });
 
-            modelBuilder.Entity("FRDZSchool.Models.Student", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -136,6 +132,9 @@ namespace FRDZSchool.DataAccess.Migrations
                     b.Property<string>("Fathername")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GradeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Lastname")
                         .IsRequired()
@@ -151,25 +150,12 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GradeId");
+
                     b.ToTable("Student");
                 });
 
-            modelBuilder.Entity("FRDZSchool.Models.Student_Grade", b =>
-                {
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GradeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentId", "GradeId");
-
-                    b.HasIndex("GradeId");
-
-                    b.ToTable("Student_Grade");
-                });
-
-            modelBuilder.Entity("FRDZSchool.Models.Teacher", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Teacher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -180,8 +166,7 @@ namespace FRDZSchool.DataAccess.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("Experience")
-                        .IsRequired()
+                    b.Property<int>("Experience")
                         .HasColumnType("int");
 
                     b.Property<string>("Fathername")
@@ -217,15 +202,15 @@ namespace FRDZSchool.DataAccess.Migrations
                     b.ToTable("Teacher");
                 });
 
-            modelBuilder.Entity("FRDZSchool.Models.Lesson", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Lesson", b =>
                 {
-                    b.HasOne("FRDZSchool.Models.School_Object", "SchoolObject")
+                    b.HasOne("FRDZSchool.Models.DatabaseModels.School_Object", "SchoolObject")
                         .WithMany()
                         .HasForeignKey("SchoolObjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FRDZSchool.Models.Teacher", "Teacher")
+                    b.HasOne("FRDZSchool.Models.DatabaseModels.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -236,15 +221,15 @@ namespace FRDZSchool.DataAccess.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("FRDZSchool.Models.Lesson_Student", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Lesson_Student", b =>
                 {
-                    b.HasOne("FRDZSchool.Models.Lesson", "Lesson")
+                    b.HasOne("FRDZSchool.Models.DatabaseModels.Lesson", "Lesson")
                         .WithMany("Lesson_Student")
                         .HasForeignKey("LessonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FRDZSchool.Models.Student", "Student")
+                    b.HasOne("FRDZSchool.Models.DatabaseModels.Student", "Student")
                         .WithMany("Lesson_Student")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -255,40 +240,30 @@ namespace FRDZSchool.DataAccess.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("FRDZSchool.Models.Student_Grade", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Student", b =>
                 {
-                    b.HasOne("FRDZSchool.Models.Grade", "Grade")
-                        .WithMany("Student_Grades")
+                    b.HasOne("FRDZSchool.Models.DatabaseModels.Grade", "Grade")
+                        .WithMany("Student")
                         .HasForeignKey("GradeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FRDZSchool.Models.Student", "Student")
-                        .WithMany("Student_Grade")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Grade");
+                });
 
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Grade", b =>
+                {
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("FRDZSchool.Models.Grade", b =>
-                {
-                    b.Navigation("Student_Grades");
-                });
-
-            modelBuilder.Entity("FRDZSchool.Models.Lesson", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Lesson", b =>
                 {
                     b.Navigation("Lesson_Student");
                 });
 
-            modelBuilder.Entity("FRDZSchool.Models.Student", b =>
+            modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Student", b =>
                 {
                     b.Navigation("Lesson_Student");
-
-                    b.Navigation("Student_Grade");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,16 +12,9 @@ namespace FRDZSchool.DataAccess.Data.UnitOfWork
         {
             Student = new Repository<Student>(context);
             Grade = new Repository<Grade>(context);
-            StudentGrade = new Repository<Student_Grade>(context);
         }
 
         public IRepository<Student> Student { get; set; }
         public IRepository<Grade> Grade { get; set; }
-        public IRepository<Student_Grade> StudentGrade { get; set; }
-
-        public async Task LoadCreateModel(GradeCreateModel createModel)
-        {
-            createModel.Students = await Student.GetAllAsync();
-        }
     }
 }

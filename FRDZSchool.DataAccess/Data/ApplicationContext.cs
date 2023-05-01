@@ -13,7 +13,6 @@ namespace FRDZSchool.DataAccess.Data
         public DbSet<Lesson> Lesson { get; set; } = null!;
         public DbSet<Lesson_Student> Lesson_Student { get; set; } = null!;
         public DbSet<School_Object> School_Object { get; set; } = null!;
-        public DbSet<Student_Grade> Student_Grade { get; set; } = null!;
 
         public ApplicationContext() => Database.EnsureCreated();
     }

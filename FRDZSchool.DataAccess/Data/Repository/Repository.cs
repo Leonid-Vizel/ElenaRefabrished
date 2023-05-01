@@ -1,9 +1,6 @@
-﻿using FRDZSchool.DataAccess.Data;
-using FRDZSchool.DataAccess.Data.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc;
+﻿using FRDZSchool.DataAccess.Data.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace FRDZSchool.DataAccess.Data.Repository
@@ -58,5 +55,9 @@ namespace FRDZSchool.DataAccess.Data.Repository
             => dbSet.UpdateRange(value);
         public async Task SaveAsync(CancellationToken token = default)
             => await _db.SaveChangesAsync(token);
+        public IOrderedQueryable<T> OrderBy<TKey>(Expression<Func<T, TKey>> sort)
+            => dbSet.OrderBy(sort);
+        public IOrderedQueryable<T> OrderByDescending<TKey>(Expression<Func<T, TKey>> sort)
+            => dbSet.OrderByDescending(sort);
     }
 }

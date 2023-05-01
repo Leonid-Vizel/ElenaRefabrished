@@ -19,22 +19,23 @@ namespace FRDZSchool.Models.DatabaseModels
         [Required(ErrorMessage = "У класса обязательно должен быть буквенный индекс!")]
         public char Litera { get; set; }
 
-        [DisplayName("Учебный год")]
-        [Required(ErrorMessage = "У класса обязательно должен быть указан учебный год!")]
-        public DateTime AcademYear { get; set; }
-
         [DisplayName("Специализация")]
         public string? Specialization { get; set; }
 
         [ValidateNever]
-        public List<Student_Grade> Student_Grades { get; set; }
+        public List<Student> Student { get; set; }
 
         public void Update(GradeEditModel gradeEditModel)
         {
             Id = gradeEditModel.Id;
             Number = gradeEditModel.Number;
             Litera = gradeEditModel.Litera;
-            AcademYear = gradeEditModel.AcademYear;
+            Specialization = gradeEditModel.Specialization;
+        }
+
+        public override string ToString()
+        {
+            return $"{Number} «{Litera}» - {Specialization}";
         }
     }
 }

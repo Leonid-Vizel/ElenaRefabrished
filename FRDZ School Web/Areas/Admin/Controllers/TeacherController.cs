@@ -10,7 +10,12 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
     public class TeacherController : Controller
     {
         private readonly ITeacherUnitOfWork _unitOfWork;
-        public TeacherController(ITeacherUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
+        private readonly IWebHostEnvironment _environment;
+        public TeacherController(ITeacherUnitOfWork unitOfWork, IWebHostEnvironment environment)
+        {
+            _unitOfWork = unitOfWork;
+            _environment = environment;
+        }
 
         public async Task<IActionResult> Index()
         {
@@ -18,26 +23,39 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
             return View(objTeacherList);
         }
 
-        public async Task<IActionResult> Add()
+        public IActionResult Add()
         {
-            TeacherCreateModel model = new TeacherCreateModel();
-            return View(model);
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(TeacherCreateModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                Teacher teacher = model.ToTeacher();
-                await _unitOfWork.Teacher.AddAsync(teacher);
-                await _unitOfWork.SaveAsync();
-                TempData["success"] = "Учитель добавлен!";
-                return RedirectToAction("Index");
+                return View(model);
             }
-            return View(model);
+
+            Teacher teacher = model.ToTeacher();
+            string wwwRootPath = _environment.WebRootPath;
+            if (model.Photo != null)
+            {
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.Photo.FileName);
+                string teacherPath = Path.Combine(wwwRootPath, Path.Combine("images", "teachers"));
+                using (var fileStream = new FileStream(Path.Combine(teacherPath, fileName), FileMode.Create))
+                {
+                    await model.Photo.CopyToAsync(fileStream);
+                };
+                teacher.PhotoUrl = fileName;
+            }
+            await _unitOfWork.Teacher.AddAsync(teacher);
+            await _unitOfWork.SaveAsync();
+            TempData["success"] = "Учитель добавлен!";
+            return RedirectToAction("Index");
+
         }
+
 
         public async Task<IActionResult> Edit(int Id)
         {
@@ -64,15 +82,27 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                teacherFromDb.Update(model);
-                _unitOfWork.Teacher.Update(teacherFromDb);
-                await _unitOfWork.SaveAsync();
-                TempData["success"] = "Данные изменены успешно!";
-                return RedirectToAction("Index");
+                return View(model);
             }
-            return View(model);
+
+            teacherFromDb.Update(model);
+            string wwwRootPath = _environment.WebRootPath;
+            if (model.Photo != null)
+            {
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.Photo.FileName);
+                string teacherPath = Path.Combine(wwwRootPath, Path.Combine("images", "teachers"));
+                using (var fileStream = new FileStream(Path.Combine(teacherPath, fileName), FileMode.Create))
+                {
+                    await model.Photo.CopyToAsync(fileStream);
+                }
+                teacherFromDb.PhotoUrl = fileName;
+            }
+            _unitOfWork.Teacher.Update(teacherFromDb);
+            await _unitOfWork.SaveAsync();
+            TempData["success"] = "Данные изменены успешно!";
+            return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Delete(int Id)

@@ -1,5 +1,6 @@
-﻿@using FRDZSchool.Models.DatabaseModels;
-@model Student
+﻿@using FRDZSchool.Models.ViewModels;
+@using FRDZSchool.Models.ViewModels.DeleteModels;
+@model StudentDeleteModel
 @{
     ViewData["Title"] = "Удаление";
 }
@@ -16,30 +17,29 @@
                     <div class="row g-3">
                         <div class="form-floating mb-3 col">
                             <input class="form-control" placeholder="Lastname" asp-for="Lastname" readonly>
-                            <span class="text-danger " asp-validation-for="Lastname"></span>
                             <label for="floatingInput" asp-for="Lastname"></label>
                         </div>
                         <div class="form-floating mb-3 col">
                             <input class="form-control" placeholder="Name" asp-for="Name">
-                            <span class="text-danger " asp-validation-for="Name"></span>
                             <label for="floatingInput" asp-for="Name"></label>
                         </div>
                         <div class="form-floating mb-3 col">
                             <input class="form-control" placeholder="Fathername" asp-for="Fathername" readonly>
-                            <span class="text-danger " asp-validation-for="Fathername"></span>
                             <label for="floatingInput" asp-for="Fathername"></label>
                         </div>
                     </div>
                     <div class="row g-3">
-                        <div class="form-floating col">
+                        <div class="form-floating col-4">
                             <input type="date" class="form-control" placeholder="Birthday" asp-for="Birthday" readonly>
-                            <span class="text-danger" asp-validation-for="Birthday"></span>
                             <label for="floatingInput" asp-for="Birthday"></label>
                         </div>
-                        <div class="form-floating mb-3 col">
+                        <div class="form-floating mb-2 col">
                             <input class="form-control" placeholder="Sex" asp-for="Sex" readonly>
-                            <span class="text-danger " asp-validation-for="Sex"></span>
                             <label for="floatingInput" asp-for="Sex"></label>
+                        </div>
+                        <div class="form-floating col-6">
+                            <input class="form-control" placeholder="GradeName" asp-for="GradeName" readonly>
+                            <label for="floatingInput" asp-for="GradeName"></label>
                         </div>
                     </div>
                     <div class="row g-3">

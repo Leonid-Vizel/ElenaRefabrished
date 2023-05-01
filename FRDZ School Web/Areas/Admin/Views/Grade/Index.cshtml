@@ -14,7 +14,6 @@
                     <tr class="table-dark cell-centered">
                         <th scope="col">@Html.DisplayNameForInnerType((Grade g)=>g.Id)&nbsp</th>
                         <th scope="col">@Html.DisplayNameForInnerType((Grade g)=>g.Number)&nbsp</th>
-                        <th scope="col">@Html.DisplayNameForInnerType((Grade g)=>g.AcademYear)&nbsp</th>
                         <th scope="col">@Html.DisplayNameForInnerType((Grade g)=>g.Specialization)&nbsp</th>
                         <th scope="col" class="sticky-col right-col">
                             <a asp-controller="Grade" asp-action="Add" class="btn btn-success w-100"><i class="bi bi-plus-square"></i> Добавить</a>
@@ -27,7 +26,6 @@
                         <tr class="cell-centered">
                             <td scope="row">@obj.Id</td>
                             <td>@obj.Number "@obj.Litera"</td>
-                            <td>@obj.AcademYear.ToString("yyyy")</td>
                             <td>@obj.Specialization</td>
                             <td class="sticky-col right-col" style="background-color: rgba(235, 235, 235, 0.9)">
                                 <div class="row g-0">
