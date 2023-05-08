@@ -3,7 +3,6 @@ using FRDZSchool.DataAccess.Data.Repository.IRepository;
 using FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork;
 using FRDZSchool.Models.DatabaseModels;
 using FRDZSchool.Models.ViewModels.CreateModels;
-using FRDZSchool.Models.ViewModels.IndexAdminModels;
 
 namespace FRDZSchool.DataAccess.Data.UnitOfWork
 {
@@ -21,11 +20,6 @@ namespace FRDZSchool.DataAccess.Data.UnitOfWork
         public async Task LoadCreateModel(StudentCreateModel createModel)
         {
             createModel.Grades = await Grade.GetAllAsync();
-        }
-
-        public async Task LoadIndexAdminModel(StudentIndexAdminModel indexAdminModel)
-        {
-            indexAdminModel.Grades = await Grade.GetAllAsync();
         }
     }
 }

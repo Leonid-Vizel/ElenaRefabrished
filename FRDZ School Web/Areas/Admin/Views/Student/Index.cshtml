@@ -18,7 +18,7 @@
                         <th scope="col">@Html.DisplayNameForInnerType((Student s)=>s.Sex)&nbsp</th>
                         <th scope="col">@Html.DisplayNameForInnerType((Student s)=>s.Birthday)&nbsp</th>
                         <th scope="col" class="sticky-col right-col">
-                            <a asp-controller="Student" asp-action="Add" class="btn btn-success w-100"><i class="bi bi-person-plus-fill"></i> Добавить</a>
+                            <a asp-controller="Student" asp-action="Add" class="btn btn-success w-100"><i class="bi bi-person-plus-fill big-icon"></i> Добавить</a>
                         </th>
                     </tr>
                 </thead>
@@ -28,16 +28,16 @@
                         <tr class="cell-centered">
                             <td scope="row">@obj.Id</td>
                             <td>@obj.Lastname @obj.Name @obj.Fathername</td>
-                            <td> </td>
+                            <td>@obj.Grade</td>
                             <td>@obj.Sex</td>
                             <td>@obj.Birthday.ToString("d MMMM yyyy")</td>
                             <td class="sticky-col right-col" style="background-color: rgba(235, 235, 235, 0.9)">
-                                <div class="row g-0">
-                                    <div class="col">
-                                        <a asp-controller="Student" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-outline-warning"><i class="bi bi-person-gear"></i> Изменить</a>
+                                <div class="d-flex text-nowrap">
+                                    <div class="d-flex mx-1">
+                                        <a asp-controller="Student" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-outline-warning"><i class="bi bi-person-gear big-icon"></i> Изменить</a>
                                     </div>
-                                    <div class="col">
-                                        <a asp-controller="Student" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-outline-danger"><i class="bi bi-person-x"></i> Удалить</a>
+                                    <div class="d-flex mx-1">
+                                        <a asp-controller="Student" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-outline-danger"><i class="bi bi-person-x big-icon"></i> Удалить</a>
                                     </div>
                                 </div>
                             </td>

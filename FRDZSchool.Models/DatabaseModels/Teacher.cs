@@ -1,4 +1,6 @@
 ﻿using FRDZSchool.Models.ViewModels.EditModels;
+using FRDZSchool.Utility;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -58,5 +60,9 @@ namespace FRDZSchool.Models.DatabaseModels
             Experience = teacherEditModel.Experience;
             PhoneNumber = teacherEditModel.PhoneNumber;
         }
+
+        [DisplayName("ФИО")]
+        public string FullName => $"{Lastname} {Name} {Fathername}";
+        public string Birth => Birthday.ToString("d MMMM yyyyг.");
     }
 }

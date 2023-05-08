@@ -46,8 +46,6 @@ namespace FRDZSchool.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Fathername = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Post = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Qualification = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -67,8 +65,6 @@ namespace FRDZSchool.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Fathername = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Sex = table.Column<string>(type: "nvarchar(1)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     GradeId = table.Column<int>(type: "int", nullable: false)

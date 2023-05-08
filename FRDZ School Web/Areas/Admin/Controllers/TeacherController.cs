@@ -3,6 +3,7 @@ using FRDZSchool.Models.DatabaseModels;
 using FRDZSchool.Models.ViewModels.CreateModels;
 using FRDZSchool.Models.ViewModels.EditModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 
 namespace FRDZ_School_Web.Areas.Admin.Controllers
 {
@@ -56,7 +57,6 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
 
         }
 
-
         public async Task<IActionResult> Edit(int Id)
         {
             var teacherFromDb = await _unitOfWork.Teacher.GetAsync(u => u.Id == Id);
@@ -93,6 +93,13 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
             {
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.Photo.FileName);
                 string teacherPath = Path.Combine(wwwRootPath, Path.Combine("images", "teachers"));
+
+                string oldPhotoPath = Path.Combine(teacherPath, teacherFromDb.PhotoUrl.TrimStart('\\'));
+                if (System.IO.File.Exists(oldPhotoPath))
+                {
+                    System.IO.File.Delete(oldPhotoPath);
+                }
+
                 using (var fileStream = new FileStream(Path.Combine(teacherPath, fileName), FileMode.Create))
                 {
                     await model.Photo.CopyToAsync(fileStream);
@@ -105,6 +112,7 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpDelete]
         public async Task<IActionResult> Delete(int Id)
         {
             var teacherFromDb = await _unitOfWork.Teacher.GetAsync(u => u.Id == Id);
@@ -114,23 +122,24 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(teacherFromDb);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeletePOST(int Id)
-        {
-            var teacherFromDb = await _unitOfWork.Teacher.GetAsync(u => u.Id == Id);
-
-            if (teacherFromDb == null)
+            string wwwRootPath = _environment.WebRootPath;
+            string teacherPath = Path.Combine(wwwRootPath, Path.Combine("images", "teachers"));
+            string oldPhotoPath = Path.Combine(teacherPath, teacherFromDb.PhotoUrl.TrimStart('\\'));
+            if (System.IO.File.Exists(oldPhotoPath))
             {
-                return NotFound();
+                System.IO.File.Delete(oldPhotoPath);
             }
+
             _unitOfWork.Teacher.Remove(teacherFromDb);
             await _unitOfWork.SaveAsync();
-            TempData["error"] = "Учитель удалён!";
-            return RedirectToAction("Index");
+            return Json(new { success = true });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            IEnumerable<Teacher> objTeacherList = await _unitOfWork.Teacher.GetAllAsync();
+            return Json(new {data = objTeacherList});
         }
     }
 }

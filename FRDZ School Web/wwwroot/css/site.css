@@ -349,7 +349,7 @@ code {
         position: relative;
         width: 150px;
         height: 100%;
-        background: linear-gradient(#1a1a1a, #343a40);
+        background: linear-gradient(#1a1a1a, #1a1a1a);
         transition: width 0.4s;
         overflow: hidden;
         z-index: 2;
@@ -466,6 +466,10 @@ code {
     vertical-align: middle;
 }
 
+.vertical-centered {
+    vertical-align: middle;
+}
+
 .sticky-col {
     position: -webkit-sticky;
     position: sticky;
@@ -495,7 +499,7 @@ code {
 
 /*===============================================================================================*/
 
-.table_sort th {
+/*.table_sort th {
     cursor: pointer;
 }
 
@@ -515,6 +519,15 @@ th.sorted[data-order="-1"] {
 
     th.sorted[data-order="1"]::after {
         content: "▼"
-    }
+    }*/
 
 /*===============================================================================================*/
+
+.big-icon{
+    font-size: 1rem;
+}
+
+.big-icon2 {
+    font-size: 1.2rem;
+}
+

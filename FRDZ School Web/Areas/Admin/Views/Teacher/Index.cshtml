@@ -8,47 +8,60 @@
 <div class="container pt-4">
     <h1 class="text-primary text-center display-5 tracking-in-expand">Список учителей</h1>
     <div class="table-responsive pt-3">
-        <div class="table-wrapper">
-            <table class="table text-nowrap table-hover mb-0 table_sort">
+        <div class="table-wrapper" style="width: 99%">
+            <table id="teacherTable" class="table text-nowrap table-hover pt-2 vertical-centered">
                 <thead class="noselect">
-                    <tr class="table-dark cell-centered">
-                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Id)&nbsp</th>
-                        <th scope="col">ФИО&nbsp</th>
-                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Post)&nbsp</th>
-                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Qualification)&nbsp</th>
-                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Experience)&nbsp</th>
-                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Birthday)&nbsp</th>
-                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.PhoneNumber)&nbsp</th>
-                        <th scope="col" class="sticky-col right-col">
-                            <a asp-controller="Teacher" asp-action="Add" class="btn btn-success w-100"><i class="bi bi-person-plus-fill"></i> Добавить</a>
+                    <tr class="table-dark">
+                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.FullName)</th>
+                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Post)</th>
+                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Qualification)</th>
+                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Experience)</th>
+                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Birthday)</th>
+                        <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.PhoneNumber)</th>
+                        <th scope="col">
+                            <a asp-controller="Teacher" asp-action="Add" class="btn btn-success w-100"><i class="bi bi-person-plus-fill big-icon"></i> Добавить</a>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var obj in Model)
-                    {
-                        <tr class="cell-centered">
-                            <td scope="row">@obj.Id</td>
-                            <td>@obj.Lastname @obj.Name @obj.Fathername</td>
-                            <td>@obj.Post</td>
-                            <td>@obj.Qualification</td>
-                            <td>@obj.Experience @WordHelp.Inflect(obj.Experience, "лет", "год", "года")</td>
-                            <td>@obj.Birthday.ToString("d MMMM yyyyг.")</td>
-                            <td>@obj.PhoneNumber</td>
-                            <td class="sticky-col right-col" style="background-color: rgba(235, 235, 235, 0.9)">
-                                <div class="row g-3">
-                                    <div class="col">
-                                        <a asp-controller="Teacher" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-outline-warning"><i class="bi bi-person-gear"></i></a>
-                                    </div>
-                                    <div class="col">
-                                        <a asp-controller="Teacher" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-outline-danger"><i class="bi bi-person-x"></i></a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    }
+                    @*                    @foreach (var obj in Model)
+                    <tr class="cell-centered">
+                    <td scope="row">@obj.Id</td>
+                    <td>@obj.Lastname @obj.Name @obj.Fathername</td>
+                    <td>@obj.Post</td>
+                    <td>@obj.Qualification</td>
+                    <td>@obj.Experience @WordHelp.Inflect(obj.Experience, "лет", "год", "года")</td>
+                    <td>@obj.Birthday.ToString("d MMMM yyyyг.")</td>
+                    <td>@obj.PhoneNumber</td>
+                    <td class="sticky-col right-col" style="background-color: rgba(235, 235, 235, 0.9)">
+                    <div class="d-flex text-nowrap">
+                    <div class="d-flex mx-2">
+                    <a asp-controller="Teacher" asp-action="Edit" asp-route-Id="@obj.Id" class="btn btn-outline-warning"><i class="bi bi-person-gear big-icon2"></i></a>
+                    </div>
+                    <div class="d-flex mx-2">
+                    <a asp-controller="Teacher" asp-action="Delete" asp-route-Id="@obj.Id" class="btn btn-outline-danger"><i class="bi bi-person-x big-icon2"></i></a>
+                    </div>
+                    </div>
+                    </td>
+                    </tr>
+                    }*@
                 </tbody>
+                @*                <tfoot class="noselect">
+                <tr class="table-primary">
+                <th scope="col"></th>
+                <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Id)&nbsp</th>
+                <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.FullName)&nbsp</th>
+                <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Post)&nbsp</th>
+                <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Qualification)&nbsp</th>
+                <th scope="col">@Html.DisplayNameForInnerType((Teacher t)=>t.Experience)&nbsp</th>
+                <th scope="col"></th>
+                </tr>
+                </tfoot>*@
             </table>
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/teacher.js" asp-append-version="true"></script>
+}

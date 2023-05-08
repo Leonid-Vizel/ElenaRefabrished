@@ -20,4 +20,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FRDZSchool.Utility\FRDZSchool.Utility.csproj" />
+  </ItemGroup>
+
 </Project>

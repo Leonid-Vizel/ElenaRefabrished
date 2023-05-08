@@ -3,7 +3,6 @@ using FRDZSchool.Models.DatabaseModels;
 using FRDZSchool.Models.ViewModels.CreateModels;
 using FRDZSchool.Models.ViewModels.DeleteModels;
 using FRDZSchool.Models.ViewModels.EditModels;
-using FRDZSchool.Models.ViewModels.IndexAdminModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +16,7 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Student> objStudentList = await _unitOfWork.Student.GetAllAsync();
+            IEnumerable<Student> objStudentList = await _unitOfWork.Student.Include(u => u.Grade).ToListAsync();
             return View(objStudentList);
         }
 

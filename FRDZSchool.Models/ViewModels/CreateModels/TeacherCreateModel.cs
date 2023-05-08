@@ -1,6 +1,5 @@
 ﻿using FRDZSchool.Models.DatabaseModels;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Formatters.Internal;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 

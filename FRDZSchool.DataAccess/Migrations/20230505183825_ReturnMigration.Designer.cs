@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FRDZSchool.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230501221650_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230505183825_ReturnMigration")]
+    partial class ReturnMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
