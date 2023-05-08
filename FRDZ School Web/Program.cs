@@ -2,6 +2,7 @@ using FRDZSchool.DataAccess.Data;
 using FRDZSchool.DataAccess.Data.UnitOfWork;
 using FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationContext>();
 //builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(
 //    "DefaultConnection", b => b.MigrationsAssembly("FRDZ School Web")));
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();

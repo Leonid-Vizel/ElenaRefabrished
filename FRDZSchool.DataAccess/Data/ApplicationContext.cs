@@ -1,9 +1,10 @@
 ﻿using FRDZSchool.Models.DatabaseModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FRDZSchool.DataAccess.Data
 {
-    public class ApplicationContext : DbContext, IDisposable
+    public class ApplicationContext : IdentityDbContext
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
@@ -15,5 +16,7 @@ namespace FRDZSchool.DataAccess.Data
         public DbSet<School_Object> School_Object { get; set; } = null!;
 
         public ApplicationContext() => Database.EnsureCreated();
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) => base.OnModelCreating(modelBuilder);
     }
 }
