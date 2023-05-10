@@ -3,29 +3,36 @@ using FRDZSchool.DataAccess.Data.UnitOfWork;
 using FRDZSchool.DataAccess.Data.UnitOfWork.IUnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using FRDZSchool.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationContext>();
-//builder.Services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(
-//    "DefaultConnection", b => b.MigrationsAssembly("FRDZ School Web")));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddRazorPages();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Accaunt/Login";
+    options.LogoutPath = $"/Identity/Accaunt/Logout";
+    options.AccessDeniedPath = $"/Identity/Accaunt/AccessDenied";
+});
+
 builder.Services.AddScoped<IStudentUnitOfWork, StudentUnitOfWork>();
 builder.Services.AddScoped<ITeacherUnitOfWork, TeacherUnitOfWork>();
 builder.Services.AddScoped<IGradeUnitOfWork, GradeUnitOfWork>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -36,6 +43,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Visitor}/{controller=Home}/{action=Index}/{id?}");

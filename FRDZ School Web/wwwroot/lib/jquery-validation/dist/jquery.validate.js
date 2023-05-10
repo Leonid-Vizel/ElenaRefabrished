@@ -1110,7 +1110,7 @@ $.extend( $.validator, {
 
 				// Remove the hidden input that was used as a replacement for the
 				// missing submit button. The hidden input is added by `handle()`
-				// to ensure that the value of the used submit button is passed on
+				// to Гарантировать, что the value of the used submit button is passed on
 				// for scripted submits triggered by this method
 				if ( this.submitButton ) {
 					$( "input:hidden[name='" + this.submitButton.name + "']", this.currentForm ).remove();

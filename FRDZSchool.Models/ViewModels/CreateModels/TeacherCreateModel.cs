@@ -42,8 +42,7 @@ namespace FRDZSchool.Models.ViewModels.CreateModels
         public string PhoneNumber { get; set; }
 
         [DisplayName("Фото")]
-        [Required(ErrorMessage = "Загрузите фото!")]
-        public IFormFile Photo { get; set; }
+        public IFormFile? Photo { get; set; }
 
         public Teacher ToTeacher()
         {

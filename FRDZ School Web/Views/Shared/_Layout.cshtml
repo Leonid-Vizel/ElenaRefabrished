@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FRDZ School Web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
     <link rel="stylesheet" href="~/css/Animista.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -20,14 +20,25 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.6.2/css/colReorder.bootstrap5.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" asp-append-version="true" />
 </head>
 <body>
     <header class="header_sticky noselect">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="mainMenu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Visitor" asp-controller="Home" asp-action="Index">
+                                Главная
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="navbar-brand dropdown megamenu">
                     <a id="megamneu" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="navbar-brand dropdown-toggle font-weight-bold" role="button">FRDZ School Web</a>
-                    <div aria-labelledby="frdzschoolweb" class="dropdown-menu border-0 p-0 m-0">
+                    <div aria-labelledby="frdzschoolweb" class="dropdown-menu border-0 p-0 m    -0">
                         <div class="container">
                             <div class="row bg-primary rounded-0 m-0 shadow-sm">
                                 <div class="col-lg-7 col-xl-8">
@@ -37,31 +48,29 @@
                                                 <h6 class="font-weight-bold text-white">Учителя</h6>
                                                 <ul class="list-unstyled">
                                                     <li class="nav-item"><a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="TeacherPage">Посетитель</a></li>
-                                                    <li class="nav-item"><a class="nav-link text-small pb-0" asp-area="Admin" asp-controller="Teacher" asp-action="Index">Админ</a></li>
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <h6 class="font-weight-bold text-white">Классы</h6>
                                                 <ul class="list-unstyled">
-                                                    <li class="nav-item"><a class="nav-link text-small pb-0" asp-area="Admin" asp-controller="Grade" asp-action="Index">Админ</a></li>
-
                                                 </ul>
                                             </div>
                                             <div class="col-lg-6 mb-4">
                                                 <h6 class="font-weight-bold text-white">Ученики</h6>
                                                 <ul class="list-unstyled">
-                                                    <li class="nav-item"><a class="nav-link text-small pb-0" asp-area="Admin" asp-controller="Student" asp-action="Index">Админ</a></li>
                                                 </ul>
                                             </div>
-                                            <div class="col-lg-6 mb-4">
-                                                <h6 class="font-weight-bold text-white">Heading four</h6>
-                                                <ul class="list-unstyled">
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Home</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">About</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Help</a></li>
-                                                    <li class="nav-item"><a href="" class="nav-link text-small pb-0 ">Account</a></li>
-                                                </ul>
-                                            </div>
+                                            @if (User.IsInRole(SD.Role_Admin))
+                                            {
+                                                <div class="col-lg-6 mb-4">
+                                                    <h6 class="font-weight-bold text-white">Админ</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li class="nav-item"><a class="nav-link text-small pb-0" asp-area="Admin" asp-controller="Teacher" asp-action="Index">Учителя</a></li>
+                                                        <li class="nav-item"><a class="nav-link text-small pb-0" asp-area="Admin" asp-controller="Grade" asp-action="Index">Классы</a></li>
+                                                        <li class="nav-item"><a class="nav-link text-small pb-0" asp-area="Admin" asp-controller="Student" asp-action="Index">Ученики</a></li>
+                                                    </ul>
+                                                </div>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -71,24 +80,7 @@
                     </div>
                 </div>
                 <div class="collapse navbar-collapse" id="mainMenu">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Visitor" asp-controller="Home" asp-action="Index">
-                                Главная
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="Visitor" asp-controller="Home" asp-action="Index">
-                                Главная
-                                <span class="visually-hidden"></span>
-                            </a>
-                        </li>
-                    </ul>
-                    @*                    <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Поиск">
-                    <button class="btn btn-success my-2 my-sm-0" type="submit">Поиск</button>
-                    </form>*@
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>

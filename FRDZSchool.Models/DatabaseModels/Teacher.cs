@@ -1,6 +1,4 @@
 ﻿using FRDZSchool.Models.ViewModels.EditModels;
-using FRDZSchool.Utility;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -46,8 +44,7 @@ namespace FRDZSchool.Models.DatabaseModels
         public string PhoneNumber { get; set; }
 
         [DisplayName("Фото")]
-        [Required(ErrorMessage = "Добавьте фото!")]
-        public string PhotoUrl { get; set; }
+        public string? PhotoUrl { get; set; }
 
         public void Update(TeacherEditModel teacherEditModel)
         {

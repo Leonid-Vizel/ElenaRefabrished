@@ -1,10 +1,11 @@
 ﻿using FRDZSchool.Models.DatabaseModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FRDZSchool.DataAccess.Data
 {
-    public class ApplicationContext : IdentityDbContext
+    public class ApplicationContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 

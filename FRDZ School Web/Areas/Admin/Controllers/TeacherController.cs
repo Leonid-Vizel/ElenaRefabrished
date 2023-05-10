@@ -2,12 +2,14 @@
 using FRDZSchool.Models.DatabaseModels;
 using FRDZSchool.Models.ViewModels.CreateModels;
 using FRDZSchool.Models.ViewModels.EditModels;
+using FRDZSchool.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq.Expressions;
 
 namespace FRDZ_School_Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class TeacherController : Controller
     {
         private readonly ITeacherUnitOfWork _unitOfWork;

@@ -3,12 +3,16 @@ using FRDZSchool.Models.DatabaseModels;
 using FRDZSchool.Models.ViewModels.CreateModels;
 using FRDZSchool.Models.ViewModels.DeleteModels;
 using FRDZSchool.Models.ViewModels.EditModels;
+using FRDZSchool.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace FRDZ_School_Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class StudentController : Controller
     {
         private readonly IStudentUnitOfWork _unitOfWork;
