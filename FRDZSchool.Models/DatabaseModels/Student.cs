@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace FRDZSchool.Models.DatabaseModels
 {
@@ -30,13 +31,14 @@ namespace FRDZSchool.Models.DatabaseModels
         [Required(ErrorMessage = "Введите дату рождения!")]
         public DateTime Birthday { get; set; }
 
+        [JsonIgnore]
         [ValidateNever]
         public Grade Grade { get; set; } 
 
         public int GradeId { get; set; }
 
         [ValidateNever]
-        public List<Lesson_Student> Lesson_Student { get; set; } 
+        public List<LessonStudent> Lesson_Student { get; set; } 
 
         public void Update(StudentEditModel studentEditModel)
         {
@@ -48,5 +50,11 @@ namespace FRDZSchool.Models.DatabaseModels
             Birthday = studentEditModel.Birthday;
             GradeId = studentEditModel.GradeId;
         }
+
+        [DisplayName("ФИО")]
+        public string FullName => $"{Lastname} {Name} {Fathername}";
+        public string Birth => Birthday.ToString("d MMMM yyyyг.");
+        [DisplayName("Класс")]
+        public string GradeNumber => $"{Grade?.Number} «{Grade?.Litera}» - {Grade?.Specialization}";
     }
 }

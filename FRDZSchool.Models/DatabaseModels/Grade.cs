@@ -33,6 +33,9 @@ namespace FRDZSchool.Models.DatabaseModels
             Specialization = gradeEditModel.Specialization;
         }
 
+        [DisplayName("Класс")]
+        public string FullNumber => $"{Number} «{Litera}»";
+
         public override string ToString()
         {
             return $"{Number} «{Litera}» - {Specialization}";

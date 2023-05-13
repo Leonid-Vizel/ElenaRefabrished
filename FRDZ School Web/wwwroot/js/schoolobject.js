@@ -1,35 +1,30 @@
 ﻿var dataTable;
 
 $(document).ready(function () {
-    dataTable = $('#teacherTable').DataTable({
-        "ajax": { url: '/admin/teacher/getall' },
+    dataTable = $('#schoolObjectTable').DataTable({
+        "ajax": { url: '/admin/schoolobject/getall' },
         "autoWidth": true,
         "columns": [
-            { data: 'fullName' },   
-            { data: 'post' },
-            { data: 'qualification' },
-            { data: 'experience' },
-            { data: 'birth', "visible": false, "searchable": false },
-            { data: 'phoneNumber', "visible": false, "searchable": false },
+            { data: 'name' },
             {
                 data: 'id',
                 orderable: false,
                 render: function (data) {
                     return `<div class="w-100 btn-group" role="group">
-                    <a href="/admin/teacher/edit?id=${data}" class="btn btn-outline-warning mx-2 w-100"><i class="bi bi-person-gear big-icon2"></i></a>
-                    <a onClick=Delete('/admin/teacher/delete?id=${data}') class="btn btn-outline-danger mx-2 w-100"><i class="bi bi-person-x big-icon2"></i></a>
+                    <a href="/admin/schoolobject/edit?id=${data}" class="btn btn-outline-warning mx-2 w-100"><i class="bi bi-pencil-square big-icon"></i> Изменить</a>
+                    <a onClick=Delete('/admin/schoolobject/delete?id=${data}') class="btn btn-outline-danger mx-2 w-100"><i class="bi bi-x-square big-icon"></i> Удалить</a>
                     </div>`
                 }
             }
         ],
         "language": {
-            lengthMenu: 'Показать _MENU_ учителей',
-            zeroRecords: 'Учитель не найден!',
-            info: 'Показаны учителя с _START_ по _END_ из _TOTAL_',
+            lengthMenu: 'Показать _MENU_ предметов',
+            zeroRecords: 'Класс не найден!',
+            info: 'Показаны предметы с _START_ по _END_ из _TOTAL_',
             infoEmpty: 'Никаких записей',
             infoFiltered: '(Выборка из _MAX_ записей)',
             search: 'Поиск',
-            searchPlaceholder: 'Искать учителя...',
+            searchPlaceholder: 'Искать предмет...',
             paginate: {
                 first: '«',
                 previous: '‹',
@@ -79,7 +74,7 @@ function Delete(url) {
                     dataTable.ajax.reload();
                     Toast.fire({
                         title: 'Удалено',
-                        text: 'Учитель был успешно удалён!',
+                        text: 'Предмет был успешно удалён!',
                         icon: 'success',
                         iconColor: '#4bbf73'
                     })

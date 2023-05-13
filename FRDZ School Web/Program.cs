@@ -24,9 +24,10 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = $"/Identity/Accaunt/AccessDenied";
 });
 
-builder.Services.AddScoped<IStudentUnitOfWork, StudentUnitOfWork>();
 builder.Services.AddScoped<ITeacherUnitOfWork, TeacherUnitOfWork>();
+builder.Services.AddScoped<IStudentUnitOfWork, StudentUnitOfWork>();
 builder.Services.AddScoped<IGradeUnitOfWork, GradeUnitOfWork>();
+builder.Services.AddScoped<ISchoolObjectUnitOfWork, SchoolObjectUnitOfWork>();
 
 var app = builder.Build();
 

@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace FRDZSchool.Models.DatabaseModels
 {
     [PrimaryKey(nameof(LessonId), nameof(StudentId))]
-    public class Lesson_Student
+    public class LessonStudent
     {
         public int LessonId { get; set; }
 

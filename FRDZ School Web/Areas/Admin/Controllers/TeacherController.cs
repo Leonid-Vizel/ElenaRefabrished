@@ -5,6 +5,7 @@ using FRDZSchool.Models.ViewModels.EditModels;
 using FRDZSchool.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace FRDZ_School_Web.Areas.Admin.Controllers
 {
@@ -95,7 +96,6 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
             {
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.Photo.FileName);
                 string teacherPath = Path.Combine(wwwRootPath, Path.Combine("images", "teachers"));
-
                 string oldPhotoPath = Path.Combine(teacherPath, teacherFromDb.PhotoUrl.TrimStart('\\'));
                 if (System.IO.File.Exists(oldPhotoPath))
                 {
@@ -124,12 +124,15 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            string wwwRootPath = _environment.WebRootPath;
-            string teacherPath = Path.Combine(wwwRootPath, Path.Combine("images", "teachers"));
-            string oldPhotoPath = Path.Combine(teacherPath, teacherFromDb.PhotoUrl.TrimStart('\\'));
-            if (System.IO.File.Exists(oldPhotoPath))
+            if (teacherFromDb.PhotoUrl != null)
             {
-                System.IO.File.Delete(oldPhotoPath);
+                string wwwRootPath = _environment.WebRootPath;
+                string teacherPath = Path.Combine(wwwRootPath, Path.Combine("images", "teachers"));
+                string oldPhotoPath = Path.Combine(teacherPath, teacherFromDb.PhotoUrl.TrimStart('\\'));
+                if (System.IO.File.Exists(oldPhotoPath))
+                {
+                    System.IO.File.Delete(oldPhotoPath);
+                }
             }
 
             _unitOfWork.Teacher.Remove(teacherFromDb);

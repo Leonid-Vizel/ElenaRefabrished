@@ -1,35 +1,33 @@
 ﻿var dataTable;
 
 $(document).ready(function () {
-    dataTable = $('#teacherTable').DataTable({
-        "ajax": { url: '/admin/teacher/getall' },
+    dataTable = $('#studentTable').DataTable({
+        "ajax": { url: '/admin/student/getall' },
         "autoWidth": true,
         "columns": [
-            { data: 'fullName' },   
-            { data: 'post' },
-            { data: 'qualification' },
-            { data: 'experience' },
-            { data: 'birth', "visible": false, "searchable": false },
-            { data: 'phoneNumber', "visible": false, "searchable": false },
+            { data: 'fullName' },
+            { data: 'gradeNumber' },
+            { data: 'sex' },
+            { data: 'birth' },
             {
                 data: 'id',
                 orderable: false,
                 render: function (data) {
                     return `<div class="w-100 btn-group" role="group">
-                    <a href="/admin/teacher/edit?id=${data}" class="btn btn-outline-warning mx-2 w-100"><i class="bi bi-person-gear big-icon2"></i></a>
-                    <a onClick=Delete('/admin/teacher/delete?id=${data}') class="btn btn-outline-danger mx-2 w-100"><i class="bi bi-person-x big-icon2"></i></a>
+                    <a href="/admin/student/edit?id=${data}" class="btn btn-outline-warning mx-2 w-100"><i class="bi bi-person-gear big-icon"></i> Изменить</a>
+                    <a onClick=Delete('/admin/student/delete?id=${data}') class="btn btn-outline-danger mx-2 w-100"><i class="bi bi-person-x big-icon"></i> Удалить</a>
                     </div>`
                 }
             }
         ],
         "language": {
-            lengthMenu: 'Показать _MENU_ учителей',
-            zeroRecords: 'Учитель не найден!',
-            info: 'Показаны учителя с _START_ по _END_ из _TOTAL_',
+            lengthMenu: 'Показать _MENU_ учеников',
+            zeroRecords: 'Ученик не найден!',
+            info: 'Показаны ученики с _START_ по _END_ из _TOTAL_',
             infoEmpty: 'Никаких записей',
             infoFiltered: '(Выборка из _MAX_ записей)',
             search: 'Поиск',
-            searchPlaceholder: 'Искать учителя...',
+            searchPlaceholder: 'Искать ученика...',
             paginate: {
                 first: '«',
                 previous: '‹',
@@ -79,7 +77,7 @@ function Delete(url) {
                     dataTable.ajax.reload();
                     Toast.fire({
                         title: 'Удалено',
-                        text: 'Учитель был успешно удалён!',
+                        text: 'Ученик был успешно удалён!',
                         icon: 'success',
                         iconColor: '#4bbf73'
                     })

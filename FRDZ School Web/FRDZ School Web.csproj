@@ -32,12 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Student\Controllers\" />
-    <Folder Include="Areas\Teacher\Controllers\" />
-    <Folder Include="wwwroot\images\teachers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\favicon.ico" />
     <None Include="wwwroot\school_icon_234396.ico" />
   </ItemGroup>

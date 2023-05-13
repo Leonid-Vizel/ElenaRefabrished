@@ -11,27 +11,9 @@ namespace FRDZSchool.DataAccess.Data.UnitOfWork
             Context = context;
         }
 
-        public async Task MigrateAsync()
-        {
-            if ((await Context.Database.GetPendingMigrationsAsync()).Count() > 0)
-            {
-                await Context.Database.MigrateAsync();
-            }
-        }
-
         public async Task SaveAsync(CancellationToken token = default)
         {
             await Context.SaveChangesAsync(token);
-        }
-
-        public void SetNoTracking()
-        {
-            Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-        }
-
-        public void RestoreTracking()
-        {
-            Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.TrackAll;
         }
 
         public void Dispose()

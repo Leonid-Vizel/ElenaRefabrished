@@ -79,6 +79,7 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpDelete]
         public async Task<IActionResult> Delete(int Id)
         {
             var gradeFromDb = await _unitOfWork.Grade.GetAsync(u => u.Id == Id);
@@ -88,23 +89,16 @@ namespace FRDZ_School_Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(gradeFromDb);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeletePOST(int Id)
-        {
-            var gradeFromDb = await _unitOfWork.Grade.GetAsync(u => u.Id == Id);
-
-            if (gradeFromDb == null)
-            {
-                return NotFound();
-            }
             _unitOfWork.Grade.Remove(gradeFromDb);
             await _unitOfWork.SaveAsync();
-            TempData["error"] = "Класс удалён!";
-            return RedirectToAction("Index");
+            return Json(new { success = true });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            IEnumerable<Grade> objGradeList = await _unitOfWork.Grade.GetAllAsync();
+            return Json(new { data = objGradeList });
         }
     }
 }
