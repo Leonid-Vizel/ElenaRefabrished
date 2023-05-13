@@ -10,37 +10,37 @@ namespace FRDZSchool.Models.DatabaseModels
         public int Id { get; set; }
 
         [DisplayName("Имя")]
-        [Required(ErrorMessage = "Введите имя!")]
+        [Required]
         public string Name { get; set; }
 
         [DisplayName("Фамилия")]
-        [Required(ErrorMessage = "Введите фамилию!")]
+        [Required]
         public string Lastname { get; set; }
 
         [DisplayName("Отчество")]
-        [Required(ErrorMessage = "Введите отчество!")]
+        [Required]
         public string Fathername { get; set; }
 
         [DisplayName("Должность")]
-        [Required(ErrorMessage = "Введите должность!")]
+        [Required]
         public string Post { get; set; }
 
         [DisplayName("Дата рождения")]
-        [Required(ErrorMessage = "Введите дату рождения!")]
+        [Required]
         public DateTime Birthday { get; set; }
 
         [DisplayName("Квалификация")]
-        [Required(ErrorMessage = "Введите квалификацию!")]
+        [Required]
         public string Qualification { get; set; }
 
         [DisplayName("Стаж")]
-        [Required(ErrorMessage = "Введите стаж!")]
-        [Range(0, 60, ErrorMessage = "Стаж не может превышать {2} лет!")]
+        [Required]
+        [Range(0, 60)]
         public int Experience { get; set; }
 
         [DisplayName("Номер телефона")]
-        [Required(ErrorMessage = "Введите номер телефона!")]
-        [Phone(ErrorMessage = "Вы указали не номер телефона!")]
+        [Required]
+        [Phone]
         public string PhoneNumber { get; set; }
 
         [DisplayName("Фото")]

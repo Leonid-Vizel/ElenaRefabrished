@@ -12,23 +12,23 @@ namespace FRDZSchool.Models.DatabaseModels
         public int Id { get; set; }
 
         [DisplayName("Имя")]
-        [Required(ErrorMessage = "Введите имя!")]
+        [Required]
         public string Name { get; set; } 
 
         [DisplayName("Фамилия")]
-        [Required(ErrorMessage = "Введите фамилию!")]
+        [Required]
         public string Lastname { get; set; } 
 
         [DisplayName("Отчество")]
-        [Required(ErrorMessage = "Введите отчество!")]
+        [Required]
         public string Fathername { get; set; } 
 
         [DisplayName("Пол")]
-        [Required(ErrorMessage = "Укажите пол! (Ж или М)")]
+        [Required]
         public char Sex { get; set; }
 
         [DisplayName("Дата рождения")]
-        [Required(ErrorMessage = "Введите дату рождения!")]
+        [Required]
         public DateTime Birthday { get; set; }
 
         [JsonIgnore]
@@ -38,7 +38,7 @@ namespace FRDZSchool.Models.DatabaseModels
         public int GradeId { get; set; }
 
         [ValidateNever]
-        public List<LessonStudent> Lesson_Student { get; set; } 
+        public List<LessonStudent> LessonStudent { get; set; } 
 
         public void Update(StudentEditModel studentEditModel)
         {

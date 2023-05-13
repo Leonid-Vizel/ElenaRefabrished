@@ -28,6 +28,7 @@ builder.Services.AddScoped<ITeacherUnitOfWork, TeacherUnitOfWork>();
 builder.Services.AddScoped<IStudentUnitOfWork, StudentUnitOfWork>();
 builder.Services.AddScoped<IGradeUnitOfWork, GradeUnitOfWork>();
 builder.Services.AddScoped<ISchoolObjectUnitOfWork, SchoolObjectUnitOfWork>();
+builder.Services.AddScoped<ILessonUnitOfWork, LessonUnitOfWork>();
 
 var app = builder.Build();
 

@@ -11,12 +11,12 @@ namespace FRDZSchool.Models.DatabaseModels
         public int Id { get; set; }
 
         [DisplayName("Номер")]
-        [Required(ErrorMessage = "У класса обязательно должен быть номер!")]
-        [Range(1, 11, ErrorMessage = "В школе могут быть только {1}-{2} классы!")]
+        [Required]
+        [Range(1, 11)]
         public int Number { get; set; }
 
         [DisplayName("Литера")]
-        [Required(ErrorMessage = "У класса обязательно должен быть буквенный индекс!")]
+        [Required]
         public char Litera { get; set; }
 
         [DisplayName("Специализация")]
