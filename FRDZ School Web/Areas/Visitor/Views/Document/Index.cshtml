@@ -1,0 +1,46 @@
+﻿@using FRDZSchool.Models.DatabaseModels;
+@model IEnumerable<Document>
+@{
+    ViewData["Title"] = "Документы";
+}
+
+<hr />
+<h2 class="text-center">Список документов</h2>
+<hr />
+
+@if (Model != null && Model.Count() > 0)
+{
+    <form method="post">
+        @if (User.IsInRole(SD.Role_Admin))
+        {
+            @foreach (Document document in Model)
+            {
+                <div class="row-fluid mt-1">
+                    <button type="submit" class="btn btn-outline-primary" asp-route-id="@document.Id"><i class="bi bi-file-earmark-pdf"></i> @document.Title</button>
+                </div>
+            }
+        }
+        else
+        {
+            <a class="btn btn-outline-success" asp-controller="Document" asp-action="Add"><i class="bi bi-plus-circle"></i> Добавить документ</a>
+            @foreach (Document document in Model)
+            {
+                <div class="row-fluid mt-1">
+                    <button type="submit" class="btn btn-outline-primary" asp-route-id="@document.Id"><i class="bi bi-file-earmark-pdf"></i> @document.Title</button>
+                    <a class="btn btn-outline-warning" asp-controller="Document" asp-action="Edit" asp-route-id="@document.Id"><i class="bi bi-pencil"></i></a>
+                    <a class="btn btn-outline-danger" asp-controller="Document" asp-action="Delete" asp-route-id="@document.Id"><i class="bi bi-trash"></i></a>
+                </div>
+            }
+        }
+    </form>
+}
+else
+{
+    <div class="text-center">
+        <h3>Документы пока не загружены</h3>
+        @if (User.IsInRole(SD.Role_Admin))
+        {
+            <a class="btn btn-outline-success" asp-controller="Document" asp-action="Add"><i class="bi bi-plus-circle"></i> Добавить</a>
+        }
+    </div>
+}

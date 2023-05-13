@@ -1,0 +1,160 @@
+﻿@using FRDZSchool.Models.DatabaseModels;
+@model EGEResult
+@{
+    ViewData["Title"] = "Редактирование результатов ЕГЭ";
+}
+
+<form method="post">
+    <div class="form-group row">
+        <label asp-for="Year" class="col-sm-1 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="Year" min="2010" max="3000" class="form-control" placeholder="@DateTime.Now.Year">
+        </div>
+        <div class="col-sm-2">
+            <span asp-validation-for="Year" class="text-danger"></span>
+        </div>
+        @*POST-Кнопка*@
+        <div class="col-7 text-end">
+            <button type="submit" class="btn btn-outline-primary btn-lg"><i class="bi bi-check2"></i> Отправить</button>
+        </div>
+    </div>
+    <hr />
+    <label class="text-center display-5">Баллы ЕГЭ</label>
+
+    @*Русский*@
+    <div class="form-group row">
+        <label asp-for="Russian" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="Russian" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="Russian" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Математика БАЗА*@
+    <div class="form-group row">
+        <label asp-for="MathBase" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="MathBase" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="MathBase" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Математика Профиль*@
+    <div class="form-group row">
+        <label asp-for="MathProfi" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="MathProfi" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="MathProfi" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*История*@
+    <div class="form-group row">
+        <label asp-for="History" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="History" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="History" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Обществознание*@
+    <div class="form-group row">
+        <label asp-for="SocialStudies" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="SocialStudies" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="SocialStudies" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Физика*@
+    <div class="form-group row">
+        <label asp-for="Physics" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="Physics" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="Physics" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Химия*@
+    <div class="form-group row">
+        <label asp-for="Chemistry" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="Chemistry" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="Chemistry" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*География*@
+    <div class="form-group row">
+        <label asp-for="Geography" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="Geography" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="Geography" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Биология*@
+    <div class="form-group row">
+        <label asp-for="Biology" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="Biology" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="Biology" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Информатика*@
+    <div class="form-group row">
+        <label asp-for="Informatics" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="Informatics" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="Informatics" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Английский язык*@
+    <div class="form-group row">
+        <label asp-for="English" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="English" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="English" class="text-danger"></span>
+        </div>
+    </div>
+
+    @*Литература*@
+    <div class="form-group row">
+        <label asp-for="Literature" class="col-sm-2 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="Literature" class="form-control" placeholder="100">
+        </div>
+        <div class="col-sm-7">
+            <span asp-validation-for="Literature" class="text-danger"></span>
+        </div>
+    </div>
+</form>
+
+@section Scripts
+    {
+    <partial name="_ValidationScriptsPartial" />
+    }

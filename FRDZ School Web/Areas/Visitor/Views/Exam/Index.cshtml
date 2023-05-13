@@ -1,0 +1,158 @@
+﻿@using System.Reflection
+@using FRDZSchool.Models.DatabaseModels;
+@using Microsoft.AspNetCore.Identity
+@using SchoolWeb.Attributes
+@using SchoolWeb.Models;
+@model ExamResult
+
+@{
+    ViewData["Title"] = "Выпускники";
+}
+
+<hr />
+<h2 class="text-center">Выпускники</h2>
+<hr />
+
+<p>
+    Наши выпускники могут поступать в любой институт или университет России.
+    Те, кто хочет продолжить свое образование за рубежом, могут поступить в университеты
+    Западной Европы и Америки.
+</p>
+<p>
+    Высокие баллы (<b>90 – 100</b>), набранные на едином государственном
+    экзамене, позволяют выпускникам школы «Елена-Сервис» получить приглашение
+    на зачисление сразу из нескольких вузов, что дает возможность выбора.
+</p>
+
+<div class="row">
+    <div class="col-6">
+        <h3 class="text-left">ЕГЭ (Средний балл)</h3>
+    </div>
+    @if (User.IsInRole(SD.Role_Admin))
+    {
+        <div class="col-6 text-end">
+            <a asp-controller="Exam" asp-action="AddEge" class="btn btn-outline-primary">
+                <i class="bi bi-plus-circle-fill"></i> Добавить
+            </a>
+        </div>
+    }
+</div>
+<table class="table-bordered" cellspacing="0" cellpadding="2" width="100%">
+    <tbody>
+        <tr>
+            <td bgcolor="#FFFACD"><font size="+1"><b>Предмет / Год</b></font></td>
+            @if (User.IsInRole(SD.Role_Admin))
+            {
+                @foreach (EGEResult result in Model.Ege)
+                {
+                    <td bgcolor="#FFFACD">
+                        <div align="center">
+                            <b>@result.Year</b>
+                            <a asp-controller="Exam" asp-action="EditEge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-pencil"></i></a>
+                            <a asp-controller="Exam" asp-action="DeleteEge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                }
+            }
+            else
+            {
+                @foreach (EGEResult result in Model.Ege)
+                {
+                    <td bgcolor="#FFFACD"><div align="center"><b>@result.Year</b></div></td>
+                }
+            }
+        </tr>
+
+        @foreach (PropertyInfo info in typeof(EGEResult).GetProperties())
+        {
+            <tr>
+                @{
+                    ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
+                    if (attributeInfo != null)
+                    {
+                        <td bgcolor="#FFFACD"><font size="+1">@attributeInfo.Name</font></td>
+                        foreach (EGEResult result in Model.Ege)
+                        {
+                            float resultValue = (float)@info.GetValue(result);
+                            if (resultValue > 0)
+                            {
+                                <td><div align="center">@info.GetValue(result)</div></td>
+                            }
+                            else
+                            {
+                                <td><div align="center">&nbsp;</div></td>
+                            }
+                        }
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<br>
+
+<div class="row">
+    <div class="col-6">
+        <h3 class="text-left">ОГЭ (Средний балл)</h3>
+    </div>
+    @if (User.IsInRole(SD.Role_Admin))
+    {
+        <div class="col-6 text-end">
+            <a asp-controller="Exam" asp-action="AddOge" class="btn btn-outline-primary">
+                <i class="bi bi-plus-circle-fill"></i> Добавить
+            </a>
+        </div>
+    }
+</div>
+<table class="table-bordered" cellspacing="0" cellpadding="2" width="100%">
+    <tbody>
+        <tr>
+            <td bgcolor="#FFFACD"><font size="+1"><b>Предмет / Год</b></font></td>
+            @if (User.IsInRole(SD.Role_Admin))
+            {
+                @foreach (OGEResult result in Model.Oge)
+                {
+                    <td bgcolor="#FFFACD">
+                        <div align="center">
+                            <b>@result.Year</b>
+                            <a asp-controller="Exam" asp-action="EditOge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-pencil"></i></a>
+                            <a asp-controller="Exam" asp-action="DeleteOge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                }
+            }
+            else
+            {
+                @foreach (OGEResult result in Model.Oge)
+                {
+                    <td bgcolor="#FFFACD"><div align="center"><b>@result.Year</b></div></td>
+                }
+            }
+        </tr>
+
+        @foreach (PropertyInfo info in typeof(OGEResult).GetProperties())
+        {
+            <tr>
+                @{
+                    ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
+                    if (attributeInfo != null)
+                    {
+                        <td bgcolor="#FFFACD"><font size="+1">@attributeInfo.Name</font></td>
+                        foreach (OGEResult result in Model.Oge)
+                        {
+                            float resultValue = (float)@info.GetValue(result);
+                            if (resultValue > 0)
+                            {
+                                <td><div align="center">@info.GetValue(result)</div></td>
+                            }
+                            else
+                            {
+                                <td><div align="center">&nbsp;</div></td>
+                            }
+                        }
+                    }
+                }
+            </tr>
+        }
+    </tbody>
+</table>

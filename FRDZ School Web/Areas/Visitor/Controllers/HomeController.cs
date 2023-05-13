@@ -23,6 +23,36 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             return View(objTeacherList);
         }
 
+        public IActionResult Info()
+        {
+            return View();
+        }
+
+        public IActionResult Conditions()
+        {
+            return View();
+        }
+
+        public IActionResult Requisites()
+        {
+            return View();
+        }
+
+        public IActionResult HealthAndFood()
+        {
+            return View();
+        }
+
+        public IActionResult Regime()
+        {
+            return View();
+        }
+
+        public IActionResult Location()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

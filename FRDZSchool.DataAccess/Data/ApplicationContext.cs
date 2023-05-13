@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SchoolWeb.Models;
 
 namespace FRDZSchool.DataAccess.Data
 {
@@ -15,6 +16,12 @@ namespace FRDZSchool.DataAccess.Data
         public DbSet<Lesson> Lesson { get; set; } = null!;
         public DbSet<LessonStudent> LessonStudent { get; set; } = null!;
         public DbSet<SchoolObject> SchoolObject { get; set; } = null!;
+
+        public DbSet<EGEResult> EGEResult { get; set; }
+        public DbSet<OGEResult> OGEResult { get; set; }
+        public DbSet<SettingOption> Settings { get; set; }
+        public DbSet<Photo> Photo { get; set; }
+        public DbSet<Document> Document { get; set; }
 
         public ApplicationContext() => Database.EnsureCreated();
 

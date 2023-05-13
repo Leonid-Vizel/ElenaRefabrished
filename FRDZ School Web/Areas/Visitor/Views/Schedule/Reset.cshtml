@@ -1,0 +1,279 @@
+﻿@using SchoolWeb.Models;
+@model ScheduleInfo
+@{
+    ViewData["Title"] = "Редатирование годового графика";
+}
+
+<hr />
+<h2 class="text-center">Редатирование годового графика</h2>
+<hr />
+
+<form method="post">
+    <div class="form-group row">
+        <label asp-for="YearDuration1" class="col-sm-5 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="YearDuration1" class="form-control">
+        </div>
+        <div class="col-sm-5">
+            <span asp-validation-for="YearDuration1" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="YearDuration2_8" class="col-sm-5 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="YearDuration2_8" class="form-control">
+        </div>
+        <div class="col-sm-5">
+            <span asp-validation-for="YearDuration2_8" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="YearDuration9" class="col-sm-5 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="YearDuration9" class="form-control">
+        </div>
+        <div class="col-sm-5">
+            <span asp-validation-for="YearDuration9" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="YearDuration10" class="col-sm-5 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="YearDuration10" class="form-control">
+        </div>
+        <div class="col-sm-5">
+            <span asp-validation-for="YearDuration10" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="YearDuration11" class="col-sm-5 col-form-label mb-2"></label>
+        <div class="col-sm-2">
+            <input asp-for="YearDuration11" class="form-control">
+        </div>
+        <div class="col-sm-5">
+            <span asp-validation-for="YearDuration11" class="text-danger"></span>
+        </div>
+    </div>
+
+    <hr />
+
+    <h3>Осенние каникулы</h3>
+    <ul>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Holiday1Start" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Holiday1Start" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Holiday1Start" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Holiday1End" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Holiday1End" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Holiday1End" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <h3>Зимние каникулы</h3>
+    <ul>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Holiday2Start" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Holiday2Start" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Holiday2Start" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Holiday2End" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Holiday2End" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Holiday2End" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <h3>Весенние каникулы</h3>
+    <ul>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Holiday3Start" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Holiday3Start" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Holiday3Start" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Holiday3End" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Holiday3End" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Holiday3End" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <h3>Доп. каникулы для 1 классов</h3>
+    <ul>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Holiday4Start" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Holiday4Start" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Holiday4Start" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Holiday4End" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Holiday4End" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Holiday4End" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <hr />
+
+    <h3>I четверть</h3>
+    <ul>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Quarter1Start" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Quarter1Start" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Quarter1Start" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Quarter1End" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Quarter1End" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Quarter1End" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <h3>II четверть</h3>
+    <ul>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Quarter2Start" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Quarter2Start" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Quarter2Start" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Quarter2End" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Quarter2End" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Quarter2End" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <h3>III четверть</h3>
+    <ul>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Quarter3Start" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Quarter3Start" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Quarter3Start" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Quarter3End" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Quarter3End" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Quarter3End" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <h3>IV четверть</h3>
+    <ul>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Quarter4Start" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Quarter4Start" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Quarter4Start" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="form-group row">
+                <label asp-for="Quarter4End" class="col-sm-1 col-form-label mb-2"></label>
+                <div class="col-sm-3">
+                    <input asp-for="Quarter4End" type="date" class="form-control">
+                </div>
+                <div class="col-sm-4">
+                    <span asp-validation-for="Quarter4End" class="text-danger"></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <button type="submit" class="btn btn-lg btn-outline-primary"><i class="bi bi-send-fill"></i> Применить</button>
+</form>
+
+@section Scripts
+    {
+    <partial name="_ValidationScriptsPartial" />
+    }

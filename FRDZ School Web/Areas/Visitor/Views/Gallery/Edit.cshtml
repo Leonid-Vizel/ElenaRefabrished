@@ -1,0 +1,32 @@
+﻿@using FRDZSchool.Models.ViewModels.EditModels;
+@model EditPhotoModel
+@{
+    ViewData["Title"] = "Редактирование фото";
+}
+
+<hr />
+<h2 class="text-center">Редактирование названия и описания фото</h2>
+<hr />
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Прикрепите новое фото, если хотите заменить старое </label>
+        <input asp-for="ImageFile" class="form-control" accept="image/*" />
+    </div>
+    <button type="submit" class="btn btn-outline-primary mt-2"><i class="bi bi-send-fill"></i> Применить</button>
+</form>
+
+@section Scripts
+    {
+    <partial name="_ValidationScriptsPartial" />
+    }
