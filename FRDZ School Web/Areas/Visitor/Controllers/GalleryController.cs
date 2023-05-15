@@ -85,6 +85,7 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             }
             await _db.Photo.AddAsync(model);
             await _db.SaveChangesAsync();
+            TempData["success"] = "Изображение добавлено в галерею!";
             return RedirectToAction("Index");
         }
 
@@ -123,6 +124,7 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             }
             _db.Photo.Remove(foundPhoto);
             await _db.SaveChangesAsync();
+            TempData["success"] = "Изображение удалено из галереи!";
             return RedirectToAction("Index");
         }
 

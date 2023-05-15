@@ -44,6 +44,7 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             }
             await _db.OGEResult.AddAsync(result);
             await _db.SaveChangesAsync();
+            TempData["success"] = "Результаты ОГЭ добавлены!";
             return RedirectToAction("Index");
         }
 
@@ -69,6 +70,7 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             }
             _db.OGEResult.Update(result);
             await _db.SaveChangesAsync();
+            TempData["success"] = "Результаты ОГЭ изменены!";
             return RedirectToAction("Index");
         }
 
@@ -96,6 +98,7 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             }
             _db.OGEResult.Remove(foundResult);
             await _db.SaveChangesAsync();
+            TempData["success"] = "Результаты ОГЭ удалены!";
             return RedirectToAction("Index");
         }
         #endregion
@@ -118,6 +121,7 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             }
             await _db.EGEResult.AddAsync(result);
             await _db.SaveChangesAsync();
+            TempData["success"] = "Результаты ЕГЭ добавлены!";
             return RedirectToAction("Index");
         }
 
@@ -143,6 +147,7 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             }
             _db.EGEResult.Update(result);
             await _db.SaveChangesAsync();
+            TempData["success"] = "Результаты ЕГЭ изменены!";
             return RedirectToAction("Index");
         }
 
@@ -170,6 +175,7 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             }
             _db.EGEResult.Remove(foundResult);
             await _db.SaveChangesAsync();
+            TempData["success"] = "Результаты ЕГЭ удалены!";
             return RedirectToAction("Index");
         }
         #endregion
