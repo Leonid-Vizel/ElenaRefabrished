@@ -52,6 +52,9 @@
                                                     <h6 class="font-weight-bold text-white">Образование</h6>
                                                     <ul class="list-unstyled">
                                                         <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Index">Домашняя страница (главная)</a>
+                                                        </li>
+                                                        <li class="nav-item">
                                                             <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Education" asp-action="WeekendSchool">Школа выходного дня</a>
                                                         </li>
                                                         <li class="nav-item">
@@ -72,44 +75,37 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-6 mb-4">
-                                                    <h6 class="font-weight-bold text-white">График</h6>
-                                                    <ul class="list-unstyled">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Schedule" asp-action="Index">Годовой календарный график</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Regime">Режим дня и расписание уроков</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="HealthAndFood">Здоровье и питание</a>
-                                                        </li>
-                                                    </ul>
+                                                    <div class="pb-2">
+                                                        <h6 class="font-weight-bold text-white">График</h6>
+                                                        <ul class="list-unstyled">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Schedule" asp-action="Index">Годовой календарный график</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Regime">Режим дня и расписание уроков</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="HealthAndFood">Здоровье и питание</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <h6 class="font-weight-bold text-white">Ученики и учителя</h6>
+                                                        <ul class="list-unstyled">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="TeacherPage">Педагогический состав</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Exam" asp-action="Index">Выпускники</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-4 mb-4">
-                                                    <h6 class="font-weight-bold text-white">Ученики и учителя</h6>
+                                                <div class="col-lg-3 mb-4">
+                                                    <h6 class="font-weight-bold text-white">Документы</h6>
                                                     <ul class="list-unstyled">
                                                         <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="TeacherPage">Педагогический состав</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Exam" asp-action="Index">Выпускники</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-4 mb-4">
-                                                    <h6 class="font-weight-bold text-white">Другое</h6>
-                                                    <ul class="list-unstyled">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Conditions">Условия приёма</a>
-                                                        </li>
-                                                        @*                                                    <li class="nav-item">
-                                                    <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Index">Документы</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                    <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Gallery" asp-action="Index">Галерея</a>
-                                                    </li>*@
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Location">Расположение школы</a>
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Ustav">Устав</a>
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Licens">Лицензия</a>
@@ -118,17 +114,11 @@
                                                             <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Akred">Аккредитация</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Documents">Документы</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Requisites">Реквизиты</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Info">О сайте</a>
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Spravka">Аттестация</a>
                                                         </li>
                                                     </ul>
                                                 </div>
-                                                <div class="col-lg-3 mb-4">
+                                                <div class="col-lg-5 mb-4">
                                                     <h6 class="font-weight-bold text-white">Управление данными</h6>
                                                     <ul class="list-unstyled">
                                                         <li class="nav-item">
@@ -142,6 +132,68 @@
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link text-small pb-0" asp-area="Admin" asp-controller="SchoolObject" asp-action="Index">Предметы</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-4 mb-4">
+                                                    <h6 class="font-weight-bold text-white">Другое</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Conditions">Условия приёма</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Gallery" asp-action="Index">Галерея</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Location">Расположение школы</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Requisites">Реквизиты</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Info">О сайте</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6 mb-4">
+                                                    <h6 class="font-weight-bold text-white">Положения</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Poloj1">О приеме в школу</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Poloj2">О мониторинге ФГОС</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Poloj3">О промежуточной аттестации</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6 mb-4">
+                                                    <h6 class="font-weight-bold text-white">Показатели деятельности</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Pokazat1">Дошкольной обр. организации</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Pokazat2">Общеобразовательной организации</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-12 mb-4">
+                                                    <h6 class="font-weight-bold text-white">Основные общеобразовательные программы</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="ObrProg1">Дошкольного образования</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="ObrProg2">Начального общего образования</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="ObrProg3">Основного общего образования</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Project">Среднего общего образования</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -165,6 +217,9 @@
                                                     <h6 class="font-weight-bold text-white">Образование</h6>
                                                     <ul class="list-unstyled">
                                                         <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Index">Домашняя страница (главная)</a>
+                                                        </li>
+                                                        <li class="nav-item">
                                                             <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Education" asp-action="WeekendSchool">Школа выходного дня</a>
                                                         </li>
                                                         <li class="nav-item">
@@ -185,27 +240,46 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-lg-6 mb-4">
-                                                    <h6 class="font-weight-bold text-white">График</h6>
-                                                    <ul class="list-unstyled">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Schedule" asp-action="Index">Годовой календарный график</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Regime">Режим дня и расписание уроков</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="HealthAndFood">Здоровье и питание</a>
-                                                        </li>
-                                                    </ul>
+                                                    <div class="pb-2">
+                                                        <h6 class="font-weight-bold text-white">График</h6>
+                                                        <ul class="list-unstyled">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Schedule" asp-action="Index">Годовой календарный график</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Regime">Режим дня и расписание уроков</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="HealthAndFood">Здоровье и питание</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <h6 class="font-weight-bold text-white">Ученики и учителя</h6>
+                                                        <ul class="list-unstyled">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="TeacherPage">Педагогический состав</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Exam" asp-action="Index">Выпускники</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-6 mb-4">
-                                                    <h6 class="font-weight-bold text-white">Ученики и учителя</h6>
+                                                    <h6 class="font-weight-bold text-white">Документы</h6>
                                                     <ul class="list-unstyled">
                                                         <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="TeacherPage">Педагогический состав</a>
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Ustav">Устав</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Exam" asp-action="Index">Выпускники</a>
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Licens">Лицензия</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Akred">Аккредитация</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Spravka">Промежуточная аттестация</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -215,29 +289,59 @@
                                                         <li class="nav-item">
                                                             <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Conditions">Условия приёма</a>
                                                         </li>
-                                                        @*                                                    <li class="nav-item">
-                                                    <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Index">Документы</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                    <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Gallery" asp-action="Index">Галерея</a>
-                                                    </li>*@
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Gallery" asp-action="Index">Галерея</a>
+                                                        </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Location">Расположение школы</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Licens">Лицензия</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Akred">Аккредитация</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Documents">Документы</a>
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Requisites">Реквизиты</a>
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Home" asp-action="Info">О сайте</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6 mb-4">
+                                                    <h6 class="font-weight-bold text-white">Положения</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Poloj1">О приеме в школу</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Poloj2">О мониторинге ФГОС</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Poloj3">О промежуточной аттестации</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6 mb-4">
+                                                    <h6 class="font-weight-bold text-white">Показатели деятельности</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Pokazat1">Дошкольной обр. организации</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Pokazat2">Общеобразовательной организации</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-12 mb-4">
+                                                    <h6 class="font-weight-bold text-white">Основные общеобразовательные программы</h6>
+                                                    <ul class="list-unstyled">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="ObrProg1">Дошкольного образования</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="ObrProg2">Начального общего образования</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="ObrProg3">Основного общего образования</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link text-small pb-0" asp-area="Visitor" asp-controller="Document" asp-action="Project">Среднего общего образования</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -271,8 +375,8 @@
     <footer class="fixed_footer bg-primary noselect text-secondary">
         <div class="content p-4">
             <div class="row">
-@*                <div class="col-3">
-                    @DateTime.Now.Year - Elena-Service -  <a asp-controller="Home" asp-action="Info" class="text-secondary">О сайте</a>
+                @*                <div class="col-3">
+                @DateTime.Now.Year - Elena-Service -  <a asp-controller="Home" asp-action="Info" class="text-secondary">О сайте</a>
                 </div>*@
                 <div class="col-4">
                     ЧАСТНОЕ  ОБРАЗОВАТЕЛЬНОЕ  УЧРЕЖДЕНИЕ

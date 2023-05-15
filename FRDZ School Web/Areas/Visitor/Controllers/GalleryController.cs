@@ -70,21 +70,19 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             {
                 return View(model);
             }
-            string wwwRootImagePath = $"{_environment.WebRootPath}\\gallery\\";
-            //string fileExtention = Path.GetExtension(model.ImageFile.FileName);
-            //model.ImageName = $"{model.Title}{fileExtention}";
-            //try
-            //{
-            //    using (var imageCreateStream = new FileStream(Path.Combine(wwwRootImagePath, model.ImageName), FileMode.Create))
-            //    {
-            //        await model.ImageFile.CopyToAsync(imageCreateStream);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    ModelState.AddModelError("Title", $"Некорректное название: {ex}");
-            //    return View(model);
-            //}
+
+            Photo photo = model;
+            string wwwRootPath = _environment.WebRootPath;
+            if (model.ImageFile != null)
+            {
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.ImageFile.FileName);
+                string photoPath = Path.Combine(wwwRootPath, Path.Combine("images", "gallery"));
+                using (var fileStream = new FileStream(Path.Combine(photoPath, fileName), FileMode.Create))
+                {
+                    await model.ImageFile.CopyToAsync(fileStream);
+                };
+                photo.ImageName = fileName;
+            }
             await _db.Photo.AddAsync(model);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -105,20 +103,24 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
         [Authorize(Roles = SD.Role_Admin)]
         [HttpPost]
         [ActionName("Delete")]
-        public async Task<IActionResult> DeletePost(int id = 0)
+        public async Task<IActionResult> DeletePost(int id)
         {
             Photo? foundPhoto = _db.Photo.FirstOrDefault(x => x.Id == id);
             if (foundPhoto == null)
             {
                 return NotFound();
             }
-            string wwwRootImagePath = $"{_environment.WebRootPath}\\gallery\\";
-            string oldPath = Path.Combine(wwwRootImagePath, foundPhoto.ImageName);
-            try
+
+            if (foundPhoto.ImageFile != null)
             {
-                System.IO.File.Delete(oldPath);
+                string wwwRootPath = _environment.WebRootPath;
+                string photoPath = Path.Combine(wwwRootPath, Path.Combine("images", "gallery"));
+                string oldPhotoPath = Path.Combine(photoPath, foundPhoto.ImageName.TrimStart('\\'));
+                if (System.IO.File.Exists(oldPhotoPath))
+                {
+                    System.IO.File.Delete(oldPhotoPath);
+                }
             }
-            catch { }
             _db.Photo.Remove(foundPhoto);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -192,26 +194,21 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             foundModel.ImageName = newFileName;
             string newPath = Path.Combine(wwwRootImagePath, newFileName);
             #region Если название поменяли и загрузили фото
+            string wwwRootPath = _environment.WebRootPath;
             if (model.ImageFile != null)
             {
-                try
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.ImageFile.FileName);
+                string photoPath = Path.Combine(wwwRootPath, Path.Combine("images", "gallery"));
+                string oldPhotoPath = Path.Combine(photoPath, foundModel.ImageName.TrimStart('\\'));
+                if (System.IO.File.Exists(oldPhotoPath))
                 {
-                    System.IO.File.Delete(oldPath);
-                    using (var imageCreateStream = new FileStream(newPath, FileMode.Create))
-                    {
-                        await model.ImageFile.CopyToAsync(imageCreateStream);
-                    }
+                    System.IO.File.Delete(oldPhotoPath);
                 }
-                catch
+                using (var fileStream = new FileStream(Path.Combine(photoPath, fileName), FileMode.Create))
                 {
-                    ModelState.AddModelError("Title", "Некорректное название");
-                    return View(model);
+                    await model.ImageFile.CopyToAsync(fileStream);
                 }
-                foundModel.Title = model.Title;
-                foundModel.Description = model.Description;
-                _db.Photo.Update(foundModel);
-                await _db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                foundModel.ImageName = fileName;
             }
             #endregion
             #region Если название поменяли, но фото не загрузили

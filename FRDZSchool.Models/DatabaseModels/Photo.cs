@@ -27,7 +27,5 @@ namespace FRDZSchool.Models.DatabaseModels
         [NotMapped]
         [Required(ErrorMessage = "Добавьте фото")]
         public IFormFile ImageFile { get; set; }
-
-        public override string ToString() => $"/gallery/{ImageName}";
     }
 }

@@ -36,4 +36,8 @@
     <None Include="wwwroot\school_icon_234396.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\gallery\" />
+  </ItemGroup>
+
 </Project>

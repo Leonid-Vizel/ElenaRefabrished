@@ -4,14 +4,20 @@
 }
 
 <hr />
-<h2 class="text-center">Удаление фото #@Model</h2>
+<h1 class="text-center noselect tracking-in-expand text-danger">Удаление фото #@Model</h1>
 <hr />
 
 <div class="container">
     <div class="justify-content-center">
         <form method="post">
-            <a class="btn btn-outline-primary" asp-controller="Gallery" asp-action="Index"><i class="bi bi-arrow-return-left"></i> Назад</a>
-            <button class="btn btn-outline-danger" type="submit"><i class="bi bi-trash"></i> Удалить</button>
+            <div class="row">
+                <div class="col">
+                    <a class="btn btn-primary w-100" asp-controller="Gallery" asp-action="Index"><i class="bi bi-arrow-return-left"></i> Вернуться к галлерее</a>
+                </div>
+                <div class="col">
+                    <button class="btn btn-danger w-100" type="submit"><i class="bi bi-trash big-icon"></i> Удалить</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>

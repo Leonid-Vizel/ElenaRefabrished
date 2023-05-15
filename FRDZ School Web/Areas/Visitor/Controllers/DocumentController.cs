@@ -186,9 +186,59 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             return Redirect("https://elenaservis.ru/akred.html");
         }
 
-        public IActionResult Documents()
+        public IActionResult Ustav()
         {
-            return View();
+            return Redirect("https://elenaservis.ru/doca/ustavsch.pdf");
+        }
+
+        public IActionResult ObrProg1()
+        {
+            return Redirect("https://elenaservis.ru/doca/doshprog.pdf");
+        }
+
+        public IActionResult ObrProg2()
+        {
+            return Redirect("https://elenaservis.ru/doca/nachprog.pdf");
+        }
+
+        public IActionResult ObrProg3()
+        {
+            return Redirect("https://elenaservis.ru/doca/osnprog.pdf");
+        }
+
+        public IActionResult Project()
+        {
+            return Redirect("https://elenaservis.ru/doca/oopso2020.pdf");
+        }
+
+        public IActionResult Poloj1()
+        {
+            return Redirect("https://elenaservis.ru/doca/polpriem.pdf");
+        }
+
+        public IActionResult Poloj2()
+        {
+            return Redirect("https://elenaservis.ru/doca/schmonitor.pdf");
+        }
+
+        public IActionResult Poloj3()
+        {
+            return Redirect("https://elenaservis.ru/doca/tekon.pdf");
+        }
+
+        public IActionResult Spravka()
+        {
+            return Redirect("https://elenaservis.ru/doca/spravk.pdf");
+        }
+
+        public IActionResult Pokazat1()
+        {
+            return Redirect("https://elenaservis.ru/doca/pokdoschool.pdf");
+        }
+
+        public IActionResult Pokazat2()
+        {
+            return Redirect("https://elenaservis.ru/doca/pokdschool.pdf");
         }
     }
 }
