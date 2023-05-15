@@ -175,5 +175,20 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public IActionResult Licens()
+        {
+            return Redirect("https://elenaservis.ru/lisen.html");
+        }
+
+        public IActionResult Akred()
+        {
+            return Redirect("https://elenaservis.ru/akred.html");
+        }
+
+        public IActionResult Documents()
+        {
+            return View();
+        }
     }
 }
