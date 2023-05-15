@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace SchoolWeb.Controllers
+namespace FRDZ_School_Web.Areas.Visitor.Controllers
 {
+    [Area("Visitor")]
     public class EducationController : Controller
     {
         public IActionResult WeekendSchool()

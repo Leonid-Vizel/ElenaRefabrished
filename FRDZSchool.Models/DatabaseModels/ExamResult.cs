@@ -1,6 +1,4 @@
-﻿using FRDZSchool.Models.DatabaseModels;
-
-namespace SchoolWeb.Models
+﻿namespace FRDZSchool.Models.DatabaseModels
 {
     public class ExamResult
     {

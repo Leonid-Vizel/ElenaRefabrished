@@ -1,4 +1,4 @@
-﻿@using SchoolWeb.Models;
+﻿@using FRDZSchool.Models.DatabaseModels
 @model ScheduleInfo
 @{
     ViewData["Title"] = "Годовой график";
@@ -10,22 +10,22 @@
     <div class="container">
         <div class="row">
             <div class="col-11">
-                <h2 class="text-center">Годовой календарный график школы "Елена-Сервис"</h2>
+                <h1 class="text-center noselect tracking-in-expand">Годовой календарный график школы</h1>
             </div>
             <div class="col-1 text-end">
-                <a asp-controller="Schedule" asp-action="Reset" class="btn btn-outline-warning btn-sm"><i class="bi bi-pencil"></i></a>
+                <a asp-controller="Schedule" asp-action="Reset" class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil"></i></a>
             </div>
         </div>
     </div>
 }
 else
 {
-    <h2 class="text-center">Годовой календарный график школы "Елена-Сервис"</h2>
+    <h1 class="text-center noselect tracking-in-expand">Годовой календарный график школы</h1>
 }
 <hr />
 <br>
 
-<table width="100%" class="table-inside-border" style="table-layout: fixed ; width: 100%;">
+<table class="table-inside-border w-100" style="table-layout: fixed ; width: 100%;">
     <tr>
         <td class="td-inside-border" valign="top">
             <h3 class="text-center">Продолжительность учебной недели</h3>
@@ -94,197 +94,199 @@ else
     </tr>
 </table>
 
-<h3 class="text-center">Каникулы</h3>
-<table width="100%" cellpadding="5" class="table-bordered">
-    <tbody>
-        <tr>
-            <td bgcolor="#FFFACD" rowspan="2" class="text-center">Каникулы</td>
-            <td bgcolor="#FFFACD" rowspan="1" colspan="2" class="text-center">Дата</td>
-            <td bgcolor="#FFFACD" rowspan="2" class="text-center">Продолжительность</td>
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD" class="text-center">Началo каникул</td>
-            <td bgcolor="#FFFACD" class="text-center">Окончание каникул</td>
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD">Осенние</td>
-            <td>@Model.Holiday1Start.ToString("dd.MM.yyyy")</td>
-            <td>@Model.Holiday1End.ToString("dd.MM.yyyy")</td>
-            @{
-                int days = @Model.Holiday1End.Subtract(Model.Holiday1Start).Days + 1;
-                int weeks = days / 7;
-                days %= 7;
-                if (days == 0)
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+<div class="text-center mt-3">
+    <h2>Каникулы</h2>
+    <table class="table table-hover table-sm w-100 mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th></th>
+                <th>Началo</th>
+                <th>Конец</th>
+                <th>Продолжительность</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="table-primary">Осенние</th>
+                <td>@Model.Holiday1Start.ToString("dd.MM.yyyy")</td>
+                <td>@Model.Holiday1End.ToString("dd.MM.yyyy")</td>
+                @{
+                    int days = @Model.Holiday1End.Subtract(Model.Holiday1Start).Days + 1;
+                    int weeks = days / 7;
+                    days %= 7;
+                    if (days == 0)
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+                    }
+                    else
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+                    }
                 }
-                else
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+            </tr>
+            <tr>
+                <th class="table-primary">Зимние</th>
+                <td>@Model.Holiday2Start.ToString("dd.MM.yyyy")</td>
+                <td>@Model.Holiday2End.ToString("dd.MM.yyyy")</td>
+                @{
+                    days = @Model.Holiday2End.Subtract(Model.Holiday2Start).Days + 1;
+                    weeks = days / 7;
+                    days %= 7;
+                    if (days == 0)
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+                    }
+                    else
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+                    }
                 }
-            }
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD">Зимние</td>
-            <td>@Model.Holiday2Start.ToString("dd.MM.yyyy")</td>
-            <td>@Model.Holiday2End.ToString("dd.MM.yyyy")</td>
-            @{
-                days = @Model.Holiday2End.Subtract(Model.Holiday2Start).Days + 1;
-                weeks = days / 7;
-                days %= 7;
-                if (days == 0)
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+            </tr>
+            <tr>
+                <th class="table-primary">Весенние</th>
+                <td>@Model.Holiday3Start.ToString("dd.MM.yyyy")</td>
+                <td>@Model.Holiday3End.ToString("dd.MM.yyyy")</td>
+                @{
+                    days = @Model.Holiday3End.Subtract(Model.Holiday3Start).Days + 1;
+                    weeks = days / 7;
+                    days %= 7;
+                    if (days == 0)
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+                    }
+                    else
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+                    }
                 }
-                else
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+            </tr>
+            <tr>
+                <th class="table-primary">Доп. для 1 классов</th>
+                <td>@Model.Holiday4Start.ToString("dd.MM.yyyy")</td>
+                <td>@Model.Holiday4End.ToString("dd.MM.yyyy")</td>
+                @{
+                    days = @Model.Holiday4End.Subtract(Model.Holiday4Start).Days + 1;
+                    weeks = days / 7;
+                    days %= 7;
+                    if (days == 0)
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+                    }
+                    else
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+                    }
                 }
-            }
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD">Весенние</td>
-            <td>@Model.Holiday3Start.ToString("dd.MM.yyyy")</td>
-            <td>@Model.Holiday3End.ToString("dd.MM.yyyy")</td>
-            @{
-                days = @Model.Holiday3End.Subtract(Model.Holiday3Start).Days + 1;
-                weeks = days / 7;
-                days %= 7;
-                if (days == 0)
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center mt-5 pb-5">
+    <h2>Четверти</h2>
+    <table class="table table-hover table-sm w-100 mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th></th>
+                <th>Началo</th>
+                <th>Конец</th>
+                <th>Продолжительность</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="table-primary">I четверть</th>
+                <td>@Model.Quarter1Start.ToString("dd.MM.yyyy")</td>
+                <td>@Model.Quarter1End.ToString("dd.MM.yyyy")</td>
+                @{
+                    days = @Model.Quarter1End.Subtract(Model.Quarter1Start).Days + 1;
+                    totalDays += days;
+                    weeks = days / 7;
+                    days %= 7;
+                    if (days == 0)
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+                    }
+                    else
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+                    }
                 }
-                else
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+            </tr>
+            <tr>
+                <th class="table-primary">II четверть</th>
+                <td>@Model.Quarter2Start.ToString("dd.MM.yyyy")</td>
+                <td>@Model.Quarter2End.ToString("dd.MM.yyyy")</td>
+                @{
+                    days = @Model.Quarter2End.Subtract(Model.Quarter2Start).Days + 1;
+                    totalDays += days;
+                    weeks = days / 7;
+                    days %= 7;
+                    if (days == 0)
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+                    }
+                    else
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+                    }
                 }
-            }
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD">Доп. для 1 классов</td>
-            <td>@Model.Holiday4Start.ToString("dd.MM.yyyy")</td>
-            <td>@Model.Holiday4End.ToString("dd.MM.yyyy")</td>
-            @{
-                days = @Model.Holiday4End.Subtract(Model.Holiday4Start).Days + 1;
-                weeks = days / 7;
-                days %= 7;
-                if (days == 0)
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+            </tr>
+            <tr>
+                <th class="table-primary">III четверть</th>
+                <td>@Model.Quarter3Start.ToString("dd.MM.yyyy")</td>
+                <td>@Model.Quarter3End.ToString("dd.MM.yyyy")</td>
+                @{
+                    days = @Model.Quarter3End.Subtract(Model.Quarter3Start).Days + 1;
+                    totalDays += days;
+                    weeks = days / 7;
+                    days %= 7;
+                    if (days == 0)
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+                    }
+                    else
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+                    }
                 }
-                else
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+            </tr>
+            <tr>
+                <th class="table-primary">IV четверть</th>
+                <td>@Model.Quarter4Start.ToString("dd.MM.yyyy")</td>
+                <td>@Model.Quarter4End.ToString("dd.MM.yyyy")</td>
+                @{
+                    days = @Model.Quarter4End.Subtract(Model.Quarter4Start).Days + 1;
+                    totalDays += days;
+                    weeks = days / 7;
+                    days %= 7;
+                    if (days == 0)
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+                    }
+                    else
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
+                    }
                 }
-            }
-        </tr>
-    </tbody>
-</table>
-<br>
-<h3 class="text-center">Четверти</h3>
-<table width="100%" cellpadding="5" class="table-bordered">
-    <tbody>
-        <tr>
-            <td bgcolor="#FFFACD" rowspan="2" class="text-center">Учебная четверть</td>
-            <td bgcolor="#FFFACD" rowspan="1" colspan="2" class="text-center">Дата</td>
-            <td bgcolor="#FFFACD" rowspan="2" class="text-center">Продолжительность</td>
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD" class="text-center">Началo четверти</td>
-            <td bgcolor="#FFFACD" class="text-center">Окончание четверти</td>
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD">1-ая четверть</td>
-            <td>@Model.Quarter1Start.ToString("dd.MM.yyyy")</td>
-            <td>@Model.Quarter1End.ToString("dd.MM.yyyy")</td>
-            @{
-                days = @Model.Quarter1End.Subtract(Model.Quarter1Start).Days + 1;
-                totalDays += days;
-                weeks = days / 7;
-                days %= 7;
-                if (days == 0)
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+            </tr>
+            <tr>
+                <th class="table-primary">ИТОГО:</th>
+                <td>@Model.Quarter1Start.ToString("dd.MM.yyyy")</td>
+                <td>@Model.Quarter4End.ToString("dd.MM.yyyy")</td>
+                @{
+                    weeks = totalDays / 7;
+                    totalDays %= 7;
+                    if (totalDays == 0)
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
+                    }
+                    else
+                    {
+                        <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @totalDays @WordHelp.Inflect(totalDays,"дней","день","дня")</td>
+                    }
                 }
-                else
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
-                }
-            }
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD">2-ая четверть</td>
-            <td>@Model.Quarter2Start.ToString("dd.MM.yyyy")</td>
-            <td>@Model.Quarter2End.ToString("dd.MM.yyyy")</td>
-            @{
-                days = @Model.Quarter2End.Subtract(Model.Quarter2Start).Days + 1;
-                totalDays += days;
-                weeks = days / 7;
-                days %= 7;
-                if (days == 0)
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
-                }
-                else
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
-                }
-            }
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD">3-я четверть</td>
-            <td>@Model.Quarter3Start.ToString("dd.MM.yyyy")</td>
-            <td>@Model.Quarter3End.ToString("dd.MM.yyyy")</td>
-            @{
-                days = @Model.Quarter3End.Subtract(Model.Quarter3Start).Days + 1;
-                totalDays += days;
-                weeks = days / 7;
-                days %= 7;
-                if (days == 0)
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
-                }
-                else
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
-                }
-            }
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD">4-ая четверть</td>
-            <td>@Model.Quarter4Start.ToString("dd.MM.yyyy")</td>
-            <td>@Model.Quarter4End.ToString("dd.MM.yyyy")</td>
-            @{
-                days = @Model.Quarter4End.Subtract(Model.Quarter4Start).Days + 1;
-                totalDays += days;
-                weeks = days / 7;
-                days %= 7;
-                if (days == 0)
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
-                }
-                else
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @days @WordHelp.Inflect(days,"дней","день","дня")</td>
-                }
-            }
-        </tr>
-        <tr>
-            <td bgcolor="#FFFACD">ИТОГО:</td>
-            <td>@Model.Quarter1Start.ToString("dd.MM.yyyy")</td>
-            <td>@Model.Quarter4End.ToString("dd.MM.yyyy")</td>
-            @{
-                weeks = totalDays / 7;
-                totalDays %= 7;
-                if (totalDays == 0)
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели")</td>
-                }
-                else
-                {
-                    <td>@weeks @WordHelp.Inflect(weeks,"недель","неделя","недели") и @totalDays @WordHelp.Inflect(totalDays,"дней","день","дня")</td>
-                }
-            }
-        </tr>
-    </tbody>
-</table>
+            </tr>
+        </tbody>
+    </table>
+</div>

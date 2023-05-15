@@ -3,11 +3,11 @@ using FRDZSchool.Models.DatabaseModels;
 using FRDZSchool.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SchoolWeb.Models;
 using System.Data;
 
-namespace SchoolWeb.Controllers
+namespace FRDZ_School_Web.Areas.Visitor.Controllers
 {
+    [Area("Visitor")]
     public class ExamController : Controller
     {
         private ApplicationContext _db;

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace SchoolWeb.Models
+namespace FRDZSchool.Models.DatabaseModels
 {
     public class ScheduleInfo
     {

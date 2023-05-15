@@ -40,7 +40,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Document");
+                    b.ToTable("Document", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.EGEResult", b =>
@@ -92,7 +92,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EGEResult");
+                    b.ToTable("EGEResult", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Grade", b =>
@@ -115,7 +115,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Grade");
+                    b.ToTable("Grade", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Lesson", b =>
@@ -147,7 +147,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("Lesson");
+                    b.ToTable("Lesson", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.LessonStudent", b =>
@@ -168,7 +168,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("LessonStudent");
+                    b.ToTable("LessonStudent", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Photo", b =>
@@ -193,7 +193,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Photo");
+                    b.ToTable("Photo", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.SchoolObject", b =>
@@ -210,7 +210,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SchoolObject");
+                    b.ToTable("SchoolObject", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Student", b =>
@@ -247,7 +247,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasIndex("GradeId");
 
-                    b.ToTable("Student");
+                    b.ToTable("Student", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Teacher", b =>
@@ -293,7 +293,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Teacher");
+                    b.ToTable("Teacher", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -537,7 +537,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OGEResult");
+                    b.ToTable("OGEResult", (string)null);
                 });
 
             modelBuilder.Entity("SchoolWeb.Models.SettingOption", b =>
@@ -558,7 +558,7 @@ namespace FRDZSchool.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Settings");
+                    b.ToTable("Settings", (string)null);
                 });
 
             modelBuilder.Entity("FRDZSchool.Models.DatabaseModels.Lesson", b =>

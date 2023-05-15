@@ -2,7 +2,6 @@
 @using FRDZSchool.Models.DatabaseModels;
 @using Microsoft.AspNetCore.Identity
 @using SchoolWeb.Attributes
-@using SchoolWeb.Models;
 @model ExamResult
 
 @{
@@ -10,7 +9,7 @@
 }
 
 <hr />
-<h2 class="text-center">Выпускники</h2>
+<h1 class="text-center tracking-in-expand noselect">Выпускники</h1>
 <hr />
 
 <p>
@@ -24,45 +23,44 @@
     на зачисление сразу из нескольких вузов, что дает возможность выбора.
 </p>
 
-<div class="row">
+<div class="row mt-5">
     <div class="col-6">
         <h3 class="text-left">ЕГЭ (Средний балл)</h3>
     </div>
     @if (User.IsInRole(SD.Role_Admin))
     {
         <div class="col-6 text-end">
-            <a asp-controller="Exam" asp-action="AddEge" class="btn btn-outline-primary">
+            <a asp-controller="Exam" asp-action="AddEge" class="btn btn-primary">
                 <i class="bi bi-plus-circle-fill"></i> Добавить
             </a>
         </div>
     }
 </div>
-<table class="table-bordered" cellspacing="0" cellpadding="2" width="100%">
-    <tbody>
+<table class="table table-hover table-sm w-100 mt-2">
+    <thead class="table-dark">
         <tr>
-            <td bgcolor="#FFFACD"><font size="+1"><b>Предмет / Год</b></font></td>
+            <td></td>
             @if (User.IsInRole(SD.Role_Admin))
             {
                 @foreach (EGEResult result in Model.Ege)
                 {
-                    <td bgcolor="#FFFACD">
-                        <div align="center">
-                            <b>@result.Year</b>
-                            <a asp-controller="Exam" asp-action="EditEge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-pencil"></i></a>
-                            <a asp-controller="Exam" asp-action="DeleteEge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
-                        </div>
-                    </td>
+                    <th class="text-center">
+                        <b>@result.Year</b>
+                        <a asp-controller="Exam" asp-action="EditEge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></a>
+                        <a asp-controller="Exam" asp-action="DeleteEge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+                    </th>
                 }
             }
             else
             {
                 @foreach (EGEResult result in Model.Ege)
                 {
-                    <td bgcolor="#FFFACD"><div align="center"><b>@result.Year</b></div></td>
+                    <th class="text-center"><b>@result.Year</b></th>
                 }
             }
         </tr>
-
+    </thead>
+    <tbody>
         @foreach (PropertyInfo info in typeof(EGEResult).GetProperties())
         {
             <tr>
@@ -70,7 +68,7 @@
                     ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
                     if (attributeInfo != null)
                     {
-                        <td bgcolor="#FFFACD"><font size="+1">@attributeInfo.Name</font></td>
+                        <th class="table-primary">@attributeInfo.Name</th>
                         foreach (EGEResult result in Model.Ege)
                         {
                             float resultValue = (float)@info.GetValue(result);
@@ -98,61 +96,62 @@
     @if (User.IsInRole(SD.Role_Admin))
     {
         <div class="col-6 text-end">
-            <a asp-controller="Exam" asp-action="AddOge" class="btn btn-outline-primary">
+            <a asp-controller="Exam" asp-action="AddOge" class="btn btn-primary">
                 <i class="bi bi-plus-circle-fill"></i> Добавить
             </a>
         </div>
     }
 </div>
-<table class="table-bordered" cellspacing="0" cellpadding="2" width="100%">
-    <tbody>
-        <tr>
-            <td bgcolor="#FFFACD"><font size="+1"><b>Предмет / Год</b></font></td>
-            @if (User.IsInRole(SD.Role_Admin))
-            {
-                @foreach (OGEResult result in Model.Oge)
-                {
-                    <td bgcolor="#FFFACD">
-                        <div align="center">
-                            <b>@result.Year</b>
-                            <a asp-controller="Exam" asp-action="EditOge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-pencil"></i></a>
-                            <a asp-controller="Exam" asp-action="DeleteOge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
-                        </div>
-                    </td>
-                }
-            }
-            else
-            {
-                @foreach (OGEResult result in Model.Oge)
-                {
-                    <td bgcolor="#FFFACD"><div align="center"><b>@result.Year</b></div></td>
-                }
-            }
-        </tr>
-
-        @foreach (PropertyInfo info in typeof(OGEResult).GetProperties())
-        {
+<div class="pb-3">
+    <table class="table table-hover table-sm w-100 mt-2">
+        <thead class="table-dark">
             <tr>
-                @{
-                    ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
-                    if (attributeInfo != null)
+                <th></th>
+                @if (User.IsInRole(SD.Role_Admin))
+                {
+                    @foreach (OGEResult result in Model.Oge)
                     {
-                        <td bgcolor="#FFFACD"><font size="+1">@attributeInfo.Name</font></td>
-                        foreach (OGEResult result in Model.Oge)
-                        {
-                            float resultValue = (float)@info.GetValue(result);
-                            if (resultValue > 0)
-                            {
-                                <td><div align="center">@info.GetValue(result)</div></td>
-                            }
-                            else
-                            {
-                                <td><div align="center">&nbsp;</div></td>
-                            }
-                        }
+                        <th class="text-center">
+                            <b>@result.Year</b>
+                            <a asp-controller="Exam" asp-action="EditOge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></a>
+                            <a asp-controller="Exam" asp-action="DeleteOge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+                        </th>
+                    }
+                }
+                else
+                {
+                    @foreach (OGEResult result in Model.Oge)
+                    {
+                        <th class="text-center"><b>@result.Year</b></th>
                     }
                 }
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (PropertyInfo info in typeof(OGEResult).GetProperties())
+            {
+                <tr>
+                    @{
+                        ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
+                        if (attributeInfo != null)
+                        {
+                            <th class="table-primary">@attributeInfo.Name</th>
+                            foreach (OGEResult result in Model.Oge)
+                            {
+                                float resultValue = (float)@info.GetValue(result);
+                                if (resultValue > 0)
+                                {
+                                    <td><div align="center">@info.GetValue(result)</div></td>
+                                }
+                                else
+                                {
+                                    <td><div align="center">&nbsp;</div></td>
+                                }
+                            }
+                        }
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

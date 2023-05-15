@@ -13,6 +13,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    vertical-align: central;
     background-color: rgba(26, 26, 26, 1);
     height: 92px;
 }
@@ -28,6 +29,10 @@ header {
 
 .header_static {
     position: static;
+}
+
+p{
+    font-size: 1.1rem;
 }
 
 /*========================================================================================*/
@@ -63,8 +68,8 @@ header {
 /*=====================================================================================*/
 
 ::-webkit-scrollbar {
-    width: 10px; 
-    height: 10px; 
+    width: 10px;
+    height: 10px;
     background-color: #1a1a1a;
 }
 
@@ -321,7 +326,6 @@ header {
 
 code {
     padding: 0.1rem 0.2rem;
-    border-radius: 0.2rem;
 }
 
 /*===============================================================================================*/
@@ -333,7 +337,7 @@ code {
     -webkit-transform: translate(-50%, -50%);
 }
 
-.card {
+.card{
     width: 575px;
     height: 250px;
     background-color: #fff;
@@ -392,9 +396,9 @@ code {
         color: #fff;
     }
 
-    .card .additional .coords span + span {
-        float: right;
-    }
+        .card .additional .coords span + span {
+            float: right;
+        }
 
     .card .additional .stats {
         display: flex;
@@ -406,24 +410,24 @@ code {
         color: #fff;
     }
 
-    .card .additional .stats > div {
-        flex: 1;
-        text-align: center;
-    }
+        .card .additional .stats > div {
+            flex: 1;
+            text-align: center;
+        }
 
-    .card .additional .stats i {
-        display: block;
-    }
+        .card .additional .stats i {
+            display: block;
+        }
 
-    .card .additional .stats div.title {
-        font-weight: bold;
-        text-transform: uppercase;
-    }
+        .card .additional .stats div.title {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-    .card .additional .stats div.value {
-        font-weight: bold;
-        line-height: 1.5rem;
-    }
+        .card .additional .stats div.value {
+            font-weight: bold;
+            line-height: 1.5rem;
+        }
 
     .card .general {
         width: 425px;
@@ -521,11 +525,10 @@ th.sorted[data-order="-1"] {
 
 /*===============================================================================================*/
 
-.big-icon{
+.big-icon {
     font-size: 1rem;
 }
 
 .big-icon2 {
     font-size: 1.2rem;
 }
-

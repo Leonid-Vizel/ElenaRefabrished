@@ -4,10 +4,10 @@ using FRDZSchool.Models.ViewModels.EditModels;
 using FRDZSchool.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace SchoolWeb.Controllers
+namespace FRDZ_School_Web.Areas.Visitor.Controllers
 {
+    [Area("Visitor")]
     public class GalleryController : Controller
     {
         private ApplicationContext _db;
@@ -71,20 +71,20 @@ namespace SchoolWeb.Controllers
                 return View(model);
             }
             string wwwRootImagePath = $"{_environment.WebRootPath}\\gallery\\";
-            string fileExtention = Path.GetExtension(model.ImageFile.FileName);
-            model.ImageName = $"{model.Title}{fileExtention}";
-            try
-            {
-                using (var imageCreateStream = new FileStream(Path.Combine(wwwRootImagePath, model.ImageName), FileMode.Create))
-                {
-                    await model.ImageFile.CopyToAsync(imageCreateStream);
-                }
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("Title", $"Некорректное название: {ex}");
-                return View(model);
-            }
+            //string fileExtention = Path.GetExtension(model.ImageFile.FileName);
+            //model.ImageName = $"{model.Title}{fileExtention}";
+            //try
+            //{
+            //    using (var imageCreateStream = new FileStream(Path.Combine(wwwRootImagePath, model.ImageName), FileMode.Create))
+            //    {
+            //        await model.ImageFile.CopyToAsync(imageCreateStream);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    ModelState.AddModelError("Title", $"Некорректное название: {ex}");
+            //    return View(model);
+            //}
             await _db.Photo.AddAsync(model);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
