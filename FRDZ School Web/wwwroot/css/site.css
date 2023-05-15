@@ -31,7 +31,7 @@ header {
     position: static;
 }
 
-p{
+p {
     font-size: 1.1rem;
 }
 
@@ -337,7 +337,7 @@ code {
     -webkit-transform: translate(-50%, -50%);
 }
 
-.card{
+.card {
     width: 575px;
     height: 250px;
     background-color: #fff;
@@ -532,3 +532,4 @@ th.sorted[data-order="-1"] {
 .big-icon2 {
     font-size: 1.2rem;
 }
+

@@ -26,13 +26,13 @@ namespace FRDZ_School_Web.Areas.Visitor.Controllers
             {
                 return View(null);
             }
-            if (id * 30 >= allCount)
+            if (id * 25 >= allCount)
             {
-                id = allCount / 30;
+                id = allCount / 25;
                 return RedirectToAction("Index", new { id = id });
             }
-            ViewData["total"] = allCount / 30;
-            return View(_db.Photo.Skip(id * 30).Take(30));
+            ViewData["total"] = allCount / 25;
+            return View(_db.Photo.Skip(id * 25).Take(25));
         }
 
         public IActionResult Photo(int id = 0)

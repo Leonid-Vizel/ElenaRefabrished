@@ -29,110 +29,98 @@
 </style>
 
 <script src="~/js/fullscreen-id.js"></script>
-
-@if (Model != null && Model.Count() > 0)
-{
-    <hr />
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <h1 class="text-center noselect tracking-in-expand">Галерея</h1>
-        </div>
-        <div class="col-2">
-            @if ((int)ViewData["total"] != 0)
-            {
-                <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="btn-group btn-group-lg col-md-8" role="group">
+<div class="text-center pb-5 mb-5">
+    @if (Model != null && Model.Count() > 0)
+    {
+        <hr />
+        <div class="row text-center vertical-centered">
+            <div class="col-2">
+                @if ((int)ViewData["total"] != 0)
+                {
+                    <div class="btn-group btn-group" role="group">
                         @for (int i = 0; i <= (int)ViewData["total"]; i++)
                         {
-                            <a class="btn btn-primary" asp-controller="Gallery" asp-action="Index" asp-route-id="@i">@(i + 1)</a>
+                            <a class="btn btn-light w-100" asp-controller="Gallery" asp-action="Index" asp-route-id="@i">@(i + 1)</a>
                         }
                     </div>
-                    <div class="col-md-2">
-                        @if (User.IsInRole(SD.Role_Admin))
-                        {
-                            <a class="btn btn-outline-warning" asp-controller="Gallery" asp-action="Add"><i class="bi bi-plus-circle"></i> Добавить</a>
-                        }
-                    </div>
-                </div>
-            }
-            else
-            {
+                }
+            </div>
+            <div class="col-8">
+                <h1 class="text-center noselect tracking-in-expand mt-2">Галерея</h1>
+            </div>
+            <div class="col-2">
                 @if (User.IsInRole(SD.Role_Admin))
                 {
                     <div class="text-center">
                         <a class="btn btn-outline-success" asp-controller="Gallery" asp-action="Add"><i class="bi bi-plus-circle"></i> Добавить</a>
                     </div>
                 }
-            }
-        </div>
-    </div>
-    <hr />
-
-    <p>
-        @foreach (Photo photo in Model)
-        {
-            @if (@photo.Description == null)
-            {
-                <div class="text-center" style="width:200px; display: inline-block; margin-left:10px;margin-right:10px;margin-top:10px;">
-                    <figure class="sign" style="width:200px;">
-                        <img id="image-@photo.Id" style="width:200px; height:auto;" class="fullscreen" src="~/images/gallery/@photo.ImageName" onClick="makeFullScreen(@photo.Id)">
-                        <figcaption class="mt-1">
-                            @photo.Title
-                            @if (User.IsInRole(SD.Role_Admin))
-                            {
-                                <div>
-                                    @*<a class="btn btn-sm btn-outline-warning" asp-controller="Gallery" asp-action="Edit" asp-route-id="@photo.Id"><i class="bi bi-pencil"></i></a>*@
-                                    <a class="btn btn-sm btn-outline-danger" asp-controller="Gallery" asp-action="Delete" asp-route-id="@photo.Id"><i class="bi bi-trash big-icon"></i></a>
-                                </div>
-                            }
-                        </figcaption>
-                    </figure>
-                </div>
-            }
-            else
-            {
-                <div title="@photo.Description" class="visible text-center" style="width:200px; display: inline-block; margin-left:10px;margin-right:10px;margin-top:10px;">
-                    <figure class="sign" style="width:200px;">
-                        <img id="image-@photo.Id" style="width:200px; height:auto;" class="fullscreen" src="~/images/gallery/@photo.ImageName" onClick="makeFullScreen(@photo.Id)">
-                        <figcaption class="mt-1">
-                            @photo.Title
-                            @if (User.IsInRole(SD.Role_Admin))
-                            {
-                                <div>
-                                    @*<a class="btn btn-sm btn-outline-warning" asp-controller="Gallery" asp-action="Edit" asp-route-id="@photo.Id"><i class="bi bi-pencil"></i></a>*@
-                                    <a class="btn btn-sm btn-outline-danger" asp-controller="Gallery" asp-action="Delete" asp-route-id="@photo.Id"><i class="bi bi-trash big-icon"></i></a>
-                                </div>
-                            }
-                        </figcaption>
-                    </figure>
-                </div>
-            }
-        }
-    </p>
-
-    if ((int)ViewData["total"] != 0)
-    {
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="btn-group btn-group-lg col-md-8" role="group">
-                @for (int i = 0; i <= (int)ViewData["total"]; i++)
-                {
-                    <a class="btn btn-primary" asp-controller="Gallery" asp-action="Index" asp-route-id="@i">@(i + 1)</a>
-                }
             </div>
-            <div class="col-md-2"></div>
+        </div>
+        <hr />
+
+        <p>
+            @foreach (Photo photo in Model)
+            {
+                @if (@photo.Description == null)
+                {
+                    <div class="text-center" style="width:200px; display: inline-block; margin-left:10px;margin-right:10px;margin-top:10px;">
+                        <figure class="sign" style="width:200px;">
+                            <img id="image-@photo.Id" style="width:200px; height:auto;" class="fullscreen" src="~/images/gallery/@photo.ImageName" onClick="makeFullScreen(@photo.Id)">
+                            <figcaption class="mt-1">
+                                <h5 class="mt-3">@photo.Title</h5>
+                                @if (User.IsInRole(SD.Role_Admin))
+                                {
+                                    <div>
+                                        @*<a class="btn btn-sm btn-outline-warning" asp-controller="Gallery" asp-action="Edit" asp-route-id="@photo.Id"><i class="bi bi-pencil"></i></a>*@
+                                        <a class="btn btn-sm btn-outline-danger" asp-controller="Gallery" asp-action="Delete" asp-route-id="@photo.Id"><i class="bi bi-trash big-icon"></i></a>
+                                    </div>
+                                }
+                            </figcaption>
+                        </figure>
+                    </div>
+                }
+                else
+                {
+                    <div title="@photo.Description" class="visible text-center" style="width:200px; display: inline-block; margin-left:10px;margin-right:10px;margin-top:10px;">
+                        <figure class="sign" style="width:200px;">
+                            <img id="image-@photo.Id" style="width:200px; height:auto;" class="fullscreen" src="~/images/gallery/@photo.ImageName" onClick="makeFullScreen(@photo.Id)">
+                            <figcaption class="mt-1">
+                                <h5 class="mt-3">@photo.Title</h5>
+                                @if (User.IsInRole(SD.Role_Admin))
+                                {
+                                    <div>
+                                        @*<a class="btn btn-sm btn-outline-warning" asp-controller="Gallery" asp-action="Edit" asp-route-id="@photo.Id"><i class="bi bi-pencil"></i></a>*@
+                                        <a class="btn btn-sm btn-outline-danger" asp-controller="Gallery" asp-action="Delete" asp-route-id="@photo.Id"><i class="bi bi-trash big-icon"></i></a>
+                                    </div>
+                                }
+                            </figcaption>
+                        </figure>
+                    </div>
+                }
+            }
+        </p>
+
+        if ((int)ViewData["total"] != 0)
+        {
+            <div class="row mt-5 justify-content-center">
+                <div class="btn-group btn-group mt-5 col-4" role="group">
+                    @for (int i = 0; i <= (int)ViewData["total"]; i++)
+                    {
+                        <a class="btn btn-light w-100" asp-controller="Gallery" asp-action="Index" asp-route-id="@i">@(i + 1)</a>
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="text-center mt-5">
+            <h3 class="tracking-in-expand noselect pb-4">Пока в галерее нет картинок</h3>
+            @if (User.IsInRole(SD.Role_Admin))
+            {
+                <a class="btn btn-outline-success btn-lg" asp-controller="Gallery" asp-action="Add"><i class="bi bi-plus-circle big-icon"></i> Добавить</a>
+            }
         </div>
     }
-}
-else
-{
-    <div class="text-center mt-5">
-        <h3 class="tracking-in-expand noselect pb-4">Пока в галерее нет картинок</h3>
-        @if (User.IsInRole(SD.Role_Admin))
-        {
-            <a class="btn btn-outline-success btn-lg" asp-controller="Gallery" asp-action="Add"><i class="bi bi-plus-circle big-icon"></i> Добавить</a>
-        }
-    </div>
-}
+</div>
