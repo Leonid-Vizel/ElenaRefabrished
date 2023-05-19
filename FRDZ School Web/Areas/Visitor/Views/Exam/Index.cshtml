@@ -23,135 +23,221 @@
     на зачисление сразу из нескольких вузов, что дает возможность выбора.
 </p>
 
-<div class="row mt-5">
-    <div class="col-6">
-        <h3 class="text-left">ЕГЭ (Средний балл)</h3>
-    </div>
-    @if (User.IsInRole(SD.Role_Admin))
-    {
-        <div class="col-6 text-end">
-            <a asp-controller="Exam" asp-action="AddEge" class="btn btn-primary">
-                <i class="bi bi-plus-circle-fill"></i> Добавить
-            </a>
-        </div>
-    }
-</div>
-<table class="table table-hover table-sm w-100 mt-2">
-    <thead class="table-dark">
-        <tr>
-            <td></td>
-            @if (User.IsInRole(SD.Role_Admin))
-            {
-                @foreach (EGEResult result in Model.Ege)
-                {
-                    <th class="text-center">
-                        <b>@result.Year</b>
-                        <a asp-controller="Exam" asp-action="EditEge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></a>
-                        <a asp-controller="Exam" asp-action="DeleteEge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
-                    </th>
-                }
-            }
-            else
-            {
-                @foreach (EGEResult result in Model.Ege)
-                {
-                    <th class="text-center"><b>@result.Year</b></th>
-                }
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (PropertyInfo info in typeof(EGEResult).GetProperties())
-        {
-            <tr>
-                @{
-                    ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
-                    if (attributeInfo != null)
-                    {
-                        <th class="table-primary">@attributeInfo.Name</th>
-                        foreach (EGEResult result in Model.Ege)
-                        {
-                            float resultValue = (float)@info.GetValue(result);
-                            if (resultValue > 0)
+@if (!User.IsInRole(SD.Role_Admin))
+{
+    <div class="accordion mt-5 pb-3" id="accordionEGE">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h4 class="text-left">ЕГЭ (Средний балл)</h4>
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <table class="table table-hover table-sm w-100 mt-2">
+                        <thead class="table-dark">
+                            <tr>
+                                <td></td>
+                                @foreach (EGEResult result in Model.Ege)
+                                {
+                                    <th class="text-center"><b>@result.Year</b></th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PropertyInfo info in typeof(EGEResult).GetProperties())
                             {
-                                <td><div align="center">@info.GetValue(result)</div></td>
+                                <tr>
+                                    @{
+                                        ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
+                                        if (attributeInfo != null)
+                                        {
+                                            <th class="table-secondary">@attributeInfo.Name</th>
+                                            foreach (EGEResult result in Model.Ege)
+                                            {
+                                                float resultValue = (float)@info.GetValue(result);
+                                                if (resultValue > 0)
+                                                {
+                                                    <td><div align="center">@info.GetValue(result)</div></td>
+                                                }
+                                                else
+                                                {
+                                                    <td><div align="center">&nbsp;</div></td>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </tr>
                             }
-                            else
-                            {
-                                <td><div align="center">&nbsp;</div></td>
-                            }
-                        }
-                    }
-                }
-            </tr>
-        }
-    </tbody>
-</table>
-<br>
-
-<div class="row">
-    <div class="col-6">
-        <h3 class="text-left">ОГЭ (Средний балл)</h3>
-    </div>
-    @if (User.IsInRole(SD.Role_Admin))
-    {
-        <div class="col-6 text-end">
-            <a asp-controller="Exam" asp-action="AddOge" class="btn btn-primary">
-                <i class="bi bi-plus-circle-fill"></i> Добавить
-            </a>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    }
-</div>
-<div class="pb-3">
-    <table class="table table-hover table-sm w-100 mt-2">
-        <thead class="table-dark">
-            <tr>
-                <th></th>
-                @if (User.IsInRole(SD.Role_Admin))
-                {
-                    @foreach (OGEResult result in Model.Oge)
+    </div>
+    <div class="accordion pb-5" id="accordionOGE">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <h4 class="text-left">ОГЭ (Средний балл)</h4>
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <table class="table table-hover table-sm w-100 mt-2">
+                        <thead class="table-dark">
+                            <tr>
+                                <th></th>
+                                @foreach (OGEResult result in Model.Oge)
+                                {
+                                    <th class="text-center"><b>@result.Year</b></th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (PropertyInfo info in typeof(OGEResult).GetProperties())
+                            {
+                                <tr>
+                                    @{
+                                        ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
+                                        if (attributeInfo != null)
+                                        {
+                                            <th class="table-secondary">@attributeInfo.Name</th>
+                                            foreach (OGEResult result in Model.Oge)
+                                            {
+                                                float resultValue = (float)@info.GetValue(result);
+                                                if (resultValue > 0)
+                                                {
+                                                    <td><div align="center">@info.GetValue(result)</div></td>
+                                                }
+                                                else
+                                                {
+                                                    <td><div align="center">&nbsp;</div></td>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="pb-3">
+        <div class="row mt-5">
+            <div class="col-6">
+                <h3 class="text-left">ЕГЭ (Средний балл)</h3>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Exam" asp-action="AddEge" class="btn btn-primary">
+                    <i class="bi bi-plus-circle-fill"></i> Добавить
+                </a>
+            </div>
+        </div>
+        <table class="table table-hover table-sm w-100 mt-2">
+            <thead class="table-dark">
+                <tr>
+                    <td></td>
+                    @foreach (EGEResult result in Model.Ege)
                     {
                         <th class="text-center">
                             <b>@result.Year</b>
-                            <a asp-controller="Exam" asp-action="EditOge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></a>
-                            <a asp-controller="Exam" asp-action="DeleteOge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+                            <div class="btn-group" role="group">
+                                <a asp-controller="Exam" asp-action="EditEge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></a>
+                                <a asp-controller="Exam" asp-action="DeleteEge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+                            </div>
                         </th>
                     }
-                }
-                else
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (PropertyInfo info in typeof(EGEResult).GetProperties())
                 {
-                    @foreach (OGEResult result in Model.Oge)
-                    {
-                        <th class="text-center"><b>@result.Year</b></th>
-                    }
-                }
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (PropertyInfo info in typeof(OGEResult).GetProperties())
-            {
-                <tr>
-                    @{
-                        ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
-                        if (attributeInfo != null)
-                        {
-                            <th class="table-primary">@attributeInfo.Name</th>
-                            foreach (OGEResult result in Model.Oge)
+                    <tr>
+                        @{
+                            ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
+                            if (attributeInfo != null)
                             {
-                                float resultValue = (float)@info.GetValue(result);
-                                if (resultValue > 0)
+                                <th class="table-primary">@attributeInfo.Name</th>
+                                foreach (EGEResult result in Model.Ege)
                                 {
-                                    <td><div align="center">@info.GetValue(result)</div></td>
-                                }
-                                else
-                                {
-                                    <td><div align="center">&nbsp;</div></td>
+                                    float resultValue = (float)@info.GetValue(result);
+                                    if (resultValue > 0)
+                                    {
+                                        <td><div align="center">@info.GetValue(result)</div></td>
+                                    }
+                                    else
+                                    {
+                                        <td><div align="center">&nbsp;</div></td>
+                                    }
                                 }
                             }
                         }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="pb-3 mt-2">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="text-left">ОГЭ (Средний балл)</h3>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Exam" asp-action="AddOge" class="btn btn-primary">
+                    <i class="bi bi-plus-circle-fill"></i> Добавить
+                </a>
+            </div>
+        </div>
+        <div class="pb-3">
+            <table class="table table-hover table-sm w-100 mt-2">
+                <thead class="table-dark">
+                    <tr>
+                        <th></th>
+                        @foreach (OGEResult result in Model.Oge)
+                        {
+                            <th class="text-center">
+                                <b>@result.Year</b>
+                                <div class="btn-group" role="group">
+                                    <a asp-controller="Exam" asp-action="EditOge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i></a>
+                                    <a asp-controller="Exam" asp-action="DeleteOge" asp-route-id="@result.Id" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></a>
+                                </div>
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (PropertyInfo info in typeof(OGEResult).GetProperties())
+                    {
+                        <tr>
+                            @{
+                                ResultAttribute attributeInfo = info.GetCustomAttribute(typeof(ResultAttribute)) as ResultAttribute;
+                                if (attributeInfo != null)
+                                {
+                                    <th class="table-primary">@attributeInfo.Name</th>
+                                    foreach (OGEResult result in Model.Oge)
+                                    {
+                                        float resultValue = (float)@info.GetValue(result);
+                                        if (resultValue > 0)
+                                        {
+                                            <td><div align="center">@info.GetValue(result)</div></td>
+                                        }
+                                        else
+                                        {
+                                            <td><div align="center">&nbsp;</div></td>
+                                        }
+                                    }
+                                }
+                            }
+                        </tr>
                     }
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
