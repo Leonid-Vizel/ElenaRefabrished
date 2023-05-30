@@ -16,6 +16,8 @@ namespace FRDZSchool.DataAccess.Data
         public DbSet<LessonStudent> LessonStudent { get; set; } = null!;
         public DbSet<SchoolObject> SchoolObject { get; set; } = null!;
 
+        public DbSet<CustomUser> CustomUser { get; set; } = null!;
+
         public DbSet<EGEResult> EGEResult { get; set; }
         public DbSet<OGEResult> OGEResult { get; set; }
         public DbSet<SettingOption> Settings { get; set; }

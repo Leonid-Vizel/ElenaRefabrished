@@ -134,9 +134,14 @@ else
                 <h3 class="text-left">ЕГЭ (Средний балл)</h3>
             </div>
             <div class="col-6 text-end">
-                <a asp-controller="Exam" asp-action="AddEge" class="btn btn-primary">
-                    <i class="bi bi-plus-circle-fill"></i> Добавить
-                </a>
+                <div class="btn-group w-75" role="group">
+                    <a asp-controller="Exam" asp-action="AddEge" class="btn btn-primary mx-2 w-100">
+                        <i class="bi bi-plus-circle-fill big-icon"></i> Добавить
+                    </a>
+                    <a asp-controller="Exam" asp-action="EgeToExcel" class="btn mx-2 w-100 text-light" style="background-color: rgb(33,115,69)">
+                        <i class="bi bi-filetype-xlsx big-icon2"></i> В Excel
+                    </a>
+                </div>
             </div>
         </div>
         <table class="table table-hover table-sm w-100 mt-2">
@@ -189,9 +194,14 @@ else
                 <h3 class="text-left">ОГЭ (Средний балл)</h3>
             </div>
             <div class="col-6 text-end">
-                <a asp-controller="Exam" asp-action="AddOge" class="btn btn-primary">
-                    <i class="bi bi-plus-circle-fill"></i> Добавить
-                </a>
+                <div class="btn-group w-75" role="group">
+                    <a asp-controller="Exam" asp-action="AddOge" class="btn btn-primary mx-2 w-100">
+                        <i class="bi bi-plus-circle-fill big-icon"></i> Добавить
+                    </a>
+                    <a asp-controller="Exam" asp-action="OgeToExcel" class="btn mx-2 w-100 text-light" style="background-color: rgb(33,115,69)">
+                        <i class="bi bi-filetype-xlsx big-icon2"></i> В Excel
+                    </a>
+                </div>
             </div>
         </div>
         <div class="pb-3">

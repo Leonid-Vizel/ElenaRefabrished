@@ -2,6 +2,8 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
+using FRDZSchool.Models.DatabaseModels;
+using FRDZSchool.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -9,25 +11,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.WebUtilities;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Encodings.Web;
+using System.Text;
 
 namespace FRDZ_School_Web.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<CustomUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserStore<IdentityUser> _userStore;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
+        private readonly UserManager<CustomUser> _userManager;
+        private readonly IUserStore<CustomUser> _userStore;
+        private readonly IUserEmailStore<CustomUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-            UserManager<IdentityUser> userManager,
+            UserManager<CustomUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            IUserStore<IdentityUser> userStore,
-            SignInManager<IdentityUser> signInManager,
+            IUserStore<CustomUser> userStore,
+            SignInManager<CustomUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -96,15 +102,56 @@ namespace FRDZ_School_Web.Areas.Identity.Pages.Account
             public string? Role { get; set; }
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
+
+            //[DisplayName("Имя")]
+            //[Required(ErrorMessage = "Укажите имя!")]
+            //[MaxLength(1000, ErrorMessage = "Максимальная длина - 1000 символов!")]
+            //public string Name { get; set; }
+
+            //[DisplayName("Фамилия")]
+            //[Required(ErrorMessage = "Укажите фамилию!")]
+            //[MaxLength(1000, ErrorMessage = "Максимальная длина - 1000 символов!")]
+            //public string Surname { get; set; }
+
+            //[DisplayName("Отчество")]
+            //[Required(ErrorMessage = "Укажите отчество!")]
+            //[MaxLength(1000, ErrorMessage = "Максимальная длина - 1000 символов!")]
+            //public string Patronymic { get; set; }
+
+            //[DisplayName("Адрес")]
+            //[MaxLength(1000, ErrorMessage = "Максимальная длина - 1000 символов!")]
+            //public string? Address { get; set; }
+
+            //[DisplayName("Должность")]
+            //[Required(ErrorMessage = "Укажите должность!")]
+            //[MaxLength(1000, ErrorMessage = "Максимальная длина - 1000 символов!")]
+            //public string Post { get; set; }
+
+            //[DisplayName("Дата рождения")]
+            //[MaxLength(1000, ErrorMessage = "Максимальная длина - 1000 символов!")]
+            //public DateTime? Birthday { get; set; }
+
+            //[DisplayName("Квалификация")]
+            //[MaxLength(1000, ErrorMessage = "Максимальная длина - 1000 символов!")]
+            //public string? Qualification { get; set; }
+
+            //[DisplayName("Стаж")]
+            //[MaxLength(1000, ErrorMessage = "Максимальная длина - 1000 символов!")]
+            //[Required(ErrorMessage = "Укажите стаж!")]
+            //[Range(0, 60)]
+            //public int Experience { get; set; }
+
+            //[DisplayName("Телефон")]
+            //[MaxLength(1000, ErrorMessage = "Максимальная длина - 1000 символов!")]
+            //public string? PhoneNumber { get; set; }
         }
 
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            //if (!_roleManager.RoleExistsAsync(SD.Role_Student).GetAwaiter().GetResult())
-            //{
-            //    _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-            //}
+            //_roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
+            //_roleManager.CreateAsync(new IdentityRole(SD.Role_Teacher)).GetAwaiter().GetResult();
+            //_roleManager.CreateAsync(new IdentityRole(SD.Role_Student)).GetAwaiter().GetResult();
 
             Input = new()
             {
@@ -130,6 +177,15 @@ namespace FRDZ_School_Web.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                //user.Name = Input.Name;
+                //user.Surname = Input.Surname;
+                //user.Patronymic = Input.Patronymic;
+                //user.Post = Input.Post;
+                //user.Birthday = Input.Birthday;
+                //user.Qualification = Input.Qualification;
+                //user.Address = Input.Address;
+                //user.PhoneNumber = Input.PhoneNumber;
+                //user.Experience = Input.Experience;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -145,8 +201,30 @@ namespace FRDZ_School_Web.Areas.Identity.Pages.Account
                         await _userManager.AddToRoleAsync(user, Input.Role);
                     }
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                    var userId = await _userManager.GetUserIdAsync(user);
+                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+
+                    var callbackUrl = Url.Page(
+                        "/Account/ConfirmEmail",
+                        pageHandler: null,
+                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
+                        protocol: Request.Scheme);
+
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
+                    {
+                        //return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return Redirect("/Identity/Account/Manage/Index");
+                    }
+                    else
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return LocalRedirect(returnUrl);
+                    }
                 }
                 foreach (var error in result.Errors)
                 {
@@ -158,27 +236,27 @@ namespace FRDZ_School_Web.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private CustomUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<CustomUser>();
             }
             catch
             {
-                throw new InvalidOperationException($"Не могу создать экземпляр '{nameof(IdentityUser)}'. " +
-                    $"Гарантировать, что '{nameof(IdentityUser)}' не является абстрактным классом и имеет конструктор без параметров или, альтернативно, " +
+                throw new InvalidOperationException($"Не могу создать экземпляр '{nameof(CustomUser)}'. " +
+                    $"Гарантировать, что '{nameof(CustomUser)}' не является абстрактным классом и имеет конструктор без параметров или, альтернативно, " +
                     $"переопределить страницу регистрации в /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-        private IUserEmailStore<IdentityUser> GetEmailStore()
+        private IUserEmailStore<CustomUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("Для пользовательского интерфейса по умолчанию требуется хранилище пользователей с поддержкой электронной почты.");
             }
-            return (IUserEmailStore<IdentityUser>)_userStore;
+            return (IUserEmailStore<CustomUser>)_userStore;
         }
     }
 }

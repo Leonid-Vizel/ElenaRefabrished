@@ -1,7 +1,8 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using FRDZSchool.Models.DatabaseModels;
+@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<CustomUser> SignInManager
+@inject UserManager<CustomUser> UserManager
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -9,14 +10,9 @@
         if (User.IsInRole(SD.Role_Admin))
         {
             <li class="nav-item">
-                <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
+                <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Личный кабинет</a>
             </li>
         }
-        <li class="nav-item">
-            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button id="logout" type="submit" class="nav-link btn btn-link border-0">Выход</button>
-            </form>
-        </li>
     }
     else
     {
