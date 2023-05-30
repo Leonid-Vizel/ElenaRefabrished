@@ -9,6 +9,7 @@ namespace FRDZSchool.Models.ViewModels.EditModels
 
         public SchoolObjectEditModel(SchoolObject schoolObject)
         {
+            Id = schoolObject.Id;
             Name = schoolObject.Name;
         }
 

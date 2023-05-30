@@ -9,6 +9,7 @@ namespace FRDZSchool.Models.ViewModels.EditModels
 
         public TeacherEditModel(Teacher teacher)
         {
+            Id = teacher.Id;
             Name = teacher.Name;
             Lastname = teacher.Lastname;
             Fathername = teacher.Fathername;

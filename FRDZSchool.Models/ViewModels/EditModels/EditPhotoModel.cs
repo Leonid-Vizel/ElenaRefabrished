@@ -25,6 +25,7 @@ namespace FRDZSchool.Models.ViewModels.EditModels
         {
             return new EditPhotoModel()
             {
+                Id = model.Id,
                 Title = model.Title,
                 Description = model.Description,
                 ImageFile = model.ImageFile

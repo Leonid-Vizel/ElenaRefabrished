@@ -9,6 +9,7 @@ namespace FRDZSchool.Models.ViewModels.EditModels
 
         public LessonEditModel(Lesson lesson)
         {
+            Id = lesson.Id;
             DateAndTime = lesson.DateAndTime;
             LessonDescription = lesson.LessonDescription;
             HomeTask = lesson.HomeTask;

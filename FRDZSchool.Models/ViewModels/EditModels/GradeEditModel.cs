@@ -8,7 +8,8 @@ namespace FRDZSchool.Models.ViewModels.EditModels
         public GradeEditModel() { }
 
         public GradeEditModel(Grade grade)
-        {
+        { 
+            Id = grade.Id;
             Number = grade.Number;
             Litera = grade.Litera;
             Specialization = grade.Specialization;
