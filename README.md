@@ -6,3 +6,4 @@ Plan:
 - [ ] Simple ASP.NET -> Blazor (maybe)
 - [ ] Remove unneeded configs
 - [ ] Code refactor
+- [ ] Migrate to Nabla libraries
