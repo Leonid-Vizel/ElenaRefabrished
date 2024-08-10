@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FRDZ School Web", "FRDZ School Web\FRDZ School Web.csproj", "{075D9950-9035-4300-B6CD-8AF6C4367A94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElenaWeb", "ElenaWeb\ElenaWeb.csproj", "{075D9950-9035-4300-B6CD-8AF6C4367A94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRDZSchool.DataAccess", "FRDZSchool.DataAccess\FRDZSchool.DataAccess.csproj", "{BE9F8B2C-85F1-45B4-8AC9-D8A8001F1166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElenaWeb.Services", "ElenaWeb.Services\ElenaWeb.Services.csproj", "{BE9F8B2C-85F1-45B4-8AC9-D8A8001F1166}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRDZSchool.Models", "FRDZSchool.Models\FRDZSchool.Models.csproj", "{1A01F9E1-64D1-41C6-9FF9-9E25107412C4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRDZSchool.Utility", "FRDZSchool.Utility\FRDZSchool.Utility.csproj", "{C32314AA-B8DE-40FC-BB59-0F8AD3F7379B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElenaWeb.Models", "ElenaWeb.Models\ElenaWeb.Models.csproj", "{1A01F9E1-64D1-41C6-9FF9-9E25107412C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{1A01F9E1-64D1-41C6-9FF9-9E25107412C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A01F9E1-64D1-41C6-9FF9-9E25107412C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A01F9E1-64D1-41C6-9FF9-9E25107412C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C32314AA-B8DE-40FC-BB59-0F8AD3F7379B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C32314AA-B8DE-40FC-BB59-0F8AD3F7379B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C32314AA-B8DE-40FC-BB59-0F8AD3F7379B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C32314AA-B8DE-40FC-BB59-0F8AD3F7379B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
